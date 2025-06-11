@@ -3,7 +3,6 @@
 
 public class PlayerEntity : EntityBase
 {
-
     void Awake()
     {
         Initialize();

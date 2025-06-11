@@ -21,8 +21,8 @@ public class UserInput : Singleton<UserInput>
     PlayerAbilityExecutor _abilityExecutor;
 
     public PlayerInput PlayerInput;
-    public Vector2 MovementInput { get; private set; }
-    public Vector2 LookInput { get; private set; }
+    public Vector3 MovementInput { get; private set; }
+    public Vector3 LookInput { get; private set; }
     public bool Seal1Pressed { get; private set; }
     public bool Seal2Pressed { get; private set; }
     public bool Seal3Pressed { get; private set; }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Attack: 10
-  MoveSpeed: 7
+  MoveSpeed: 12
   CritChance: 0
   Defense: 0
   SealModifier: []

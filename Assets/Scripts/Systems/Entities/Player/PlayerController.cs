@@ -2,11 +2,11 @@
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D _rb;
+    private Rigidbody _rb;
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void OnDrawGizmos()
@@ -20,6 +20,6 @@ public class PlayerController : MonoBehaviour
 
     internal void FreezePosition(bool isFreeze)
     {
-        _rb.constraints = isFreeze ? RigidbodyConstraints2D.FreezeAll : RigidbodyConstraints2D.FreezeRotation;
+        _rb.constraints = isFreeze ? RigidbodyConstraints.FreezeAll : RigidbodyConstraints.FreezePositionY;
     }
 }

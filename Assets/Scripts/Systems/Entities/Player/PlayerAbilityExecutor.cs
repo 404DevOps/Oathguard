@@ -59,6 +59,7 @@ public class PlayerAbilityExecutor : MonoBehaviour
     }
     public bool CheckForAbilityPressed()
     {
+        return false;
         if (UserInput.Instance.PrimaryAttackPressed)
         {
             return SetOrQueueNextAbility(0);

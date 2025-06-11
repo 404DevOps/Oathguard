@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Background
-  - Projectile
-  - Enemies
+  - Floor
+  - Props
+  - Projectiles
+  - Enemy
   - Player
-  - 
-  - 
+  - Wall
   - 
   - 
   - 
