@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
+  m_Name: BasicHit
+  m_EditorClassIdentifier: 
+  _uniqueID: 4b1c4154-c900-453a-9272-ae957c585c71
+  VFX_Execute: {fileID: 0}
+  VFX_Pre: {fileID: 0}
+  _abilityInfo:
+    Name: Slash
+    Cooldown: 0
+    Description: Slash your Sword forward dealing moderate Damage and applying your
+      Oath Effects.
+    CausesGCD: 1
+    GCDDuration: 0.5
+    Icon: {fileID: 0}
+  _animationInfo:
+    AnimationDuration: 0.7
+    AnimationTriggerName: primaryAttack
+    AnimationVariations: 2
+    ScreenShakeIntensity: 0
+    OnHitVFX:
+      VFXPrefab: {fileID: 0}
+      Duration: 0
+      Offset: {x: 0, y: 0, z: 0}
+  _soundEffectInfo:
+    PlaySoundOneShot: 0
+    PlaySoundOnMiss: 0
+    SFX_Execution: {fileID: 0}
+    SFX_Miss: {fileID: 0}
+  Effects:
+  - rid: 3209868347758870595
+  references:
+    version: 2
+    RefIds:
+    - rid: 3209868347758870595
+      type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
+      data:
+        TargetType: 0
+        SealType: 0
+        MinDamage: 0
+        MaxDamage: 0
+        ShakeIntensity: 0
+        IsTrueDamage: 0
+        CanCrit: 0
+        PreventHurt: 0

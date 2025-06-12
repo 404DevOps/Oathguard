@@ -3,5 +3,5 @@
 [Serializable]
 public abstract class AbilityEffectBase
 {
-    public abstract void Apply(EntityBase origin, EntityBase target, float stackMultiplier = 1);
+    public abstract void Apply(EntityBase origin, EntityBase target);
 }

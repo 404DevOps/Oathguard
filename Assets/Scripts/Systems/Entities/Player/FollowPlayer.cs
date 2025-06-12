@@ -1,11 +1,14 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class FollowPlayer : MonoBehaviour
 {
     Transform playerTransform;
     public Vector3 offset;
     public Vector3 Angle;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float smoothTime = 0.2f;
+    private Vector3 velocity = Vector3.zero;
+
     void Start()
     {
         if (EntityManager.Instance.Player != null)
@@ -14,10 +17,10 @@ public class FollowPlayer : MonoBehaviour
             playerTransform = FindFirstObjectByType<PlayerEntity>().transform;
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = playerTransform.position + offset;
-        transform.rotation = Quaternion.Euler(Angle);// new Quaternion(Angle.x, Angle.y, Angle.z, 0);
+        Vector3 targetPosition = playerTransform.position + offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        transform.rotation = Quaternion.Euler(Angle);
     }
 }

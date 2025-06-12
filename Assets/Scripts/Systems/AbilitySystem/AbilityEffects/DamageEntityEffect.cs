@@ -13,17 +13,12 @@ public class DamageEntityEffect : AbilityEffectBase
     public bool CanCrit;
     public bool PreventHurt;
 
-    public override void Apply(EntityBase origin, EntityBase target, float stackMultiplier = 1)
+    public override void Apply(EntityBase origin, EntityBase target)
     {
-        EntityBase tar = null;
-        if (TargetType == TargetType.Origin)
-            tar = origin.GetComponentInChildren<EntityBase>();
-        else
-            tar = target;
-
+        EntityBase tar = TargetType == TargetType.Origin ? origin : target;
         if (tar == null)
         {
-            Debug.LogError("AbilityEffect had an invalid TargetType");
+            Debug.LogError("AbilityEffect Target was null or had invalid TargetType");
             return;
         }
 
@@ -31,7 +26,16 @@ public class DamageEntityEffect : AbilityEffectBase
         if (health == null)
             return;
 
-        var dmgData = DamageCalculator.Instance.GetCalculatedDamage(origin, target, this, ShakeIntensity);
+        var dmgData = DamageCalculator.Instance.GetCalculatedDamage(origin, target, this);
+        if (!dmgData.IsImmune)
+            HandleShake(ShakeIntensity);
+
         health.ReduceHealth(dmgData);
+    }
+
+    private void HandleShake(float shakeIntensity)
+    {
+        //shakeManager.Shake(intentsity);
+        return;
     }
 }

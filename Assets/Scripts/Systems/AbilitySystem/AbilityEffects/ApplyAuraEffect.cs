@@ -6,9 +6,9 @@ using UnityEngine;
 public class ApplyAuraEffect : AbilityEffectBase
 {
     public AuraBase Aura;
-    public override void Apply(EntityBase origin, EntityBase target, float stackMultiplier = 1)
+    public override void Apply(EntityBase origin, EntityBase target)
     {
-        var tar = target == null ? null : target;
-        Aura.Apply(origin, tar);
+        var tar = Aura.TargetType == TargetType.Origin ? origin : target;
+        AuraManager.Instance.ApplyAura(origin, tar, Aura);
     }
 }

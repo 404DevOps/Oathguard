@@ -7,7 +7,7 @@ using UnityEngine;
 
 internal class AuraManager : Singleton<AuraManager>
 {
-    private Dictionary<string, List<AuraInfo>> _auras = new Dictionary<string, List<AuraInfo>>();
+    private Dictionary<string, List<AuraInstance>> _activeAuras = new Dictionary<string, List<AuraInstance>>();
 
     private void OnEnable()
     {
@@ -20,89 +20,92 @@ internal class AuraManager : Singleton<AuraManager>
 
     private void OnEntityInitialized(EntityBase entity)
     {
-        if (!_auras.ContainsKey(entity.Id)) // Prevent duplicate entries
-            _auras[entity.Id] = new List<AuraInfo>();
+        if (_activeAuras == null)
+            _activeAuras = new();
+        if (!_activeAuras.ContainsKey(entity.Id)) // Prevent duplicate entries
+            _activeAuras[entity.Id] = new List<AuraInstance>();
     }
 
     private void Update()
     {
-        foreach (var entry in _auras)
+        foreach (var kv in _activeAuras)
         {
-            if (entry.Value != null)
+            var list = kv.Value;
+            for (int i = list.Count - 1; i >= 0; i--)
             {
-                for (int i = entry.Value.Count - 1; i >= 0; i--) // Iterate backward
+                if (list[i].IsExpired)
                 {
-                    if (entry.Value[i].StartTime + entry.Value[i].Aura.Duration - Time.time <= 0)
-                    {
-                        Debug.Log("Aura expired.");
-                        entry.Value[i].Aura.Expire();
-                        GameEvents.OnAuraExpired.Invoke(new AuraExpiredEventArgs(entry.Key, entry.Value[i].Aura.Id));
-                        entry.Value.RemoveAt(i);
-                    }
+                    list[i].Expire();
+                    list.RemoveAt(i);
                 }
             }
         }
     }
-    public bool AddOrRefreshAura(string entityId, AuraBase aura)
+
+    public AuraInstance ApplyAura(EntityBase origin, EntityBase target, AuraBase newAura)
     {
-        if (!_auras.ContainsKey(entityId))
-            _auras[entityId] = new List<AuraInfo>(); // Ensure list exists
+        if (!_activeAuras.ContainsKey(target.Id))
+            _activeAuras[target.Id] = new List<AuraInstance>();
 
-        var entityAuras = _auras[entityId];
+        var auraList = _activeAuras[target.Id];
 
-        if (aura.Unique)
+        // Handle uniqueness
+        var existing = auraList.FirstOrDefault(a => a.Template.Id == newAura.Id);
+        if (existing != null)
         {
-            var existingAura = entityAuras.FirstOrDefault(a => a.Aura.Id == aura.Id);
-            if (existingAura != null)
+            existing.Refresh();
+            return existing;
+        }
+        else if (newAura is SealAura)
+        {
+            //clear seal if any.
+            var currentSeal = auraList.FirstOrDefault(a => a.Template is SealAura && a.Template.Id != newAura.Id);
+            if (currentSeal != null)
             {
-                Debug.Log("Refreshed Aura.");
-                existingAura.StartTime = Time.time; // Refresh aura duration instead of adding new when aura is unique
-                GameEvents.OnAuraRefreshed.Invoke(new AuraRefreshedEventArgs(entityId, existingAura));
-                return false;
+                currentSeal.Expire();
+                auraList.Remove(currentSeal);
             }
         }
 
-        Debug.Log("Added Aura.");
-        var info = new AuraInfo(aura, Time.time);
-        entityAuras.Add(info);
-        GameEvents.OnAuraApplied.Invoke(new AuraAppliedEventArgs(entityId, info));
-        return true;
+        // Apply new
+        var instance = new AuraInstance(newAura, origin, target);
+        auraList.Add(instance);
+        newAura.OnApply(instance);
+        return instance;
     }
     public void CancelAuraById(string entityId, string auraId)
     {
-        for (int i = 0; i < _auras[entityId]?.Count; i++)
+        for (int i = 0; i < _activeAuras[entityId]?.Count; i++)
         {
-            if (_auras[entityId][i].Aura.Id != auraId)
+            if (_activeAuras[entityId][i].Template.Id != auraId)
                 continue;
 
             Debug.Log("Aura canceled");
-            _auras[entityId][i].Aura.Expire();
-            _auras[entityId].RemoveAt(i);
+            _activeAuras[entityId][i].Expire();
+            _activeAuras[entityId].RemoveAt(i);
 
             GameEvents.OnAuraExpired.Invoke(new AuraExpiredEventArgs(entityId, auraId));
         }
     }
     public void ClearAllAuras()
     {
-        foreach (var entityAuras in _auras)
+        foreach (var entityAuras in _activeAuras)
         {
-            foreach (var auraInfo in entityAuras.Value)
+            foreach (var auraInstance in entityAuras.Value)
             {
-                auraInfo.Aura.Expire();
+                auraInstance.Expire();
             }
         }
-        _auras.Clear();
+        _activeAuras.Clear();
     }
 
-    public SealType GetPlayerSeal()
+    public SealAura GetPlayerSealAura()
     {
         var player = EntityManager.Instance.Player;
-        var sealAura = _auras[player.Id].FirstOrDefault(a => a.Aura.Type == AuraType.Seal);
-        if(sealAura != default)
-        {
-            var sA = sealAura.Aura as SealAura;
-            return sA.SealType;
-        }
-        return SealType.None;
+        var sealAura = _activeAuras[player.Id].FirstOrDefault(a => a.Template.Type == AuraType.Seal);
+        if (sealAura != default)
+            return sealAura.Template as SealAura;
+
+        return null;
     }
 }

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
+  m_Name: SpinHit
+  m_EditorClassIdentifier: 
+  _uniqueID: 48784e31-e79d-4cd9-afd2-cd0cf4eb7524
+  VFX_Execute: {fileID: 0}
+  VFX_Pre: {fileID: 0}
+  _abilityInfo:
+    Name: Whirlwind
+    Cooldown: 10
+    Description: Spin your Sword dealing damage to everything it hits.
+    CausesGCD: 1
+    GCDDuration: 0.5
+    Icon: {fileID: 0}
+  _animationInfo:
+    AnimationDuration: 0.9
+    AnimationTriggerName: secondaryAttack
+    AnimationVariations: 0
+    ScreenShakeIntensity: 0
+    OnHitVFX:
+      VFXPrefab: {fileID: 0}
+      Duration: 0
+      Offset: {x: 0, y: 0, z: 0}
+  _soundEffectInfo:
+    PlaySoundOneShot: 0
+    PlaySoundOnMiss: 0
+    SFX_Execution: {fileID: 0}
+    SFX_Miss: {fileID: 0}
+  Effects:
+  - rid: 3209868347758870595
+  references:
+    version: 2
+    RefIds:
+    - rid: 3209868347758870595
+      type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
+      data:
+        TargetType: 0
+        SealType: 0
+        MinDamage: 0
+        MaxDamage: 0
+        ShakeIntensity: 0
+        IsTrueDamage: 0
+        CanCrit: 0
+        PreventHurt: 0

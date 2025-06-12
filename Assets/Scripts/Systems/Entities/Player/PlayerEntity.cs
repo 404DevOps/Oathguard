@@ -3,6 +3,10 @@
 
 public class PlayerEntity : EntityBase
 {
+    public bool CanMove;
+    public bool CanRotate;
+    public bool CanUseAbilities;
+
     void Awake()
     {
         Initialize();

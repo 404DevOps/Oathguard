@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerController _characterController;
     private BoxCollider _playerCollider;
     private EntityStats _playerStats;
+    private PlayerAbilityExecutor _abilityExecutor;
     private Rigidbody _rb;
     #endregion
 
@@ -45,8 +46,9 @@ public class PlayerMovement : MonoBehaviour
         _characterController = GetComponent<PlayerController>();
         _playerCollider = GetComponentInChildren<BoxCollider>();
         _playerStats = _playerEntity.Stats;
+        _abilityExecutor = GetComponent<PlayerAbilityExecutor>();
         _rb = GetComponent<Rigidbody>();
-         _groundPlane = new Plane(Vector3.up, transform.position);
+        _groundPlane = new Plane(Vector3.up, transform.position);
     }
     private void Update()
     {
@@ -54,7 +56,9 @@ public class PlayerMovement : MonoBehaviour
             DodgeCooldown -= Time.deltaTime;
 
         HandleMove();
-        HandleRotation();
+
+        if (!_abilityExecutor.IsAttacking)
+            HandleRotation();
 
         SetAnimationInfo();
     }
@@ -82,8 +86,6 @@ public class PlayerMovement : MonoBehaviour
         _playerEntity.Animator.SetBool("isStrafingLeft", isStrafingLeft);
         _playerEntity.Animator.SetBool("isStrafingRight", isStrafingRight);
         _playerEntity.Animator.SetBool("isMovingForward", alignment > alignmentThreshold);
-
-        Debug.Log("Alignment = " + alignment.ToString());
     }
 
     #region Collider Checks
@@ -130,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             if (direction.sqrMagnitude > 0.001f)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSmoothing * Time.deltaTime);
+                ModelContainer.transform.rotation = Quaternion.Slerp(ModelContainer.transform.rotation, targetRotation, rotationSmoothing * Time.deltaTime);
             }
         }
     }
@@ -169,12 +171,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (changeToDodge)
         {
-            _playerEntity.GetCollider().gameObject.layer = LayerMask.NameToLayer("Dodge");
+            _playerEntity.MainCollider.gameObject.layer = LayerMask.NameToLayer("Dodge");
             _playerEntity.gameObject.layer = LayerMask.NameToLayer("Dodge");
         }
         else
         {
-            _playerEntity.GetCollider().gameObject.layer = LayerMask.NameToLayer("Player");
+            _playerEntity.MainCollider.gameObject.layer = LayerMask.NameToLayer("Player");
             _playerEntity.gameObject.layer = LayerMask.NameToLayer("Player");
         }
 
@@ -275,5 +277,4 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
-
 }

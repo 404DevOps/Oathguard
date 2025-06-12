@@ -142,7 +142,6 @@ public class UserInput : Singleton<UserInput>
         LookInput = _lookAction.ReadValue<Vector2>();
 
         IsAttacking = _abilityExecutor.IsAttacking;
-        IsNextAttackSet = CheckForAttack();
         PrimaryAttackPressed = _primaryAttackAction.WasPressedThisFrame();
         SecondaryAttackPressed = _secondaryAttackAction.WasPressedThisFrame();
 
@@ -152,16 +151,6 @@ public class UserInput : Singleton<UserInput>
         Seal4Pressed = _seal4Action.WasPressedThisFrame();
 
         InteractPressed = _interactAction.WasPressedThisFrame();
-    }
-
-    private bool CheckForAttack()
-    {
-        if (_abilityExecutor.CanUseQueuedAbility())
-            return true;
-        else if (_abilityExecutor.CheckForAbilityPressed())
-            return true;
-
-        return false;
     }
 
     public InputAction GetInputActionForAbilityIndex(int abilityIndex)

@@ -31,9 +31,9 @@ public class DamageCalculator : Singleton<DamageCalculator>
     {
         if (args.EntityId != EntityManager.Instance.Player.Id) return;
 
-        if (args.AuraInfo.Aura is SealAura)
+        if (args.AuraInstance.Template is SealAura)
         {
-            ActiveSealAura = args.AuraInfo.Aura as SealAura;
+            ActiveSealAura = args.AuraInstance.Template as SealAura;
         }
     }
 
@@ -47,7 +47,7 @@ public class DamageCalculator : Singleton<DamageCalculator>
     {
         if (entity is PlayerEntity)
         {
-            StartCoroutine(CachePlayer(entity as PlayerEntity));
+            CachePlayer(entity as PlayerEntity);
         }
         else
         {
@@ -55,30 +55,27 @@ public class DamageCalculator : Singleton<DamageCalculator>
         }
     }
 
-    private IEnumerator CachePlayer(PlayerEntity entity)
+    private void CachePlayer(PlayerEntity entity)
     {
-        yield return null;
-        //yield return new WaitUntil(() => PlayerDataStorage.Instance.IsLoaded);
         PlayerStats = entity.Stats;
-        //GemItem = (GemItem)playerEnt.Equipment.GetItemBySlot(ItemSlotType.Gem);
     }
 
     private void OnDisable()
     {
         GameEvents.OnEntityInitialized.RemoveListener(OnEntityInitialized);
     }
-    public DamageEventArgs GetCalculatedDamage(EntityBase source, EntityBase target, DamageEntityEffect effect, float shakeIntensity)
+    public DamageEventArgs GetCalculatedDamage(EntityBase source, EntityBase target, DamageEntityEffect effect)
     {
         if (source.GetType() == typeof(PlayerEntity))
         {
-            return PlayerDamagesNPC((PlayerEntity)source, target, effect, shakeIntensity);
+            return PlayerDamagesNPC((PlayerEntity)source, target, effect);
         }
         else
         {
-            return NPCDamagesPlayer(source, target, effect, shakeIntensity);
+            return NPCDamagesPlayer(source, target, effect);
         }
     }
-    private DamageEventArgs NPCDamagesPlayer(EntityBase source, EntityBase target, DamageEntityEffect effect, float intensity)
+    private DamageEventArgs NPCDamagesPlayer(EntityBase source, EntityBase target, DamageEntityEffect effect)
     {
         var damagePercentageRoll = Random.Range(effect.MinDamage, effect.MaxDamage);
         var baseDamage = EnemyStats[source.Id].Attack / 100 * damagePercentageRoll;
@@ -94,7 +91,7 @@ public class DamageCalculator : Singleton<DamageCalculator>
 
         return new DamageEventArgs(target, target, finalDmg, AttackEffectivityType.Neutral, false);
     }
-    private DamageEventArgs PlayerDamagesNPC(PlayerEntity origin, EntityBase target, DamageEntityEffect effect, float intensity)
+    private DamageEventArgs PlayerDamagesNPC(PlayerEntity origin, EntityBase target, DamageEntityEffect effect)
     {
         float damagePercentageRoll = Random.Range(effect.MinDamage, effect.MaxDamage);
         float totalRolledDamage = PlayerStats.Attack / 100f * damagePercentageRoll;

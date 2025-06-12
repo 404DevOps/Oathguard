@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAbilityExecutor : MonoBehaviour
@@ -19,10 +20,10 @@ public class PlayerAbilityExecutor : MonoBehaviour
         }
     }
 
-    private int QueuedAbilityIndex;
     public AbilityBase CurrentAbility;
+    public AbilityBase NextAbility; //queue only 1 ability
     private float AbilityQueueTime = 0.5f; //how long ability stays in queue until dropped
-    private float QueueTimer;
+    private float CurrentQueueTimer;
 
     public bool IsAttacking { get; private set; }
 
@@ -34,32 +35,34 @@ public class PlayerAbilityExecutor : MonoBehaviour
         {
             ability.Initialize();
         }
-        QueuedAbilityIndex = -1;
-        ResetCurrentAbility();
+        CurrentAbility = null;
+        NextAbility = null;
     }
     public void Update()
     {
+        CheckForAbilityPressed();
         HandleQueueTimer();
+        TryExecuteCurrentAbility();
     }
 
     //counting down timer and reset queue once it has run out.
     private void HandleQueueTimer()
     {
-        if (QueuedAbilityIndex < 0)
+        if (NextAbility == null)
             return;
 
-        if (QueueTimer <= 0)
+        if (CurrentQueueTimer <= 0)
         {
+            Debug.Log("Reset Ability Queue");
             ResetQueue();
         }
         else
         {
-            QueueTimer -= Time.deltaTime;
+            CurrentQueueTimer -= Time.deltaTime;
         }
     }
     public bool CheckForAbilityPressed()
     {
-        return false;
         if (UserInput.Instance.PrimaryAttackPressed)
         {
             return SetOrQueueNextAbility(0);
@@ -86,26 +89,32 @@ public class PlayerAbilityExecutor : MonoBehaviour
         }
         return false;
     }
+    /// <summary>
+    /// Returns true if Ability was immediately used.
+    /// </summary>
     private bool SetOrQueueNextAbility(int index)
     {
-        if (!Abilities[index].HasAnyCooldown(Player, false) && Abilities[index].CanBeUsed(Player, false))
+        if (IsAttacking)
+        {
+            Debug.Log("Queued Abiliy: " + Abilities[index]);
+            QueueAbility(Abilities[index]);
+            return false;
+        }
+        else if (!Abilities[index].HasAnyCooldown(Player, false))
         {
             CurrentAbility = Abilities[index];
             ResetQueue();
             return true;
         }
-        else
-        {
-            QueueAbility(index);
-            return false;
-        }
+        return false;
     }
-    public bool TryExecuteNextAbility()
+    public bool TryExecuteCurrentAbility()
     {
-        if (CurrentAbility == null)
+        if (CurrentAbility == null || IsAttacking)
             return false;
         if (CurrentAbility.TryUseAbility(Player))
         {
+            Debug.Log("Executing Ability: " + CurrentAbility);
             CurrentAbility.OnAbilitiyFinished += StopAttack;
             IsAttacking = true;
             return true;
@@ -114,28 +123,39 @@ public class PlayerAbilityExecutor : MonoBehaviour
     }
     private void ResetQueue()
     {
-        QueuedAbilityIndex = -1;
-        QueueTimer = 0;
+        NextAbility = null;
+        CurrentQueueTimer = AbilityQueueTime;
     }
-    private void QueueAbility(int index)
+    private void QueueAbility(AbilityBase ability)
     {
-        QueuedAbilityIndex = index;
-        QueueTimer = AbilityQueueTime;
+        NextAbility = ability;
+        CurrentQueueTimer = AbilityQueueTime;
     }
 
     private void StopAttack()
     {
+        Debug.Log("Stop Attack.");
+        CurrentAbility.OnAbilitiyFinished -= StopAttack;
         IsAttacking = false;
+        CurrentAbility = null;
+
+        //use queued ability next.
+        if (NextAbility != null)
+        {
+            Debug.Log("Readying Ability from Queue.");
+            CurrentAbility = NextAbility;
+            NextAbility = null;
+        }
     }
 
     internal bool CanUseQueuedAbility()
     {
-        if (QueuedAbilityIndex < 0)
+        if (NextAbility != null)
             return false;
 
-        if (!Abilities[QueuedAbilityIndex].HasAnyCooldown(Player, false) && Abilities[QueuedAbilityIndex].CanBeUsed(Player, false))
+        if (!NextAbility.HasAnyCooldown(Player, false) && !IsAttacking)
         {
-            CurrentAbility = Abilities[QueuedAbilityIndex];
+            CurrentAbility = NextAbility;
             ResetQueue();
             return true;
         }
@@ -143,6 +163,9 @@ public class PlayerAbilityExecutor : MonoBehaviour
     }
     public void ResetCurrentAbility()
     {
+        if(CurrentAbility != null)
+            CurrentAbility.OnAbilitiyFinished -= StopAttack;
+
         CurrentAbility = null;
     }
 }

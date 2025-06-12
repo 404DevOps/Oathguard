@@ -1,10 +1,10 @@
 ﻿public struct AuraAppliedEventArgs
 {
-    public AuraAppliedEventArgs(string entityId, AuraInfo aura)
+    public AuraAppliedEventArgs(string entityId, AuraInstance aura)
     {
         EntityId = entityId;
-        AuraInfo = aura;
+        AuraInstance = aura;
     }
     public string EntityId;
-    public AuraInfo AuraInfo;
+    public AuraInstance AuraInstance;
 }

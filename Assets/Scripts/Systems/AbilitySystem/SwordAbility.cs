@@ -1,0 +1,26 @@
+﻿using System.Collections;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Ability/SwordAbility", fileName = "NewSwordAbility")]
+public class SwordAbility : AbilityBase
+{
+    internal override IEnumerator Use(EntityBase origin, EntityBase target = null)
+    {
+        PlayAttackAnimation(origin);
+        PlayAbilitySound();
+        if (VFX_Execute != null)
+            VFX_Execute.PlayVFX(origin, this, target);
+
+        //enable sword
+        var sword = Utility.Sword;
+        sword.EnableHitbox();
+        sword.OnHit += ApplyEffects;
+
+        yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
+
+        //disable sword
+        sword.DisableHitbox();
+        sword.OnHit -= ApplyEffects;
+    }
+}
+

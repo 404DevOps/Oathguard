@@ -16,19 +16,19 @@ public class EntityBase : MonoBehaviour
     public bool IsAlive;
 
     public EntityType Type;
-
-    public Collider2D MainCollider;
+    public Collider MainCollider;
     public EntityCooldowns Cooldowns;
     public EntityHealth Health;
     public EntityStats Stats;
     public Animator Animator;
+    public WeaponHitbox Weapon;
     public EntityGCD GCD;
+    public Transform AuraVisualsHolder;
 
     private void Start()
     {
         Id = IdentifierService.GetNextId();
     }
-
 
     void Awake()
     {
@@ -39,8 +39,6 @@ public class EntityBase : MonoBehaviour
         yield return null;
         GameEvents.OnEntityInitialized.Invoke(this);
     }
-
-    public virtual Collider2D GetCollider() => MainCollider;
     protected virtual void Initialize()
     {
         Id = IdentifierService.GetNextId();
@@ -52,8 +50,14 @@ public class EntityBase : MonoBehaviour
         Health.Initialize(Stats);
         Health.EntityDied += Die;
 
+        GCD = GetComponent<EntityGCD>();
         Cooldowns = GetComponent<EntityCooldowns>();
         Animator = GetComponentInChildren<Animator>();
+
+        Weapon = GetComponentInChildren<WeaponHitbox>();
+        Weapon.Initialize(this);
+
+        AuraVisualsHolder = transform.Find("AuraVisualsHolder");
     }
 
     public virtual void Die()

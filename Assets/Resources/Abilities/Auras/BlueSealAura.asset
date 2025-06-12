@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f98cfc19c3eee479acd8b58fe40481, type: 3}
+  m_Name: BlueSealAura
+  m_EditorClassIdentifier: 
+  _uniqueID: b8619251-744b-462c-b03a-f606a2ff0a4a
+  Name: Seal of Wisdom
+  Icon: {fileID: 0}
+  TargetType: 1
+  Type: 0
+  Duration: 20
+  Modifiers: []
+  Unique: 1
+  ShowAuraDisplay: 0
+  SealType: 2
+  AuraParticles: {fileID: 3854921247714698391, guid: 884d0f3d230ae5c4595729dee98d55d8, type: 3}
+  ParticleOffset: {x: 0, y: 2, z: 0}

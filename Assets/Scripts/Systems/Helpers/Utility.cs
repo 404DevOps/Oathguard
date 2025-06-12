@@ -14,7 +14,22 @@ public static class Utility
             return _camera;
         }
     }
-    public static void DeleteChildren(this Transform t)
+
+    private static WeaponHitbox _sword;
+    public static WeaponHitbox Sword
+    {
+        get
+        {
+            if (_sword == null) 
+                _sword = Object.FindAnyObjectByType<WeaponHitbox>();
+            if (_sword == null)
+                Debug.LogError("No Sword in Scene");
+
+            return _sword;
+        }
+    }
+
+public static void DeleteChildren(this Transform t)
     {
         while (t.childCount > 0) Object.DestroyImmediate(t.GetChild(0).gameObject);
     }

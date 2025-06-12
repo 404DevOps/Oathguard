@@ -14,7 +14,6 @@ public abstract class AbilityBase : UniqueScriptableObject
 
     public virtual event Action OnAbilitiyFinished;// get; set; }
 
-    public HitDetectionInfo HitDetectionInfo;
     public AbilityVFXBase VFX_Execute;
     public AbilityVFXBase VFX_Pre;
 
@@ -32,6 +31,7 @@ public abstract class AbilityBase : UniqueScriptableObject
 
     public virtual void Initialize()
     {
+        _animationIndex = 0;
         _wasInterrupted = false;
     }
     public virtual bool TryUseAbility(EntityBase origin, EntityBase target = null)
@@ -44,10 +44,8 @@ public abstract class AbilityBase : UniqueScriptableObject
                 StartGlobalCooldown(origin, _abilityInfo.GCDDuration);
             }
 
-
             StartCooldown(origin, _abilityInfo.Cooldown);
             CoroutineUtility.Instance.RunAbilityCoroutine(Use(origin, target), this.Id);
-
 
             if (VFX_Pre != null)
                 VFX_Pre.PlayVFX(origin, this, target);
@@ -76,84 +74,15 @@ public abstract class AbilityBase : UniqueScriptableObject
 
         origin.GCD.SetGCD(duration);
     }
-    internal virtual List<EntityBase> DetectHits(EntityBase origin, bool showMiss = true)
+    
+    internal abstract IEnumerator Use(EntityBase origin, EntityBase target = null);
+
+    public IEnumerator WaitForAnimation(EntityBase origin)
     {
-        //wait for the delay async
-        //await Task.Delay(TimeSpan.FromSeconds(HitDetectionInfo.HitDetectionDelay));
-
-        var allHits = HitDetectionInfo.HitDetector.CheckHit(origin, HitDetectionInfo.OriginOffset, HitDetectionInfo.LayerMask);
-
-        List<EntityBase> filteredHits = FilterHits(allHits, origin);
-
-        if (filteredHits.Count > 0)
-        {
-            OnHitDetected?.Invoke();
-            if (!SoundEffectInfo.PlaySoundOneShot)
-                PlayAbilitySound();
-
-            if (AnimationInfo.OnHitVFX != null)
-            {
-                foreach (var target in filteredHits)
-                {
-                    var hitPos = HitDetectionInfo.HitDetector.GetOriginPositionWithOffset(origin, HitDetectionInfo.OriginOffset);
-                    AnimationInfo.OnHitVFX.PlayVFX(target);
-                }
-            }
-        }
-        else
-        {
-            GameEvents.OnHitMissed.Invoke(origin);
-            if (SoundEffectInfo.PlaySoundOnMiss)
-                PlayMissSound();
-        }
-
-        return filteredHits;
-    }
-    protected virtual List<EntityBase> FilterHits(List<EntityBase> allTargetsHit, EntityBase origin)
-    {
-        var filteredTargets = new List<EntityBase>();
-
-        foreach (var target in allTargetsHit)
-        {
-            if (!HitDetectionInfo.CanHitSelf && target.Id == origin.Id)
-                continue;
-
-            filteredTargets.Add(target);
-        }
-
-        return filteredTargets;
-    }
-    internal virtual IEnumerator Use(EntityBase origin, EntityBase target = null)
-    {
-        PlayAttackAnimation(origin);
-        if (VFX_Execute != null)
-            VFX_Execute.PlayVFX(origin, this, target);
-
-        if (HitDetectionInfo.NeedsHit)
-        {
-            yield return WaitManager.Wait(HitDetectionInfo.HitDetectionDelay);
-            var hits = DetectHits(origin);
-            foreach (var hit in hits)
-            {
-                ApplyEffects(origin, hit);
-            }
-        }
-        else
-        {
-            PlayAbilitySound();
-            ApplyEffects(origin, null);
-        }
-
-        CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
-    }
-
-    public IEnumerator WaitForAnimation(EntityBase origin, bool fireFinishEvent = true)
-    {
-
         if (AnimationInfo.AnimationDuration > 0)
             yield return WaitManager.Wait(AnimationInfo.AnimationDuration);
 
-        yield return CoroutineUtility.Instance.RunAbilityCoroutine(PlayRecoveryAnimationAnEndAttack(origin, fireFinishEvent), this.Id);
+        InvokeAbilityFinished();
     }
     internal virtual void PlayAttackAnimation(EntityBase origin)
     {
@@ -172,40 +101,16 @@ public abstract class AbilityBase : UniqueScriptableObject
         }
     }
 
-    internal void PlayWindUpAnimation(EntityBase origin)
-    {
-        if (!string.IsNullOrEmpty(AnimationInfo.AnimationWindUpTriggerName))
-            origin.Animator.SetTrigger(AnimationInfo.AnimationWindUpTriggerName);
-    }
-    internal virtual IEnumerator PlayRecoveryAnimationAnEndAttack(EntityBase origin, bool fireFinishEvent = true)
-    {
-        if (!string.IsNullOrEmpty(AnimationInfo.AnimationRecoveryTriggerName))
-            origin.Animator.SetTrigger(AnimationInfo.AnimationRecoveryTriggerName);
-
-        yield return WaitManager.Wait(AnimationInfo.RecevoryAnimationDuration);
-
-        if (fireFinishEvent)
-            InvokeAbilityFinished();
-    }
-
     internal void InvokeAbilityFinished()
     {
         OnAbilitiyFinished?.Invoke();
     }
 
-
     internal virtual void ApplyEffects(EntityBase origin, EntityBase target)
     {
-        if (HitDetectionInfo.NeedsHit && target == null)
+        foreach (var effect in Effects)
         {
-            Debug.LogError("No Target but needs one, check HitDetectionInfo");
-        }
-        else
-        {
-            foreach (var effect in Effects)
-            {
-                effect.Apply(origin, target);
-            }
+            effect.Apply(origin, target);
         }
     }
     internal virtual bool CanBeUsed(EntityBase origin, bool notifyPlayer, bool checkCasting = true)
@@ -234,15 +139,10 @@ public abstract class AbilityBase : UniqueScriptableObject
     {
         return origin.GCD.HasCooldown();
     }
-    internal virtual void PlayWindupSound()
-    {
-        if (SoundEffectInfo.SFX_Windup != null)
-            AudioManager.Instance.PlaySFX(SoundEffectInfo.SFX_Windup);
-    }
     internal virtual void PlayAbilitySound()
     {
         if (SoundEffectInfo.SFX_Execution != null)
-            AudioManager.Instance.PlaySFX(SoundEffectInfo.SFX_Execution, SoundEffectInfo.SFX_Execution_Duration);
+            AudioManager.Instance.PlaySFX(SoundEffectInfo.SFX_Execution);
     }
     internal virtual void PlayMissSound()
     {
@@ -261,16 +161,11 @@ public abstract class AbilityBase : UniqueScriptableObject
 [Serializable]
 public class AbilityInfo
 {
-    public bool LockInPlace;
     public string Name;
     public float Cooldown;
     public string Description;
-    public int ResourceCost;
     public bool CausesGCD;
     public float GCDDuration;
-    public float CastTime;
-    public float AttackRange;
-
     public Sprite Icon;
 }
 
@@ -278,14 +173,10 @@ public class AbilityInfo
 public class AnimationInfo
 {
     public float AnimationDuration;
-    public float RecevoryAnimationDuration;
     public string AnimationTriggerName;
-    public string AnimationWindUpTriggerName;
-    public string AnimationRecoveryTriggerName;
     public int AnimationVariations;
     public float ScreenShakeIntensity;
     public OnHitVFX OnHitVFX;
-    public bool ShowDangerIcon;
 }
 
 [Serializable]
@@ -293,22 +184,6 @@ public class SoundEffectInfo
 {
     public bool PlaySoundOneShot;
     public bool PlaySoundOnMiss;
-    public bool LoopExecution;
-    public AudioClip SFX_Windup;
     public AudioClip SFX_Execution;
     public AudioClip SFX_Miss;
-    public float SFX_Execution_Duration;
-}
-
-[Serializable]
-public class HitDetectionInfo
-{
-    public float HitDetectionDelay;
-    public Vector3 OriginOffset;
-    public int TargetCount;
-    public bool NeedsHit;
-    public bool CanHitSelf;
-    public LayerMask LayerMask;
-    [SerializeReference]
-    public HitDetectionBase HitDetector;
 }
