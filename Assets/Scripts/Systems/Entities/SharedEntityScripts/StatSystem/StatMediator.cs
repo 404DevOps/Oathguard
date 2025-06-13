@@ -32,7 +32,7 @@ public class StatMediator
         //return query.Value;
         return 0f;
     }
-    public float GetModifiedStat(StatType stat, float baseValue, SealType? seal = null)
+    public float GetModifiedStat(StatType stat, float baseValue, OathType? seal = null)
     {
         var query = new StatQuery(stat, baseValue, seal);
         var modifiersForStat = _modifiers.Where(sm => sm.StatType == stat);

@@ -17,6 +17,6 @@ public class EntityBaseStats : ScriptableObject
 [Serializable]
 public class SealModifier
 {
-    public SealType Seal;
+    public OathType Seal;
     public float Value;
 }

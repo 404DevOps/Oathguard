@@ -5,7 +5,5 @@
     Burning,
     Frozen,
     Stunned,
-    Webbed,
-    Rooted,
-    Trapped
+    Rooted
 }

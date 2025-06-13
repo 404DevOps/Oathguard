@@ -53,7 +53,7 @@ public class EntityStats : MonoBehaviour
             return _mediator.GetModifiedStat(StatType.CritChance, _baseStats.CritChance);
         }
     }
-    public float SealModifier(SealType Seal)
+    public float SealModifier(OathType Seal)
     {
         var baseSealModifier = _baseStats.SealModifier.FirstOrDefault(em => em.Seal == Seal);
         var baseValue = baseSealModifier == default ? 0 : baseSealModifier.Value;
@@ -70,10 +70,10 @@ public class EntityStats : MonoBehaviour
             new (StatType.CritChance, CritChance)
         };
 
-        var sealValues = Enum.GetValues(typeof(SealType));
-        foreach (SealType seal in sealValues)
+        var sealValues = Enum.GetValues(typeof(OathType));
+        foreach (OathType seal in sealValues)
         {
-            if (seal == SealType.None)
+            if (seal == OathType.None)
                 continue;
 
             var value = SealModifier(seal);

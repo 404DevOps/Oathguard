@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6593516bd22434b4baef8644724585e7, type: 3}
-  m_Name: BlueSealAbility
+  m_Name: OathOfMercyAbility
   m_EditorClassIdentifier: 
   _uniqueID: f8553eed-8c45-47a4-be43-7633940cd800
   VFX_Execute: {fileID: 0}

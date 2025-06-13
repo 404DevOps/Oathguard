@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34f98cfc19c3eee479acd8b58fe40481, type: 3}
-  m_Name: BlueSealAura
+  m_Name: OathOfMercyAura
   m_EditorClassIdentifier: 
   _uniqueID: b8619251-744b-462c-b03a-f606a2ff0a4a
   Name: Seal of Wisdom

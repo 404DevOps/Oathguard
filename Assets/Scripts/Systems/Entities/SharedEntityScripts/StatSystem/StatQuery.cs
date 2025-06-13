@@ -2,7 +2,7 @@
 
 public class StatQuery
 {
-    public StatQuery(StatType stat, float baseValue, SealType? sealtype = null)
+    public StatQuery(StatType stat, float baseValue, OathType? sealtype = null)
     {
         Stat = stat;
         BaseValue = baseValue;
@@ -13,5 +13,5 @@ public class StatQuery
     public StatType Stat;
     public float BaseValue;
     public float Value;
-    public SealType? SealType;
+    public OathType? SealType;
 }

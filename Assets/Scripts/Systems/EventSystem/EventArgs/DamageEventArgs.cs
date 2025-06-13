@@ -2,7 +2,7 @@
 
 public struct DamageEventArgs
 {
-    public DamageEventArgs(EntityBase origin, EntityBase target, float damageAmount, AttackEffectivityType effectivity, bool isCrit, bool isImmune = false, SealType seal = SealType.None)
+    public DamageEventArgs(EntityBase origin, EntityBase target, float damageAmount, AttackEffectivityType effectivity, bool isCrit, bool isImmune = false, OathType seal = OathType.None)
     {
         Origin = origin;
         Target = target;
@@ -17,7 +17,7 @@ public struct DamageEventArgs
     public EntityBase Target;
     public float Amount;
 
-    public SealType Seal;
+    public OathType Seal;
     AttackEffectivityType Effectivity;
     public bool IsCrit;
     public bool IsImmune;

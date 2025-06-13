@@ -7,7 +7,7 @@ public class DamageCalculator : Singleton<DamageCalculator>
 {
     private Dictionary<string, EntityStats> EnemyStats;
     private EntityStats PlayerStats;
-    private SealAura ActiveSealAura;
+    private OathAura ActiveSealAura;
 
     private void OnEnable()
     {
@@ -31,9 +31,9 @@ public class DamageCalculator : Singleton<DamageCalculator>
     {
         if (args.EntityId != EntityManager.Instance.Player.Id) return;
 
-        if (args.AuraInstance.Template is SealAura)
+        if (args.AuraInstance.Template is OathAura)
         {
-            ActiveSealAura = args.AuraInstance.Template as SealAura;
+            ActiveSealAura = args.AuraInstance.Template as OathAura;
         }
     }
 
@@ -103,11 +103,11 @@ public class DamageCalculator : Singleton<DamageCalculator>
         float baseDamage = totalRolledDamage;
         AttackEffectivityType effectivityType = AttackEffectivityType.Neutral;
 
-        var sealType = SealType.None;
+        var sealType = OathType.None;
         if (ActiveSealAura != null)
         {
-            sealType = ActiveSealAura.SealType;
-            var sealModifier = EnemyStats[target.Id].SealModifier(ActiveSealAura.SealType);
+            sealType = ActiveSealAura.OathType;
+            var sealModifier = EnemyStats[target.Id].SealModifier(ActiveSealAura.OathType);
             baseDamage *= sealModifier;
             effectivityType = GetDamageEffectivityType(sealModifier);
         }

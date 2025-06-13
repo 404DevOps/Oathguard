@@ -1,10 +1,10 @@
 ﻿
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Aura/SealAura", fileName = "NewSealAura")]
-public class SealAura : AuraBase
+[CreateAssetMenu(menuName = "Aura/OathAura", fileName = "NewOathAura")]
+public class OathAura : AuraBase
 {
-    public SealType SealType;
+    public OathType OathType;
     public GameObject AuraParticles;
     public Vector3 ParticleOffset;
 
@@ -28,7 +28,7 @@ public class SealAura : AuraBase
 
     private void OnEntityDamaged(DamageEventArgs args)
     {
-        Debug.Log("EntityDamaged registered in SealAura.");
+        Debug.Log("EntityDamaged registered in OathAura.");
     }
 }
 
