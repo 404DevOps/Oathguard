@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: OathOfMercyAura
   m_EditorClassIdentifier: 
   _uniqueID: b8619251-744b-462c-b03a-f606a2ff0a4a
-  Name: Seal of Wisdom
+  Name: Oath of Mercy
   Icon: {fileID: 0}
   TargetType: 1
   Type: 0
   Duration: 20
   Modifiers: []
-  Unique: 1
   ShowAuraDisplay: 0
-  SealType: 2
+  OathType: 2
   AuraParticles: {fileID: 3854921247714698391, guid: 884d0f3d230ae5c4595729dee98d55d8, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
