@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Ability/SealAbility", fileName = "NewSealAbility")]
-public class SealAbility : AbilityBase
+[CreateAssetMenu(menuName = "Ability/OathAbility", fileName = "NewOathAbility")]
+public class OathAbility : AbilityBase
 {
     internal override IEnumerator Use(EntityBase origin, EntityBase target = null)
     {

@@ -71,19 +71,19 @@ public class PlayerAbilityExecutor : MonoBehaviour
         {
             return SetOrQueueNextAbility(1);
         }
-        if (UserInput.Instance.Seal1Pressed)
+        if (UserInput.Instance.Oath1Pressed)
         {
             return SetOrQueueNextAbility(2);
         }
-        if (UserInput.Instance.Seal2Pressed)
+        if (UserInput.Instance.Oath2Pressed)
         {
             return SetOrQueueNextAbility(3);
         }
-        if (UserInput.Instance.Seal3Pressed)
+        if (UserInput.Instance.Oath3Pressed)
         {
             return SetOrQueueNextAbility(4);
         }
-        if (UserInput.Instance.Seal4Pressed)
+        if (UserInput.Instance.Oath4Pressed)
         {
             return SetOrQueueNextAbility(5);
         }

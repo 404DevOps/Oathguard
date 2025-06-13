@@ -2,9 +2,7 @@
 {
     public static bool IsRootEffect(StatusEffectType type)
     {
-        return type == StatusEffectType.Webbed ||
-                type == StatusEffectType.Trapped ||
-                type == StatusEffectType.Rooted;
+        return type == StatusEffectType.Rooted;
     }
     public static bool IsStunEffect(StatusEffectType type)
     {

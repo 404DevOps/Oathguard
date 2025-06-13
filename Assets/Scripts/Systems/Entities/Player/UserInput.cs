@@ -9,10 +9,10 @@ public class UserInput : Singleton<UserInput>
     {
         "Primary Attack", // Index 0
         "Secondary Attack", // Index 1
-        "Seal1", // Index 2
-        "Seal2", // Index 3
-        "Seal3", // Index 4
-        "Seal4"  // Index 5
+        "Oath1", // Index 2
+        "Oath2", // Index 3
+        "Oath3", // Index 4
+        "Oath4"  // Index 5
     };
 
 //  GamepadIconCollection GamePadIcons;
@@ -23,10 +23,10 @@ public class UserInput : Singleton<UserInput>
     public PlayerInput PlayerInput;
     public Vector3 MovementInput { get; private set; }
     public Vector3 LookInput { get; private set; }
-    public bool Seal1Pressed { get; private set; }
-    public bool Seal2Pressed { get; private set; }
-    public bool Seal3Pressed { get; private set; }
-    public bool Seal4Pressed { get; private set; }
+    public bool Oath1Pressed { get; private set; }
+    public bool Oath2Pressed { get; private set; }
+    public bool Oath3Pressed { get; private set; }
+    public bool Oath4Pressed { get; private set; }
     public bool InteractPressed { get; private set; }
     public bool SecondaryAttackPressed { get; private set; }
     public bool PrimaryAttackPressed { get; private set; }
@@ -41,10 +41,10 @@ public class UserInput : Singleton<UserInput>
     InputAction _lookAction;
     InputAction _primaryAttackAction;
     InputAction _secondaryAttackAction;
-    InputAction _seal1Action;
-    InputAction _seal2Action;
-    InputAction _seal3Action;
-    InputAction _seal4Action;
+    InputAction _oath1Action;
+    InputAction _oath2Action;
+    InputAction _oath3Action;
+    InputAction _oath4Action;
     InputAction _menuOpenCloseAction;
 
     #endregion
@@ -106,10 +106,10 @@ public class UserInput : Singleton<UserInput>
         _lookAction = PlayerInput.actions["Look"];
         _primaryAttackAction = PlayerInput.actions["Primary Attack"];
         _secondaryAttackAction = PlayerInput.actions["Secondary Attack"];
-        _seal1Action = PlayerInput.actions["Seal1"];
-        _seal2Action = PlayerInput.actions["Seal2"];
-        _seal3Action = PlayerInput.actions["Seal3"];
-        _seal4Action = PlayerInput.actions["Seal4"];
+        _oath1Action = PlayerInput.actions["Oath1"];
+        _oath2Action = PlayerInput.actions["Oath2"];
+        _oath3Action = PlayerInput.actions["Oath3"];
+        _oath4Action = PlayerInput.actions["Oath4"];
         _menuOpenCloseAction = PlayerInput.actions["MenuOpenClose"];
     }
 
@@ -145,10 +145,10 @@ public class UserInput : Singleton<UserInput>
         PrimaryAttackPressed = _primaryAttackAction.WasPressedThisFrame();
         SecondaryAttackPressed = _secondaryAttackAction.WasPressedThisFrame();
 
-        Seal1Pressed = _seal1Action.WasPressedThisFrame();
-        Seal2Pressed = _seal2Action.WasPressedThisFrame();
-        Seal3Pressed = _seal3Action.WasPressedThisFrame();
-        Seal4Pressed = _seal4Action.WasPressedThisFrame();
+        Oath1Pressed = _oath1Action.WasPressedThisFrame();
+        Oath2Pressed = _oath2Action.WasPressedThisFrame();
+        Oath3Pressed = _oath3Action.WasPressedThisFrame();
+        Oath4Pressed = _oath4Action.WasPressedThisFrame();
 
         InteractPressed = _interactAction.WasPressedThisFrame();
     }

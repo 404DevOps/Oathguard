@@ -2,5 +2,5 @@
 {
     Buff,
     Debuff,
-    Seal
+    Oath
 }

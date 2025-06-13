@@ -58,12 +58,12 @@ internal class AuraManager : Singleton<AuraManager>
         }
         else if (newAura is OathAura)
         {
-            //clear seal if any.
-            var currentSeal = auraList.FirstOrDefault(a => a.Template is OathAura && a.Template.Id != newAura.Id);
-            if (currentSeal != null)
+            //clear oath if any.
+            var currentOath = auraList.FirstOrDefault(a => a.Template is OathAura && a.Template.Id != newAura.Id);
+            if (currentOath != null)
             {
-                currentSeal.Expire();
-                auraList.Remove(currentSeal);
+                currentOath.Expire();
+                auraList.Remove(currentOath);
             }
         }
 
@@ -99,12 +99,12 @@ internal class AuraManager : Singleton<AuraManager>
         _activeAuras.Clear();
     }
 
-    public OathAura GetPlayerSealAura()
+    public OathAura GetPlayerOathAura()
     {
         var player = EntityManager.Instance.Player;
-        var sealAura = _activeAuras[player.Id].FirstOrDefault(a => a.Template.Type == AuraType.Seal);
-        if (sealAura != default)
-            return sealAura.Template as OathAura;
+        var oathAura = _activeAuras[player.Id].FirstOrDefault(a => a.Template.Type == AuraType.Oath);
+        if (oathAura != default)
+            return oathAura.Template as OathAura;
 
         return null;
     }

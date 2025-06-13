@@ -9,7 +9,7 @@ public enum StatType
     Attack,
     Defense,
     MaxHealth,
-    SealModifier,
+    OathModifier,
     MoveSpeed,
     CritChance,
 }

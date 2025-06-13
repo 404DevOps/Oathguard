@@ -11,12 +11,12 @@ public class EntityBaseStats : ScriptableObject
     public float MoveSpeed;
     public float CritChance;
     public float Defense;
-    public List<SealModifier> SealModifier;
+    public List<OathModifier> OathModifier;
 }
 
 [Serializable]
-public class SealModifier
+public class OathModifier
 {
-    public OathType Seal;
+    public OathType Oath;
     public float Value;
 }

@@ -1,12 +1,12 @@
 ﻿public class StatInfo
 {
-    public StatInfo(StatType stat, float value, OathType seal = OathType.None)
+    public StatInfo(StatType stat, float value, OathType oath = OathType.None)
     {
         StatType = stat;
         Value = value;
-        Seal = seal;
+        Oath = oath;
     }
     public StatType StatType;
-    public OathType Seal;
+    public OathType Oath;
     public float Value;
 }

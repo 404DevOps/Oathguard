@@ -9,26 +9,26 @@ public class StatModifier
     public StatType StatType;
     public OperatorType Operator;
     public float Value;
-    public OathType SealType;
+    public OathType OathType;
 
-    public StatModifier(string sourceId, StatType statType, OperatorType op, float value, OathType sealType = OathType.None)
+    public StatModifier(string sourceId, StatType statType, OperatorType op, float value, OathType oathType = OathType.None)
     {
         SourceId = sourceId;
         StatType = statType;
         Operator = op;
         Value = value;
 
-        if (statType == StatType.SealModifier && sealType == OathType.None)
-            Debug.LogError("Stat Modifier for SealType Resistance doesnt have an Seal.");
+        if (statType == StatType.OathModifier && oathType == OathType.None)
+            Debug.LogError("Stat Modifier for OathType Resistance doesnt have an Oath.");
         else
-            SealType = sealType;
+            OathType = oathType;
     }
 
     public void Modify(StatQuery query)
     {
-        if (query.Stat == StatType.SealModifier && SealType == OathType.None && SealType != query.SealType)
+        if (query.Stat == StatType.OathModifier && OathType == OathType.None && OathType != query.OathType)
         {
-            return; //Modifier Seal doesnt match Query.
+            return; //Modifier Oath doesnt match Query.
         }
         switch (Operator)
         {

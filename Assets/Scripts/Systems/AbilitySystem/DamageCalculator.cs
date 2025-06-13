@@ -7,7 +7,7 @@ public class DamageCalculator : Singleton<DamageCalculator>
 {
     private Dictionary<string, EntityStats> EnemyStats;
     private EntityStats PlayerStats;
-    private OathAura ActiveSealAura;
+    private OathAura ActiveOathAura;
 
     private void OnEnable()
     {
@@ -21,9 +21,9 @@ public class DamageCalculator : Singleton<DamageCalculator>
     {
         if (args.EntityId != EntityManager.Instance.Player.Id) return;
 
-        if (args.AuraId == ActiveSealAura.Id)
+        if (args.AuraId == ActiveOathAura.Id)
         {
-            ActiveSealAura = null;
+            ActiveOathAura = null;
         }
     }
 
@@ -33,7 +33,7 @@ public class DamageCalculator : Singleton<DamageCalculator>
 
         if (args.AuraInstance.Template is OathAura)
         {
-            ActiveSealAura = args.AuraInstance.Template as OathAura;
+            ActiveOathAura = args.AuraInstance.Template as OathAura;
         }
     }
 
@@ -103,13 +103,13 @@ public class DamageCalculator : Singleton<DamageCalculator>
         float baseDamage = totalRolledDamage;
         AttackEffectivityType effectivityType = AttackEffectivityType.Neutral;
 
-        var sealType = OathType.None;
-        if (ActiveSealAura != null)
+        var oathType = OathType.None;
+        if (ActiveOathAura != null)
         {
-            sealType = ActiveSealAura.OathType;
-            var sealModifier = EnemyStats[target.Id].SealModifier(ActiveSealAura.OathType);
-            baseDamage *= sealModifier;
-            effectivityType = GetDamageEffectivityType(sealModifier);
+            oathType = ActiveOathAura.OathType;
+            var oathModifier = EnemyStats[target.Id].OathModifier(ActiveOathAura.OathType);
+            baseDamage *= oathModifier;
+            effectivityType = GetDamageEffectivityType(oathModifier);
         }
 
         return new DamageEventArgs(
@@ -119,7 +119,7 @@ public class DamageCalculator : Singleton<DamageCalculator>
             effectivityType,
             isCrit,
             false,
-            sealType
+            oathType
         );
     }
 
