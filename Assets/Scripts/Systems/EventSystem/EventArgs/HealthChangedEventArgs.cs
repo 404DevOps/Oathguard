@@ -3,11 +3,11 @@ public struct HealthChangedEventArgs
 {
     public HealthChangedEventArgs(EntityBase target, float currentHealth, float maxHealth)
     {
-        Target = target;
+        Entity = target;
         CurrentHealth = currentHealth;
         MaxHealth = maxHealth;
     }
-    public EntityBase Target;
+    public EntityBase Entity;
     public float CurrentHealth;
     public float MaxHealth;
 }

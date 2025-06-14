@@ -8,9 +8,9 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: knight_texture
-    second: {fileID: 2100000, guid: dbff0c9cde2c9cf44a51a6d1b7bb05eb, type: 2}
+    second: {fileID: 2100000, guid: 2222ee0a13343b942b97e9df2d645eba, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 1
     materialSearch: 0
     materialLocation: 1

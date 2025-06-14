@@ -21,7 +21,7 @@ MonoBehaviour:
     Description: Spin your Sword dealing damage to everything it hits.
     CausesGCD: 1
     GCDDuration: 0.5
-    Icon: {fileID: 0}
+    Icon: {fileID: 583435654101691703, guid: 5cecc6995cceee64e870b02d371617f2, type: 3}
   _animationInfo:
     AnimationDuration: 0.9
     AnimationTriggerName: secondaryAttack
@@ -45,7 +45,7 @@ MonoBehaviour:
       type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
-        SealType: 0
+        OathType: 0
         MinDamage: 0
         MaxDamage: 0
         ShakeIntensity: 0

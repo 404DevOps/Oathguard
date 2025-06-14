@@ -22,7 +22,7 @@ MonoBehaviour:
       Oath Effects.
     CausesGCD: 1
     GCDDuration: 0.5
-    Icon: {fileID: 0}
+    Icon: {fileID: -9018399632469994422, guid: 72e6edb4a5fbb2e47a8c5d70e21d99f7, type: 3}
   _animationInfo:
     AnimationDuration: 0.7
     AnimationTriggerName: primaryAttack
@@ -46,7 +46,7 @@ MonoBehaviour:
       type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
-        SealType: 0
+        OathType: 0
         MinDamage: 0
         MaxDamage: 0
         ShakeIntensity: 0

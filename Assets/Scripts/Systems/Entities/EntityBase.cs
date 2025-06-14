@@ -19,6 +19,7 @@ public class EntityBase : MonoBehaviour
     public Collider MainCollider;
     public EntityCooldowns Cooldowns;
     public EntityHealth Health;
+    public EntityResource Resource;
     public EntityStats Stats;
     public Animator Animator;
     public WeaponHitbox Weapon;
@@ -49,6 +50,9 @@ public class EntityBase : MonoBehaviour
         Health = GetComponent<EntityHealth>();
         Health.Initialize(Stats);
         Health.EntityDied += Die;
+
+        Resource = GetComponent<EntityResource>();
+        Resource.Initialize(AppearanceConfig.Instance().GetResourceData(Stats.ResourceType));
 
         GCD = GetComponent<EntityGCD>();
         Cooldowns = GetComponent<EntityCooldowns>();

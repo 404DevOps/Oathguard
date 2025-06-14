@@ -11,15 +11,17 @@ public static class GameEvents
     //combat
     public static readonly Event<DamageEventArgs> OnEntityDamaged = new();
     public static readonly Event<HealthChangedEventArgs> OnEntityHealthChanged = new();
+    public static readonly Event<ResourceChangedEventArgs> OnEntityResourceChanged = new();
     public static readonly Event<string> OnEntityHurt = new();
     public static readonly Event<HealEventArgs> OnEntityHealed = new();
-
     public static readonly Event<EntityBase> OnHitMissed = new();
 
     //abilities
     public static readonly Event<GCDStartedEventArgs> OnGCDStart = new();
     public static readonly Event<CooldownStartedEventArgs> OnCooldownStart = new();
     public static readonly Event<CooldownEndedEventArgs> OnCooldownEnded = new();
+
+    public static readonly Event<EntityBase> OnAbilitiesChanged = new();
 
     //auras
     public static readonly Event<AuraExpiredEventArgs> OnAuraExpired = new();

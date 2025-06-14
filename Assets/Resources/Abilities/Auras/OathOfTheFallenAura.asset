@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f98cfc19c3eee479acd8b58fe40481, type: 3}
+  m_Name: OathOfTheFallenAura
+  m_EditorClassIdentifier: 
+  _uniqueID: d301ff11-b999-4473-a244-3813f145001b
+  Name: Oath of the Binding
+  Icon: {fileID: -9105323192478943849, guid: 3b69db89d1602524a9274217f76b564f, type: 3}
+  TargetType: 1
+  Type: 2
+  Duration: 20
+  Modifiers: []
+  ShowAuraDisplay: 0
+  OathType: 5
+  AuraParticles: {fileID: 3854921247714698391, guid: 1cf443b8dc6f0a9409b26c0a1a05068d, type: 3}
+  ParticleOffset: {x: 0, y: 2, z: 0}
+  SwordGlowColor: {r: 0.9433962, g: 0.7111148, b: 0.17354932, a: 1}

@@ -16,12 +16,13 @@ MonoBehaviour:
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
   _abilityInfo:
-    Name: 
+    Name: Oath of Mercy
     Cooldown: 0
-    Description: 
-    CausesGCD: 0
-    GCDDuration: 0
-    Icon: {fileID: 0}
+    Description: A vow to mercy which grants a chance to restore health when a enemies
+      is struck
+    CausesGCD: 1
+    GCDDuration: 0.5
+    Icon: {fileID: 7243693225362205131, guid: 8273438af2bf901489e9c7075557c4d2, type: 3}
   _animationInfo:
     AnimationDuration: 0.9
     AnimationTriggerName: castSeal

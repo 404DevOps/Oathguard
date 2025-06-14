@@ -4,5 +4,6 @@
     Mercy,
     Vengeance,
     Binding,
-    Justice
+    Justice,
+    Fallen
 }

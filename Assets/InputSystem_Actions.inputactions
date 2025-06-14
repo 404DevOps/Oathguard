@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seal1",
+                    "name": "Oath1",
                     "type": "Button",
                     "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
                     "expectedControlType": "",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seal2",
+                    "name": "Oath2",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
                     "expectedControlType": "",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seal3",
+                    "name": "Oath3",
                     "type": "Button",
                     "id": "956e7f98-daa2-4f8a-9b5f-bcc0d4c30951",
                     "expectedControlType": "",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seal4",
+                    "name": "Oath4",
                     "type": "Button",
                     "id": "739513ed-45b5-43c5-b4c3-275c6e9edbe7",
                     "expectedControlType": "",
@@ -312,8 +312,8 @@
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Seal2",
+                    "groups": "Gamepad",
+                    "action": "Oath2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -323,8 +323,8 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Seal2",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Oath2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -334,8 +334,8 @@
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Seal3",
+                    "groups": "Gamepad",
+                    "action": "Oath3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -345,19 +345,19 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Seal3",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Oath3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "ef16127a-6c0f-4153-bbec-3196f337bdea",
-                    "path": "<Gamepad>/rightStick/right",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Seal4",
+                    "groups": ";Gamepad",
+                    "action": "Oath4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -367,8 +367,8 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Seal4",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Oath4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -378,7 +378,7 @@
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "Gamepad",
                     "action": "MenuOpenClose",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -389,7 +389,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Keyboard&Mouse",
                     "action": "MenuOpenClose",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -423,7 +423,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Seal1",
+                    "action": "Oath1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -434,7 +434,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Seal1",
+                    "action": "Oath1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

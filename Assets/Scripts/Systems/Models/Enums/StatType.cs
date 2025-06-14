@@ -12,4 +12,5 @@ public enum StatType
     OathModifier,
     MoveSpeed,
     CritChance,
+    MaxResource,
 }

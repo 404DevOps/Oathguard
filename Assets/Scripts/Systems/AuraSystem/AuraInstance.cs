@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class AuraInstance
 {
@@ -8,6 +9,7 @@ public class AuraInstance
         Origin = origin;
         Target = target;
         StartTime = Time.time;
+        VisualInstances = new();
     }
 
     public bool IsExpired => Time.time >= StartTime + Template.Duration;
@@ -16,7 +18,7 @@ public class AuraInstance
     public EntityBase Target;
     public AuraBase Template;
     public float StartTime;
-    public GameObject VisualInstance;
+    public List<GameObject> VisualInstances;
 
     public void Expire()
     {

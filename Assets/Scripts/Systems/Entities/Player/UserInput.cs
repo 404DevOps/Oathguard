@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEngine.InputSystem.InputBinding;
 
 public class UserInput : Singleton<UserInput>
 {
@@ -15,7 +17,7 @@ public class UserInput : Singleton<UserInput>
         "Oath4"  // Index 5
     };
 
-//  GamepadIconCollection GamePadIcons;
+    GamepadIconCollection GamePadIcons;
     bool IsMenuOpened = false;
     public string CurrentControlScheme = "Keyboard";
     PlayerAbilityExecutor _abilityExecutor;
@@ -195,5 +197,31 @@ public class UserInput : Singleton<UserInput>
     {
         var inputAction = GetInputActionForAbilityIndex(index);
         return inputAction.bindings[0].effectivePath.Split("/").Last().ToUpper();
+    }
+
+    public Sprite GetSymbolForAbilityIndex(int index, string controlScheme)
+    {
+        if (GamePadIcons == null)
+            GamePadIcons = GetComponent<GamepadIconCollection>();
+
+        if (GamePadIcons == null) Debug.Log("GamepadIconCollection not found");
+
+        var inputAction = GetInputActionForAbilityIndex(index);
+        string deviceLayoutName;
+        string controlPath;
+
+        int bindingIndex = controlScheme != "Keyboard" ? 1 : 0;
+        var displayString = inputAction.GetBindingDisplayString(bindingIndex, out deviceLayoutName, out controlPath, DisplayStringOptions.DontOmitDevice);
+
+
+        if (controlScheme != "Keyboard")
+        {
+            return GamePadIcons.GetControlSprite(deviceLayoutName, controlPath);
+        }
+        else
+        {
+            return GamePadIcons.KeyboardIcon;
+        }
+
     }
 }

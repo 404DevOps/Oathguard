@@ -163,6 +163,7 @@ public class AbilityInfo
 {
     public string Name;
     public float Cooldown;
+    [TextArea]
     public string Description;
     public bool CausesGCD;
     public float GCDDuration;

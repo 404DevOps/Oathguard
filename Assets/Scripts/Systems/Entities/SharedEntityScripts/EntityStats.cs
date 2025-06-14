@@ -16,6 +16,7 @@ public class EntityStats : MonoBehaviour
     public virtual void Initialize(EntityBase entity)
     {
         _baseStats = EntityStatMapping.Instance().GetBaseStats(entity.Type);
+        ResourceType = _baseStats.ResourceType;
     }
 
     public float MaxHealth
@@ -23,6 +24,13 @@ public class EntityStats : MonoBehaviour
         get
         {
             return _mediator.GetModifiedStat(StatType.MaxHealth, _baseStats.MaxHealth);
+        }
+    }
+    public float MaxResource
+    {
+        get
+        {
+            return _mediator.GetModifiedStat(StatType.MaxResource, _baseStats.MaxResource);
         }
     }
     public float Attack

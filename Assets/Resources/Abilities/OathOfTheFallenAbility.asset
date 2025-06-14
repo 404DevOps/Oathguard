@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6593516bd22434b4baef8644724585e7, type: 3}
+  m_Name: OathOfTheFallenAbility
+  m_EditorClassIdentifier: 
+  _uniqueID: 4a83b1c1-a6f4-4b46-8bce-b2db60e1c010
+  VFX_Execute: {fileID: 0}
+  VFX_Pre: {fileID: 0}
+  _abilityInfo:
+    Name: Oath of the Fallen
+    Cooldown: 0
+    Description: A vow to the fallen that sacrifices a portion of your health to
+      deal additional damage to enemies struck
+    CausesGCD: 1
+    GCDDuration: 0.5
+    Icon: {fileID: -9105323192478943849, guid: 3b69db89d1602524a9274217f76b564f, type: 3}
+  _animationInfo:
+    AnimationDuration: 0.9
+    AnimationTriggerName: castSeal
+    AnimationVariations: 0
+    ScreenShakeIntensity: 0
+    OnHitVFX:
+      VFXPrefab: {fileID: 0}
+      Duration: 0
+      Offset: {x: 0, y: 0, z: 0}
+  _soundEffectInfo:
+    PlaySoundOneShot: 0
+    PlaySoundOnMiss: 0
+    SFX_Execution: {fileID: 0}
+    SFX_Miss: {fileID: 0}
+  Effects:
+  - rid: 3209868347758870802
+  references:
+    version: 2
+    RefIds:
+    - rid: 3209868347758870802
+      type: {class: ApplyAuraEffect, ns: , asm: Assembly-CSharp}
+      data:
+        Aura: {fileID: 11400000, guid: 323d062d29ace5b449346f860759abc0, type: 2}
