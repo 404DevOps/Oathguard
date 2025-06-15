@@ -12,6 +12,12 @@ public class CombatTextManager : MonoBehaviour
     private Queue<CombatText> _combatTextPool = new Queue<CombatText>();
     private GameObject InstantiationObject;
     private Camera _mainCamera;
+    private Transform TextPool;
+
+    private void Start()
+    {
+        transform.Find("TextPool");
+    }
 
     private void OnEnable()
     {
@@ -27,7 +33,7 @@ public class CombatTextManager : MonoBehaviour
         {
             for (int i = 0; i < _poolSize; i++)
             {
-                _combatTextPool.Enqueue(CreateNewText());
+                _combatTextPool.Enqueue(CreateText());
             }
         }
     }
@@ -95,14 +101,13 @@ public class CombatTextManager : MonoBehaviour
             var floatingText = _combatTextPool.Dequeue();
             return floatingText;
         }
-        return CreateNewText();
+        return CreateText();
     }
 
-    private CombatText CreateNewText()
+    private CombatText CreateText()
     {
-        var floatingTextGo = Instantiate(_floatingTextPrefab, InstantiationObject.transform);
+        var floatingTextGo = Instantiate(_floatingTextPrefab, TextPool);
         CombatText ft = floatingTextGo.GetComponent<CombatText>();
-
         ft.OnTextFinished += () => ReturnToPool(ft);
         return ft;
     }

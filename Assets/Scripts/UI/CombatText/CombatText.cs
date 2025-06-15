@@ -7,37 +7,26 @@ using UnityEngine;
 
 public class CombatText : MonoBehaviour
 {
-    public Action OnTextFinished;
     public EntityBase Entity;
-    TextMeshProUGUI _text;
-    public Vector3 StartPosition;
+    public Action OnTextFinished;
+
+    private TextMeshProUGUI _text;
 
     public float MoveSpeed;
     public float Duration;
     public string Text;
-
-    public float FontSizeUpFactor = 1.5f;
-    public float FontSizeUpFactorCrit = 2f;//used to make number big before getting small
-    public bool IsCrit = false;
-
-    private float _timer;
-    
+    public bool IsCrit = false;    
     public Color Color;
     public float offsetX;
-
-    public float upForce = 10;
+    private float _timer;
 
     void Awake()
     {
-        _text = GetComponent<TextMeshProUGUI>(); // Cache it once
+        _text = GetComponent<TextMeshProUGUI>();
     }
 
-
-    // Start is called before the first frame update
     void OnEnable()
     {
-        var pos = new Vector3(StartPosition.x + offsetX, StartPosition.y, StartPosition.z);
-        transform.position = pos;
         transform.localScale = Vector3.one;
         _text.alpha = 1.0f;
         _text.richText = true;
@@ -49,7 +38,7 @@ public class CombatText : MonoBehaviour
     void LateUpdate()
     {
         _timer += Time.deltaTime;
-        transform.position += new Vector3(0, upForce * MoveSpeed, 0) * Time.deltaTime;
+        transform.position += new Vector3(0, MoveSpeed, 0) * Time.deltaTime;
 
         if (_text.alpha > 0)
         {
