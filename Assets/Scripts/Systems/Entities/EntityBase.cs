@@ -24,7 +24,8 @@ public class EntityBase : MonoBehaviour
     public Animator Animator;
     public WeaponHitbox Weapon;
     public EntityGCD GCD;
-    public Transform AuraVisualsHolder;
+    public Transform AuraVisualsContainer;
+    public Transform CombatTextContainer;
 
     private void Start()
     {
@@ -61,7 +62,8 @@ public class EntityBase : MonoBehaviour
         Weapon = GetComponentInChildren<WeaponHitbox>();
         Weapon.Initialize(this);
 
-        AuraVisualsHolder = transform.Find("AuraVisualsHolder");
+        AuraVisualsContainer = transform.Find("AuraVFX");
+        CombatTextContainer = transform.Find("CombatText");
     }
 
     public virtual void Die()

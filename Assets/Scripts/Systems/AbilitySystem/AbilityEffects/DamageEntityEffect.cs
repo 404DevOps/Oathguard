@@ -5,7 +5,6 @@ using UnityEngine;
 public class DamageEntityEffect : AbilityEffectBase
 {
     public TargetType TargetType;
-    public OathType OathType;
     public float MinDamage;
     public float MaxDamage;
     public float ShakeIntensity;

@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Ability/SwordAbility", fileName = "NewSwordAbility")]
 public class SwordAbility : AbilityBase
 {
+    public float WeaponActivationDelay;
     internal override IEnumerator Use(EntityBase origin, EntityBase target = null)
     {
         PlayAttackAnimation(origin);
@@ -11,6 +12,7 @@ public class SwordAbility : AbilityBase
         if (VFX_Execute != null)
             VFX_Execute.PlayVFX(origin, this, target);
 
+        yield return WaitManager.Wait(WeaponActivationDelay);
         //enable sword
         var sword = Utility.Sword;
         sword.EnableHitbox();

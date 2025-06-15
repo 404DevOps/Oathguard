@@ -1,10 +1,12 @@
 ﻿public struct HealEventArgs
 {
-    public HealEventArgs(EntityBase entity, float amount)
+    public HealEventArgs(EntityBase origin, EntityBase target, float amount)
     { 
-        Entity = entity;
+        Origin = origin;
+        Target = target;
         Amount = amount;
     }
-    public EntityBase Entity;
+    public EntityBase Origin;
+    public EntityBase Target;
     public float Amount;
 }

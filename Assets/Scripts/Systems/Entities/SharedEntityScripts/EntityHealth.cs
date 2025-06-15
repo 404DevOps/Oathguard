@@ -45,22 +45,22 @@ public class EntityHealth : MonoBehaviour
         }
 
 
-            CurrentHealth -= damageEventData.Amount;
+        CurrentHealth -= damageEventData.Amount;
 
-            if (damageEventData.Amount > 0)
+        if (damageEventData.Amount > 0)
+        {
+            if (_config.HurtDuration > 0)
             {
-                if (_config.HurtDuration > 0)
-                {
-                    IsHurt = true;
-                    StartCoroutine(StopHurt()); //allow for custom hurt duration
-                }
+                IsHurt = true;
+                StartCoroutine(StopHurt()); //allow for custom hurt duration
             }
-            if (CurrentHealth <= 0)
-            {
-                GameEvents.OnEntityDied.Invoke(_entity.Id);
-                EntityDied?.Invoke();
-            }
-        
+        }
+        if (CurrentHealth <= 0)
+        {
+            GameEvents.OnEntityDied.Invoke(_entity.Id);
+            EntityDied?.Invoke();
+        }
+
 
         GameEvents.OnEntityHurt.Invoke(_entity.Id);
         GameEvents.OnEntityDamaged.Invoke(damageEventData);
@@ -73,7 +73,7 @@ public class EntityHealth : MonoBehaviour
         IsHurt = false;
     }
 
-    public void AddHealth(float amount)
+    public void AddHealth(EntityBase origin, EntityBase target, float amount)
     {
         CurrentHealth += amount;
 
@@ -81,7 +81,7 @@ public class EntityHealth : MonoBehaviour
             CurrentHealth = MaxHealth;
 
         var entity = GetComponent<EntityBase>();
-        GameEvents.OnEntityHealed.Invoke(new HealEventArgs(entity, amount));
+        GameEvents.OnEntityHealed.Invoke(new HealEventArgs(origin, target, amount));
         GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(entity, MaxHealth, CurrentHealth));
     }
 

@@ -39,6 +39,7 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868347758870595
+  WeaponActivationDelay: 0.2
   references:
     version: 2
     RefIds:
@@ -46,7 +47,6 @@ MonoBehaviour:
       type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
-        OathType: 0
         MinDamage: 0
         MaxDamage: 0
         ShakeIntensity: 0

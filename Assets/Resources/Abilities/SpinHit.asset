@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SpinHit
   m_EditorClassIdentifier: 
   _uniqueID: 48784e31-e79d-4cd9-afd2-cd0cf4eb7524
-  VFX_Execute: {fileID: 0}
+  VFX_Execute: {fileID: 11400000, guid: c02cb9c4bf7a7284486a64d0aacbb81e, type: 2}
   VFX_Pre: {fileID: 0}
   _abilityInfo:
     Name: Whirlwind
-    Cooldown: 10
+    Cooldown: 1
     Description: Spin your Sword dealing damage to everything it hits.
     CausesGCD: 1
     GCDDuration: 0.5
@@ -38,6 +38,7 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868347758870595
+  WeaponActivationDelay: 0.3
   references:
     version: 2
     RefIds:

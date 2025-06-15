@@ -75,9 +75,10 @@ public class DamageCalculator : Singleton<DamageCalculator>
             return NPCDamagesPlayer(source, target, effect);
         }
     }
+
     private DamageEventArgs NPCDamagesPlayer(EntityBase source, EntityBase target, DamageEntityEffect effect)
     {
-        var damagePercentageRoll = Random.Range(effect.MinDamage, effect.MaxDamage);
+        var damagePercentageRoll = GetRoll(effect.MinDamage, effect.MaxDamage);
         var baseDamage = EnemyStats[source.Id].Attack / 100 * damagePercentageRoll;
 
         float finalDmg = baseDamage;
@@ -121,6 +122,11 @@ public class DamageCalculator : Singleton<DamageCalculator>
             false,
             oathType
         );
+    }
+
+    public static float GetRoll(float min, float max)
+    {
+        return Mathf.RoundToInt(Random.Range(min, max));
     }
 
     private static AttackEffectivityType GetDamageEffectivityType(float damageModifier)

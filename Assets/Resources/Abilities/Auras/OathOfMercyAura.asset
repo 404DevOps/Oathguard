@@ -23,4 +23,8 @@ MonoBehaviour:
   OathType: 1
   AuraParticles: {fileID: 3854921247714698391, guid: b9999d1a0d306bf4b896358080e1b013, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
-  SwordGlowColor: {r: 0.13679248, g: 1, b: 0.46003637, a: 1}
+  SwordAuraParticles: {fileID: 3081362037621676516, guid: 301056b038e1c414abe9415dd0826f35, type: 3}
+  SwordParticleOffset: {x: 0, y: 1.2, z: 0}
+  SwordParticleRotation: {x: 90, y: 90, z: 0}
+  OathUpgrades:
+  - {fileID: 11400000, guid: d56c2f5847e0f6742b8e6af683521938, type: 2}
