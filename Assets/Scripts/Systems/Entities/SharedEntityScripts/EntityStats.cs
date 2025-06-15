@@ -68,9 +68,9 @@ public class EntityStats : MonoBehaviour
 
         return _mediator.GetModifiedStat(StatType.OathModifier, baseValue, Oath);
     }
-    public List<StatInfo> GetAllStatsAsList()
+    public List<StatData> GetAllStatsAsList()
     {
-        var result = new List<StatInfo>(){
+        var result = new List<StatData>(){
             new (StatType.MaxHealth, MaxHealth),
             new (StatType.MoveSpeed, MoveSpeed),
             new (StatType.Attack, Attack),
@@ -85,7 +85,7 @@ public class EntityStats : MonoBehaviour
                 continue;
 
             var value = OathModifier(oath);
-            result.Add(new StatInfo(StatType.OathModifier, value, oath));
+            result.Add(new StatData(StatType.OathModifier, value, oath));
         }
 
         return result;

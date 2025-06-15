@@ -8,7 +8,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "AppearanceConfig", fileName = "Config/AppearanceConfig")]
 internal class AppearanceConfig : ScriptableObject
 {
-    [SerializeField] private List<ResourceInfo> _resourceData;
+    [SerializeField] private List<ResourceData> _resourceData;
 
     private static AppearanceConfig _instance;
 
@@ -21,7 +21,7 @@ internal class AppearanceConfig : ScriptableObject
         return _instance;
     }
 
-    public ResourceInfo GetResourceData(ResourceType type)
+    public ResourceData GetResourceData(ResourceType type)
     {
         try
         {

@@ -10,7 +10,7 @@ public class EntityResource : MonoBehaviour
     public ResourceType ResourceType => GetComponent<EntityStats>().ResourceType;
     public float CurrentResource;
 
-    public void Initialize(ResourceInfo data)
+    public void Initialize(ResourceData data)
     {
         CurrentResource = (MaxResource / 100) * data.StartAmountPercentage;
     }

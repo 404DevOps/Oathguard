@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class ResourceInfo
+public class ResourceData
 {
     public ResourceType ResourceType;
     public float StartAmountPercentage;

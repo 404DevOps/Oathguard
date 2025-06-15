@@ -1,6 +1,6 @@
-﻿public class StatInfo
+﻿public class StatData
 {
-    public StatInfo(StatType stat, float value, OathType oath = OathType.None)
+    public StatData(StatType stat, float value, OathType oath = OathType.None)
     {
         StatType = stat;
         Value = value;

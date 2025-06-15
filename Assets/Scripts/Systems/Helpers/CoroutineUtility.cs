@@ -9,28 +9,23 @@ internal class CoroutineUtility : Singleton<CoroutineUtility>
 {
     List<TrackedCoroutine> _generalCoroutines = new List<TrackedCoroutine>();
     Dictionary<string, List<TrackedCoroutine>> _abilityCoroutines = new();
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     public Coroutine RunAbilityCoroutine(IEnumerator action, string abilityId)
     {
-        TrackedCoroutine tracked = new TrackedCoroutine();
+        TrackedCoroutine tracked = new();
         tracked.Enumerator = action;
-        tracked.CoroutineRef = StartCoroutine(WrapAbilityCoroutine(tracked, abilityId));
+        tracked.CoroutineReference = StartCoroutine(WrapAbilityCoroutine(tracked, abilityId));
 
         if (!_abilityCoroutines.ContainsKey(abilityId))
             _abilityCoroutines[abilityId] = new List<TrackedCoroutine>();
 
         _abilityCoroutines[abilityId].Add(tracked);
-        return tracked.CoroutineRef;
+        return tracked.CoroutineReference;
     }
     private IEnumerator WrapAbilityCoroutine(TrackedCoroutine tracked, string abilityId)
     {
         yield return tracked.Enumerator;
 
-        // Coroutine finished, remove it
         if (_abilityCoroutines.TryGetValue(abilityId, out var list))
         {
             list.Remove(tracked);
@@ -38,27 +33,25 @@ internal class CoroutineUtility : Singleton<CoroutineUtility>
                 _abilityCoroutines.Remove(abilityId);
         }
     }
-    private IEnumerator WrapGeneralCoroutine(TrackedCoroutine tracked, string abilityId)
+    private IEnumerator WrapGeneralCoroutine(TrackedCoroutine tracked)
     {
         yield return tracked.Enumerator;
-
-        // Coroutine finished, remove it
         _generalCoroutines.Remove(tracked);
     }
     public Coroutine RunCoroutineTracked(IEnumerator action)
     {
         TrackedCoroutine tracked = new TrackedCoroutine();
         tracked.Enumerator = action;
-        tracked.CoroutineRef = StartCoroutine(WrapGeneralCoroutine(tracked, ""));
+        tracked.CoroutineReference = StartCoroutine(WrapGeneralCoroutine(tracked));
         _generalCoroutines.Add(tracked);
-        return tracked.CoroutineRef;
+        return tracked.CoroutineReference;
     }
     public void AbortAllCoroutines()
     {
         foreach (var tracked in _generalCoroutines)
         {
-            if (tracked != null && tracked.CoroutineRef != null)
-                StopCoroutine(tracked.CoroutineRef);
+            if (tracked != null && tracked.CoroutineReference != null)
+                StopCoroutine(tracked.CoroutineReference);
         }
         _generalCoroutines.Clear();
 
@@ -74,8 +67,8 @@ internal class CoroutineUtility : Singleton<CoroutineUtility>
         {
             foreach (var coroutine in list)
             {
-                if (coroutine != null && coroutine.CoroutineRef != null)
-                    StopCoroutine(coroutine.CoroutineRef);
+                if (coroutine != null && coroutine.CoroutineReference != null)
+                    StopCoroutine(coroutine.CoroutineReference);
             }
             if (removeInstant)
                 _abilityCoroutines.Remove(abilityId);
@@ -85,6 +78,6 @@ internal class CoroutineUtility : Singleton<CoroutineUtility>
 
 internal class TrackedCoroutine
 {
-    public Coroutine CoroutineRef;
+    public Coroutine CoroutineReference;
     public IEnumerator Enumerator;
 }

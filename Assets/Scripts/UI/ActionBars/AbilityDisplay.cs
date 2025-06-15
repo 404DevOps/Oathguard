@@ -156,7 +156,7 @@ public class AbilityDisplay : MonoBehaviour
 
     private float GetTrueAbilityCooldown(AbilityBase ability) => ability.AbilityInfo.Cooldown;
 
-    private void SetAbilityIcons(AbilityInfo abilityInfo)
+    private void SetAbilityIcons(AbilityData abilityInfo)
     {
         Icon.sprite = abilityInfo.Icon;
         Swipe.sprite = abilityInfo.Icon;

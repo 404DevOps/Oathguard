@@ -8,8 +8,8 @@ using UnityEngine;
 public abstract class AbilityBase : UniqueScriptableObject
 {
     public Action OnHitDetected;
-    public virtual AbilityInfo AbilityInfo => _abilityInfo;
-    public virtual AnimationInfo AnimationInfo => _animationInfo;
+    public virtual AbilityData AbilityInfo => _abilityInfo;
+    public virtual AnimationData AnimationInfo => _animationInfo;
     public virtual SoundEffectInfo SoundEffectInfo => _soundEffectInfo;
 
     public virtual event Action OnAbilitiyFinished;// get; set; }
@@ -17,8 +17,8 @@ public abstract class AbilityBase : UniqueScriptableObject
     public AbilityVFXBase VFX_Execute;
     public AbilityVFXBase VFX_Pre;
 
-    [SerializeField] protected AbilityInfo _abilityInfo;
-    [SerializeField] protected AnimationInfo _animationInfo;
+    [SerializeField] protected AbilityData _abilityInfo;
+    [SerializeField] protected AnimationData _animationInfo;
     [SerializeField] protected SoundEffectInfo _soundEffectInfo;
     [SerializeReference] public List<AbilityEffectBase> Effects;
 
@@ -39,7 +39,7 @@ public abstract class AbilityBase : UniqueScriptableObject
         if (CanBeUsed(origin, true) && !HasAnyCooldown(origin, true))
         {
             _ownerId = origin.Id;
-            if (AbilityInfo.CausesGCD)
+            if (AbilityInfo.UseGCD)
             {
                 StartGlobalCooldown(origin, _abilityInfo.GCDDuration);
             }
@@ -95,7 +95,7 @@ public abstract class AbilityBase : UniqueScriptableObject
         //Debug.Log("AnimationTrigger: " + AnimationTriggerName + " AnimationIndex: " + _animationIndex);
         _animationIndex++;
 
-        if (_animationIndex > AnimationInfo.AnimationVariations - 1)
+        if (_animationIndex > AnimationInfo.AnimationVariationCount - 1)
         {
             _animationIndex = 0;
         }
@@ -158,27 +158,6 @@ public abstract class AbilityBase : UniqueScriptableObject
     }
 }
 
-[Serializable]
-public class AbilityInfo
-{
-    public string Name;
-    public float Cooldown;
-    [TextArea]
-    public string Description;
-    public bool CausesGCD;
-    public float GCDDuration;
-    public Sprite Icon;
-}
-
-[Serializable]
-public class AnimationInfo
-{
-    public float AnimationDuration;
-    public string AnimationTriggerName;
-    public int AnimationVariations;
-    public float ScreenShakeIntensity;
-    public OnHitVFX OnHitVFX;
-}
 
 [Serializable]
 public class SoundEffectInfo
