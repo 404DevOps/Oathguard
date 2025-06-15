@@ -10,7 +10,7 @@ public class ImmunityAura : AuraBase
     {
         base.OnApply(instance); // If you still want modifiers, otherwise remove
 
-        var immunityHandler = instance.Target.GetComponent<ImmunityHandler>();
+        var immunityHandler = instance.Target.GetComponent<EntityImmunity>();
         if (immunityHandler != null)
         {
             foreach (var type in ImmuneTypes)
@@ -24,7 +24,7 @@ public class ImmunityAura : AuraBase
     {
         base.OnExpire(instance);
 
-        var immunityHandler = instance.Target.GetComponent<ImmunityHandler>();
+        var immunityHandler = instance.Target.GetComponent<EntityImmunity>();
         if (immunityHandler != null)
         {
             foreach (var type in ImmuneTypes)

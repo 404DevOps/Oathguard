@@ -7,6 +7,8 @@ public class PlayerEntity : EntityBase
     public bool CanRotate;
     public bool CanUseAbilities;
 
+    public PlayerAbilityController AbilityController;
+
     void Awake()
     {
         Initialize();
@@ -16,7 +18,9 @@ public class PlayerEntity : EntityBase
     protected override void Initialize()
     {
         base.Initialize();
-        Stats = GetComponent<EntityStats>();
+
+        AbilityController = GetComponent<PlayerAbilityController>();
+        AbilityController.Initialize(this);
 
         var movement = gameObject.GetComponent<PlayerMovement>();
         movement.Initialize();

@@ -53,10 +53,10 @@ public class ActionBarUIHandler : MonoBehaviour
     {
         if (_player != null)
         {
-            var executor = _player.GetComponent<AbilityExecutor>();
+            var abilityController = _player.GetComponent<PlayerAbilityController>();
             int abilityIndex = 0;
             var spawnTransform = _upperBar;
-            foreach (var ability in executor.Abilities)
+            foreach (var ability in abilityController.Abilities)
             {
                 var abilityDisplayGo = Instantiate(_abilityDisplayPrefab, spawnTransform);
                 var abilityDisplayScript = abilityDisplayGo.GetComponent<AbilityDisplay>();

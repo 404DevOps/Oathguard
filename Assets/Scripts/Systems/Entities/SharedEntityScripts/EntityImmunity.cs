@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ImmunityHandler : MonoBehaviour
+public class EntityImmunity : MonoBehaviour
 {
     private readonly Dictionary<DamageType, HashSet<string>> _immunitySources = new();
 

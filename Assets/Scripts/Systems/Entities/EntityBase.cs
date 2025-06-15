@@ -12,13 +12,13 @@ using UnityEngine;
 
 public class EntityBase : MonoBehaviour
 {
+    [Header("General")]
     public string Id;
     public bool IsAlive;
-
     public EntityType Type;
-    public Collider Collider;
-    
+   
     [Header("References")]
+    public Collider Collider;
     public WeaponHitbox Weapon;
     public EntityHealth Health;
     public EntityHurt Hurt;
@@ -28,8 +28,9 @@ public class EntityBase : MonoBehaviour
     public EntityGCD GCD;
     public EntityCooldowns Cooldowns;
     public AbilityExecutor AbilityExecutor;
+    public EntityImmunity Immunity;
 
-    //containers
+    [Header("Containers")]
     public Transform AuraVisualsContainer;
     public Transform CombatTextContainer;
 
@@ -72,6 +73,9 @@ public class EntityBase : MonoBehaviour
         Weapon.Initialize(this);
 
         AbilityExecutor = GetComponent<AbilityExecutor>();
+        AbilityExecutor.Initialize(this);
+
+        Immunity = GetComponent<EntityImmunity>();
 
         AuraVisualsContainer = transform.Find("AuraVFX");
         CombatTextContainer = transform.Find("CombatText");
@@ -80,7 +84,5 @@ public class EntityBase : MonoBehaviour
     public virtual void Die()
     {
         IsAlive = false;
-        //Debug.Log("Entity died: " + Id);
     }
 }
-
