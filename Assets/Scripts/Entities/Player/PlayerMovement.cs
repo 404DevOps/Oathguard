@@ -33,9 +33,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        HandleMove();
+        if (_playerEntity.IsDead) return;
 
-        if (!_abilityExecutor.IsAttacking)
+        if(_playerEntity.CanMove)
+            HandleMove();
+
+        if (!_abilityExecutor.IsAttacking && _playerEntity.CanRotate)
             HandleRotation();
 
         SetAnimationInfo();

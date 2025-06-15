@@ -9,6 +9,7 @@ public class PlayerAbilityController : MonoBehaviour
 
     private AbilityBase queuedAbility;
     private float queueTimer;
+    private PlayerEntity _playerEntity;
 
     private void Update()
     {
@@ -18,6 +19,7 @@ public class PlayerAbilityController : MonoBehaviour
 
     public void Initialize(PlayerEntity entity)
     {
+        _playerEntity = entity;
         _executor = entity.AbilityExecutor;
         foreach (var ability in Abilities)
             ability.Initialize();
@@ -81,7 +83,8 @@ public class PlayerAbilityController : MonoBehaviour
         }
         else
         {
-            _executor.TryExecuteAbility(ability);
+            if(_playerEntity.CanUseAbilities)
+                _executor.TryExecuteAbility(ability);
         }
     }
 }

@@ -14,10 +14,10 @@ public class EntityBase : MonoBehaviour
 {
     [Header("General")]
     public string Id;
-    public bool IsAlive;
+    public bool IsDead;
     public EntityType Type;
    
-    [Header("References")]
+    [Header("References")] 
     public Collider Collider;
     public WeaponHitbox Weapon;
     public EntityHealth Health;
@@ -30,7 +30,7 @@ public class EntityBase : MonoBehaviour
     public AbilityExecutor AbilityExecutor;
     public EntityImmunity Immunity;
 
-    [Header("Containers")]
+    [Header("Containers")] 
     public Transform AuraVisualsContainer;
     public Transform CombatTextContainer;
 
@@ -51,13 +51,13 @@ public class EntityBase : MonoBehaviour
     protected virtual void Initialize()
     {
         Id = IdentifierService.GetNextId();
+        Animator = GetComponent<Animator>();
 
         Stats = GetComponent<EntityStats>();
         Stats.Initialize(this);
 
         Health = GetComponent<EntityHealth>();
         Health.Initialize(this);
-        Health.OnEntityDied += Die;
 
         Hurt = GetComponent<EntityHurt>();
         Hurt.Initialize(this);
@@ -67,7 +67,6 @@ public class EntityBase : MonoBehaviour
 
         GCD = GetComponent<EntityGCD>();
         Cooldowns = GetComponent<EntityCooldowns>();
-        Animator = GetComponentInChildren<Animator>();
 
         Weapon = GetComponentInChildren<WeaponHitbox>();
         Weapon.Initialize(this);
@@ -79,10 +78,22 @@ public class EntityBase : MonoBehaviour
 
         AuraVisualsContainer = transform.Find("AuraVFX");
         CombatTextContainer = transform.Find("CombatText");
+
+        GameEvents.OnEntityDied.AddListener(OnEntityDied);
     }
 
-    public virtual void Die()
+    public virtual void OnEntityDied(string entityId)
     {
-        IsAlive = false;
+        if (entityId != Id) return;
+
+        IsDead = true;
+        Animator.SetBool("isDead", true);
+        StartCoroutine(SetPlayedDeadAnim());
+    }
+
+    private IEnumerator SetPlayedDeadAnim()
+    {
+        yield return null;
+        Animator.SetBool("playedDeathAnimation", true);
     }
 }

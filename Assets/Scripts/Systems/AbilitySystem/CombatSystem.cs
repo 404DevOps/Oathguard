@@ -59,10 +59,8 @@ public class CombatSystem : Singleton<CombatSystem>
     }
     public DamageContext CalculateDamage(EntityBase origin, EntityBase target, DamageEffect effect)
     {
-        var context = new DamageContext
+        var context = new DamageContext(origin, target)
         {
-            Origin = origin,
-            Target = target,
             Type = effect.Type,
             IsTrueDamage = effect.IsTrueDamage,
             SourceEffect = effect

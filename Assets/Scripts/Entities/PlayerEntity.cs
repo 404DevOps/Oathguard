@@ -3,10 +3,10 @@
 
 public class PlayerEntity : EntityBase
 {
+    [Header("Player Attributes")]
     public bool CanMove;
     public bool CanRotate;
     public bool CanUseAbilities;
-
     public PlayerAbilityController AbilityController;
 
     void Awake()
@@ -25,10 +25,21 @@ public class PlayerEntity : EntityBase
         var movement = gameObject.GetComponent<PlayerMovement>();
         movement.Initialize();
 
+        CanMove = true;
+        CanRotate = true;
+        CanUseAbilities = true;
+
     }
 
-    public override void Die()
+    public override void OnEntityDied(string entityId)
     {
+        if (entityId != Id) return;
+
+        CanMove = false;
+        CanRotate = false;
+        CanUseAbilities = false;
+
+        base.OnEntityDied(entityId);
         Debug.Log("Player died");
     }
 }

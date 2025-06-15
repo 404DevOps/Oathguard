@@ -10,8 +10,6 @@ public class EntityHealth : MonoBehaviour
     public EntityStats EntityStats;
     public EntityBase Entity;
 
-    public Action OnEntityDied;
-
     public float HealthPercentage { get { return CurrentHealth / MaxHealth * 100; } }
 
     public void Initialize(EntityBase entity)
@@ -36,7 +34,6 @@ public class EntityHealth : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             GameEvents.OnEntityDied.Invoke(Entity.Id);
-            OnEntityDied?.Invoke();
         }
     }
 

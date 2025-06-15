@@ -35,7 +35,7 @@ public class EntityHurt : MonoBehaviour
 
         if (_health.CurrentHealth > 0)
         {
-            _animator.SetTrigger("Hurt");
+            _animator.SetTrigger("isHurt");
             StartCoroutine(HandleHurt());
             StartCoroutine(HurtFlash());
             // Lock movement etc. here
