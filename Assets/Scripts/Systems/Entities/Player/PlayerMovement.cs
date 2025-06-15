@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    #region Movement
-    [Header("Movement")]
-    public Vector3 Velocity;
-    public bool IsDodgeSlowdown = false;
-
-    #endregion
     #region Rotation
     [Header("Rotation")]
     public LayerMask GroundLayer;
@@ -53,13 +47,12 @@ public class PlayerMovement : MonoBehaviour
         _playerEntity.Animator.SetFloat("moveSpeed", moveSpeed);
 
         Vector3 moveDirection = UserInput.Instance.MovementInput.normalized; //WASD input
-        Vector3 facingDirection = transform.forward;
+        Vector3 facingDirection = ModelContainer.transform.forward;
 
         // Check dot product: <-0.5 = moving backward, between -0.5 and 0.5 = strafing, >0.5 = forward
         Vector3 translatedInput = new Vector3(moveDirection.x, 0, moveDirection.y);
         float alignment = Vector3.Dot(facingDirection, translatedInput);
-        float sideAlignment = Vector3.Dot(transform.right, moveDirection);
-
+        float sideAlignment = Vector3.Dot(ModelContainer.transform.right, moveDirection);
 
         //todo adjust threshold to have smooth front/back/strafe movement
         bool isStrafing = alignment > -alignmentThreshold && alignment < alignmentThreshold;

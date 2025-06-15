@@ -15,6 +15,7 @@ public class CharacterController : MonoBehaviour
 
     public void Move(Vector3 deltaMovement)
     {
+        //_rb.MovePosition(deltaMovement);
         _rb.linearVelocity = deltaMovement;
     }
 

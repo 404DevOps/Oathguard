@@ -2311,6 +2311,7 @@ GameObject:
   - component: {fileID: 9037128752986202989}
   - component: {fileID: 4197703458024328138}
   - component: {fileID: 7867654150766744195}
+  - component: {fileID: 289676204309024317}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -2360,11 +2361,14 @@ MonoBehaviour:
   Animator: {fileID: 0}
   GCD: {fileID: 0}
   Cooldowns: {fileID: 0}
+  AbilityExecutor: {fileID: 0}
+  Immunity: {fileID: 0}
   AuraVisualsContainer: {fileID: 0}
   CombatTextContainer: {fileID: 0}
   CanMove: 0
   CanRotate: 0
   CanUseAbilities: 0
+  AbilityController: {fileID: 0}
 --- !u!114 &7156628793874189909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2385,8 +2389,6 @@ MonoBehaviour:
   ModelContainer: {fileID: 0}
   rotationSmoothing: 8
   alignmentThreshold: 0.5
-  IsDodging: 0
-  DodgeCooldown: 0
 --- !u!114 &4582162716832998985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,15 +2478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897b362ce99639944b0ca126179363df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Abilities:
-  - {fileID: 11400000, guid: 8d1fed6705acbe24f83ccbcea30c3828, type: 2}
-  - {fileID: 11400000, guid: f316f6b3c221da540abe6e45c65cdc18, type: 2}
-  - {fileID: 11400000, guid: 96f6d851337af3b47a68223e773ad394, type: 2}
-  - {fileID: 11400000, guid: 3cf1009e7cf7a2f44831555d27c06d8c, type: 2}
-  - {fileID: 11400000, guid: 05941a88c5733bc4e85674cdd62c942d, type: 2}
-  - {fileID: 11400000, guid: 663d07d0899e2784cad556ab439bc0ed, type: 2}
-  CurrentAbility: {fileID: 0}
-  NextAbility: {fileID: 0}
 --- !u!54 &9037128752986202989
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2546,6 +2539,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0fda93483e92e847879657be3bf4c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &289676204309024317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624171491478358481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16c591e0de82ae4f9270f79b40e9716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queueDuration: 0.5
+  Abilities:
+  - {fileID: 11400000, guid: 8d1fed6705acbe24f83ccbcea30c3828, type: 2}
+  - {fileID: 11400000, guid: f316f6b3c221da540abe6e45c65cdc18, type: 2}
+  - {fileID: 11400000, guid: 96f6d851337af3b47a68223e773ad394, type: 2}
+  - {fileID: 11400000, guid: 3cf1009e7cf7a2f44831555d27c06d8c, type: 2}
+  - {fileID: 11400000, guid: 05941a88c5733bc4e85674cdd62c942d, type: 2}
+  - {fileID: 11400000, guid: 663d07d0899e2784cad556ab439bc0ed, type: 2}
 --- !u!1 &7744423105759993715
 GameObject:
   m_ObjectHideFlags: 0
