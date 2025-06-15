@@ -153,6 +153,11 @@ public abstract class AbilityBase : UniqueScriptableObject
 
     public virtual void AbortAbility()
     {
+        if(VFX_Execute != null)
+            VFX_Execute.EndVFX();
+        if (VFX_Pre != null)
+            VFX_Pre.EndVFX();
+
         CoroutineUtility.Instance.AbortAllAbilityCoroutines(Id);
         InvokeAbilityFinished();
     }

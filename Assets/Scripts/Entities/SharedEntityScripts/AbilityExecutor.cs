@@ -37,13 +37,16 @@ public class AbilityExecutor : MonoBehaviour
 
         IsAttacking = false;
         CurrentAbility = null;
+        Debug.Log("Ability finished");
     }
 
     public void ForceStopAbility()
     {
         if (CurrentAbility != null)
+        {
             CurrentAbility.OnAbilitiyFinished -= OnAbilityFinished;
-
+            CurrentAbility.AbortAbility();   
+        }
         CurrentAbility = null;
         IsAttacking = false;
     }

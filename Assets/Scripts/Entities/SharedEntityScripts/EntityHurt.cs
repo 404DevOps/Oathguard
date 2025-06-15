@@ -5,13 +5,13 @@ using UnityEngine;
 public class EntityHurt : MonoBehaviour
 {
     public bool IsHurt;
-
     public float HurtStateDuration = 0.2f;
-    public float HurtFlashDuration;
-    public Color HurtColor;
 
     private Animator _animator;
     private EntityHealth _health;
+    private EntityBase _entity;
+
+    private HurtFlash _flash;
 
     private void OnEnable()
     {
@@ -25,8 +25,10 @@ public class EntityHurt : MonoBehaviour
 
     public void Initialize(EntityBase entity)
     {
+        _entity = entity;
         _animator = entity.Animator;
         _health = entity.Health;
+        _flash = GetComponent<HurtFlash>();
     }
 
     private void OnDamageReceived(DamageContext data)
@@ -36,29 +38,16 @@ public class EntityHurt : MonoBehaviour
         if (_health.CurrentHealth > 0)
         {
             _animator.SetTrigger("isHurt");
+            _entity.AbilityExecutor.ForceStopAbility();
+            _flash.FlashRed();
             StartCoroutine(HandleHurt());
-            StartCoroutine(HurtFlash());
-            // Lock movement etc. here
         }
-    }
-
-    private IEnumerator HurtFlash()
-    {
-        Debug.Log("Start HurtFlash");
-
-        yield return WaitManager.Wait(HurtFlashDuration);
-
-        Debug.Log("Stop HurtFlash");
     }
 
     private IEnumerator HandleHurt()
     {
         IsHurt = true;
-        Debug.Log("Start Hurt");
-
         yield return WaitManager.Wait(HurtStateDuration);
-        
         IsHurt = false;
-        Debug.Log("Stop Hurt");
     }
 }

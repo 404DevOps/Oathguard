@@ -22,27 +22,34 @@ public class OathAura : AuraBase
 
     public override void OnApply(AuraInstance instance)
     {
-        GameEvents.OnEntityDamageReceived.AddListener(OnEntityDamaged);
+        base.OnApply(instance);
+
+        instance.DamageListener += (args) => OnEntityDamaged(instance, args);
+        GameEvents.OnEntityDamageReceived.AddListener(instance.DamageListener);
 
         AddVFX(instance);
-
-        //var glowController = instance.Target.Weapon.GetComponent<SwordGlowController>();
-        //glowController.EnableGlow(SwordGlowColor);
     }
 
     public override void OnExpire(AuraInstance instance)
     {
-        GameEvents.OnEntityDamageReceived.RemoveListener(OnEntityDamaged);
+        if (instance.DamageListener != null)
+        {
+            GameEvents.OnEntityDamageReceived.RemoveListener(instance.DamageListener);
+            instance.DamageListener = null;
+        }
 
         ClearVFX(instance);
-        
+
         base.OnExpire(instance);
     }
 
-    private void OnEntityDamaged(DamageContext args)
+    private void OnEntityDamaged(AuraInstance instance, DamageContext args)
     {
-        //todo filter dmg to only take basic & spin hits where target != player
-        Debug.Log("EntityDamaged registered in OathAura.");
+        if (instance.Target != args.Origin) return; //only trigger if holder was attacker
+        if (instance.Target == args.Target) return; //only trigger on enemy struck
+
+        //TBD: filter dmg to only take basic & spin hits?
+        Debug.Log("OnEntityDamaged fired in OathAura.");
 
         foreach (var upgrade in OathUpgrades)
             upgrade.Apply(args.Origin, args.Target);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -33,15 +34,23 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        HandlePossibleActions();
+
         if (_playerEntity.IsDead) return;
 
-        if(_playerEntity.CanMove)
-            HandleMove();
+        HandleMove();
 
         if (!_abilityExecutor.IsAttacking && _playerEntity.CanRotate)
             HandleRotation();
 
         SetAnimationInfo();
+    }
+
+    private void HandlePossibleActions()
+    {
+        _playerEntity.CanMove = !_playerEntity.Hurt.IsHurt;
+        _playerEntity.CanRotate = !_playerEntity.Hurt.IsHurt;
+        _playerEntity.CanUseAbilities = !_playerEntity.Hurt.IsHurt;
     }
 
     private void SetAnimationInfo()
@@ -80,8 +89,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_playerStats == null)
             return;
+        Vector3 moveVector = Vector3.zero;
 
-        var moveVector = new Vector3(UserInput.Instance.MovementInput.x * _playerStats.MoveSpeed, 0, UserInput.Instance.MovementInput.y * _playerStats.MoveSpeed);
+        if(_playerEntity.CanMove)
+            moveVector = new Vector3(UserInput.Instance.MovementInput.x * _playerStats.MoveSpeed, 0, UserInput.Instance.MovementInput.y * _playerStats.MoveSpeed);
+        
         _characterController.Move(moveVector);
     }
     private void HandleRotation()

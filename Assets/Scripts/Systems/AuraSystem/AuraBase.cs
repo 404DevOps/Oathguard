@@ -29,6 +29,11 @@ public class AuraBase : UniqueScriptableObject
         instance.Target.Stats.StatMediator.RemoveModifiersBySourceId(Id);
     }
 
+    public virtual void OnTick(AuraInstance instance)
+    { 
+    
+    }
+
     internal virtual void OnRefresh(AuraInstance auraInstance)
     {
         

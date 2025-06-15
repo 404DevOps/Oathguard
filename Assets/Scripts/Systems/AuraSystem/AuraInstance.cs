@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AuraInstance
@@ -11,7 +12,7 @@ public class AuraInstance
         StartTime = Time.time;
         VisualInstances = new();
     }
-
+    public Action<DamageContext> DamageListener;
     public bool IsExpired => Time.time >= StartTime + Template.Duration;
 
     public EntityBase Origin;
