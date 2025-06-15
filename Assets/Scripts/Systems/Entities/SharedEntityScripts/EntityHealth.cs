@@ -1,92 +1,53 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class EntityHealth : MonoBehaviour
 {
-    EntityConfiguration _config;
-    public bool IsHurt = false;
     public float MaxHealth => EntityStats.MaxHealth;
     public float CurrentHealth;
+
+    //references
     public EntityStats EntityStats;
-    public Action EntityDied;
+    public EntityBase Entity;
 
-    public float HealthAsPercentage { get { return CurrentHealth / MaxHealth * 100; } }
+    public Action OnEntityDied;
 
-    public bool IsInvincible;
+    public float HealthPercentage { get { return CurrentHealth / MaxHealth * 100; } }
 
-    #region Bodypart Logic 
-
-    private EntityBase _entity;
-
-    #endregion
-
-    public void Initialize(EntityStats stats)
+    public void Initialize(EntityBase entity)
     {
-        EntityStats = stats;
+        EntityStats = entity.Stats;
         CurrentHealth = MaxHealth;
-        _config = stats.GetComponent<EntityConfiguration>();
-        _entity = GetComponent<EntityBase>();
+
+        Entity = entity;
     }
 
-    public void ReduceHealth(DamageEventArgs damageEventData)
+    public void ApplyDamage(DamageContext damageData)
     {
-        if (CurrentHealth <= 0) //already dead
+        if (CurrentHealth <= 0)
             return;
 
-        if (IsInvincible)
-        {
-            damageEventData.IsImmune = true;
-            GameEvents.OnEntityDamaged.Invoke(damageEventData);
-            return;
-        }
+        CurrentHealth -= damageData.FinalDamage;
+        CurrentHealth = Mathf.Max(0, CurrentHealth); //clamp
 
+        GameEvents.OnEntityDamageReceived.Invoke(damageData);
+        GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(damageData.Target, CurrentHealth, MaxHealth));
 
-        CurrentHealth -= damageEventData.Amount;
-
-        if (damageEventData.Amount > 0)
-        {
-            if (_config.HurtDuration > 0)
-            {
-                IsHurt = true;
-                StartCoroutine(StopHurt()); //allow for custom hurt duration
-            }
-        }
         if (CurrentHealth <= 0)
         {
-            GameEvents.OnEntityDied.Invoke(_entity.Id);
-            EntityDied?.Invoke();
+            GameEvents.OnEntityDied.Invoke(Entity.Id);
+            OnEntityDied?.Invoke();
         }
-
-
-        GameEvents.OnEntityHurt.Invoke(_entity.Id);
-        GameEvents.OnEntityDamaged.Invoke(damageEventData);
-        GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(damageEventData.Target, CurrentHealth, MaxHealth));
     }
 
-    private IEnumerator StopHurt(float hurtDuration = 0)
+    public void ApplyHealing(HealingContext healData)
     {
-        yield return new WaitForSeconds(hurtDuration > 0 ? hurtDuration : _config.HurtDuration);
-        IsHurt = false;
-    }
-
-    public void AddHealth(EntityBase origin, EntityBase target, float amount)
-    {
-        CurrentHealth += amount;
+        CurrentHealth += healData.FinalAmount;
 
         if (CurrentHealth > MaxHealth)
             CurrentHealth = MaxHealth;
 
-        var entity = GetComponent<EntityBase>();
-        GameEvents.OnEntityHealed.Invoke(new HealEventArgs(origin, target, amount));
-        GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(entity, MaxHealth, CurrentHealth));
-    }
-
-    public void SetInvincible(bool isInvincible)
-    {
-        IsInvincible = isInvincible;
+        GameEvents.OnEntityHealed.Invoke(healData);
+        GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(Entity, CurrentHealth, MaxHealth));
     }
 }

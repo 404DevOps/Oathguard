@@ -29,9 +29,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
     #region References
     private PlayerEntity _playerEntity;
-    private PlayerConfiguration _config;
-
-    private PlayerController _characterController;
+    private CharacterController _characterController;
     private BoxCollider _playerCollider;
     private EntityStats _playerStats;
     private PlayerAbilityExecutor _abilityExecutor;
@@ -42,8 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerEntity = GetComponent<PlayerEntity>();
         ModelContainer = transform.Find("Model");
-        _config = GetComponent<PlayerConfiguration>();
-        _characterController = GetComponent<PlayerController>();
+        _characterController = GetComponent<CharacterController>();
         _playerCollider = GetComponentInChildren<BoxCollider>();
         _playerStats = _playerEntity.Stats;
         _abilityExecutor = GetComponent<PlayerAbilityExecutor>();
@@ -135,101 +132,6 @@ public class PlayerMovement : MonoBehaviour
                 ModelContainer.transform.rotation = Quaternion.Slerp(ModelContainer.transform.rotation, targetRotation, rotationSmoothing * Time.deltaTime);
             }
         }
-    }
-
-    #endregion
-
-    #region Dodging
-
-    public bool CanDodge()
-    {
-        return DodgeCooldown <= 0;
-    }
-
-    public void StartDodge()
-    {
-        //if (DodgeCooldown > 0)
-        //    return;
-
-        //Debug.Log("Start Dodge");
-
-        //IsDodging = true;
-        //EnableCollision(true);
-
-        //DodgeCooldown = _playerStats.DodgeCD;
-
-        //_dodgeStartPosition = transform.position;
-        //if (UserInput.Instance.MovementInput.x != 0)
-        //    _dodgeDirection = UserInput.Instance.MovementInput.x > 0 ? 1 : -1;
-        //else
-        //    _dodgeDirection = _playerEntity.FacingRight ? 1 : -1;
-
-        //StartCoroutine(StopDodge());
-    }
-
-    private void EnableCollision(bool changeToDodge)
-    {
-        if (changeToDodge)
-        {
-            _playerEntity.MainCollider.gameObject.layer = LayerMask.NameToLayer("Dodge");
-            _playerEntity.gameObject.layer = LayerMask.NameToLayer("Dodge");
-        }
-        else
-        {
-            _playerEntity.MainCollider.gameObject.layer = LayerMask.NameToLayer("Player");
-            _playerEntity.gameObject.layer = LayerMask.NameToLayer("Player");
-        }
-
-    }
-
-    public void HandleDodge()
-    {
-        if (!IsDodging)
-            return;
-        if (IsDodgeSlowdown)
-            return;
-
-        if (_playerStats == null)
-        {
-            throw new System.Exception("PlayerStats not initialized");
-        }
-        else
-        {
-            var moveVector = new Vector3(_dodgeDirection * _config.DodgeSpeed, 0);
-            _characterController.Move(moveVector);
-            //HandleRotation(_dodgeDirection);
-        }
-    }
-
-    private IEnumerator SlowDownOverTime(float duration)
-    {
-        IsDodgeSlowdown = true;
-        Debug.Log("Start Slowdown");
-        float currentDuration = duration;
-
-        while (currentDuration > 0)
-        {
-            currentDuration -= Time.deltaTime;
-            var percentage = currentDuration / duration;
-            if (percentage < 0) percentage = 0;
-
-            var newSpeed = Mathf.Lerp(_playerStats.MoveSpeed, _config.DodgeSpeed, percentage);
-            Debug.Log("Slowdown Speed: " + newSpeed);
-
-            var moveVector = new Vector3(_dodgeDirection * newSpeed, 0);
-            _characterController.Move(moveVector);
-            yield return null;
-        }
-        Debug.Log("Slow Down Finished. IsDodging = " + IsDodging);
-        IsDodging = false;
-        EnableCollision(false);
-        IsDodgeSlowdown = false;
-    }
-
-    private IEnumerator StopDodge()
-    {
-        yield return new WaitForSeconds(_config.DodgeDuration);
-        StartCoroutine(SlowDownOverTime(_config.DodgeSlowDownDuration));
     }
 
     #endregion

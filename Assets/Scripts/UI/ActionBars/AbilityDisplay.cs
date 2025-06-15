@@ -74,7 +74,7 @@ public class AbilityDisplay : MonoBehaviour
 
     private void CheckInitialCooldownState()
     {
-        if (_cooldowns.GetCooldownInfo(Ability.Id, out CooldownInfo cdInfo))
+        if (_cooldowns.GetCooldownData(Ability.Id, out CooldownData cdInfo))
         {
             _cooldownStartTime = cdInfo.StartTime;
             _cooldownDuration = cdInfo.Duration;

@@ -16,14 +16,19 @@ public class EntityBase : MonoBehaviour
     public bool IsAlive;
 
     public EntityType Type;
-    public Collider MainCollider;
-    public EntityCooldowns Cooldowns;
+    public Collider Collider;
+    
+    [Header("References")]
+    public WeaponHitbox Weapon;
     public EntityHealth Health;
+    public EntityHurt Hurt;
     public EntityResource Resource;
     public EntityStats Stats;
     public Animator Animator;
-    public WeaponHitbox Weapon;
     public EntityGCD GCD;
+    public EntityCooldowns Cooldowns;
+
+    //containers
     public Transform AuraVisualsContainer;
     public Transform CombatTextContainer;
 
@@ -49,8 +54,12 @@ public class EntityBase : MonoBehaviour
         Stats.Initialize(this);
 
         Health = GetComponent<EntityHealth>();
-        Health.Initialize(Stats);
-        Health.EntityDied += Die;
+        Health.Initialize(this);
+        Health.OnEntityDied += Die;
+
+        Hurt = GetComponent<EntityHurt>();
+        Hurt.Initialize(this);
+
 
         Resource = GetComponent<EntityResource>();
         Resource.Initialize(AppearanceConfig.Instance().GetResourceData(Stats.ResourceType));

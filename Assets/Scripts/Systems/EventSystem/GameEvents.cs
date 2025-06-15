@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -9,12 +10,14 @@ public static class GameEvents
     public static readonly Event<string> OnEntityDestroyed = new();
 
     //combat
-    public static readonly Event<DamageEventArgs> OnEntityDamaged = new();
+
+    public static readonly Event<DamageContext> OnPreDamageApplied = new();
+    public static readonly Event<DamageContext> OnPostDamageApplied =new();
+    public static readonly Event<DamageContext> OnEntityDamageReceived = new();
+
+    public static readonly Event<HealingContext> OnEntityHealed = new();
     public static readonly Event<HealthChangedEventArgs> OnEntityHealthChanged = new();
     public static readonly Event<ResourceChangedEventArgs> OnEntityResourceChanged = new();
-    public static readonly Event<string> OnEntityHurt = new();
-    public static readonly Event<HealEventArgs> OnEntityHealed = new();
-    public static readonly Event<EntityBase> OnHitMissed = new();
 
     //abilities
     public static readonly Event<GCDStartedEventArgs> OnGCDStart = new();

@@ -14,7 +14,7 @@ public class SwordAbility : AbilityBase
 
         yield return WaitManager.Wait(WeaponActivationDelay);
         //enable sword
-        var sword = Utility.Sword;
+        var sword = origin.Weapon;
         sword.EnableHitbox();
         sword.OnHit += ApplyEffects;
 

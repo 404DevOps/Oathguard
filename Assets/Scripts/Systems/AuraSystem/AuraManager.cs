@@ -108,4 +108,14 @@ internal class AuraManager : Singleton<AuraManager>
 
         return null;
     }
+
+    public List<AuraInstance> GetEntityAuras(string entityId)
+    {
+        if (_activeAuras.TryGetValue(entityId, out var auras))
+        {
+            return auras;
+        }
+        else
+            return new();
+    }
 }

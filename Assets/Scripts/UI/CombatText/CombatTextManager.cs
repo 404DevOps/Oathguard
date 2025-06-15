@@ -15,7 +15,7 @@ public class CombatTextManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEvents.OnEntityDamaged.AddListener(OnEntityDamaged);
+        GameEvents.OnEntityDamageReceived.AddListener(OnEntityDamaged);
         GameEvents.OnEntityHealed.AddListener(OnEntityHealed);
         InstantiationObject = new GameObject();
         InstantiationObject.SetActive(false);
@@ -33,39 +33,39 @@ public class CombatTextManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        GameEvents.OnEntityDamaged.RemoveListener(OnEntityDamaged);
+        GameEvents.OnEntityDamageReceived.RemoveListener(OnEntityDamaged);
         GameEvents.OnEntityHealed.RemoveListener(OnEntityHealed);
     }
 
     #region Event Handlers
-    private void OnEntityDamaged(DamageEventArgs args)
+    private void OnEntityDamaged(DamageContext args)
     {
         if (args.IsImmune)
         {
-            var immuneColor = DamageColorMapping.Instance().GetColor(DamageColorType.Immune);
+            var immuneColor = DamageColorConfig.Instance().GetColor(DamageColorType.Immune);
             ShowText(args.Target, "Immune", immuneColor, false);
             return;
         }
         string baseTextColor;
 
         if (args.Target is PlayerEntity)
-            baseTextColor = DamageColorMapping.Instance().GetColor(DamageColorType.PlayerDamage).ToHexString();
-        else if (args.IsCrit)
-            baseTextColor = DamageColorMapping.Instance().GetColor(DamageColorType.Critical).ToHexString();
+            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.PlayerDamage).ToHexString();
+        else if (args.IsCritical)
+            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.Critical).ToHexString();
         else
-            baseTextColor = DamageColorMapping.Instance().GetColor(DamageColorType.PlayerDamage).ToHexString();
+            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.PlayerDamage).ToHexString();
 
-        var dmgTextString = $"<color=#{baseTextColor}>{Mathf.RoundToInt(args.Amount).ToString()}</color>";
+        var dmgTextString = $"<color=#{baseTextColor}>{Mathf.RoundToInt(args.FinalDamage)}</color>";
 
-        if (args.IsCrit)
-            dmgTextString += "<sprite name=crit_sprite>";
+        if (args.IsCritical)
+            dmgTextString = "<sprite name=crit_sprite>" + dmgTextString;
 
-        ShowText(args.Target, dmgTextString, Color.white, args.IsCrit);
+        ShowText(args.Target, dmgTextString, Color.white, args.IsCritical);
     }
-    private void OnEntityHealed(HealEventArgs args)
+    private void OnEntityHealed(HealingContext args)
     {
-        var healColor = DamageColorMapping.Instance().GetColor(DamageColorType.Heal);
-        ShowText(args.Target, Mathf.RoundToInt(args.Amount).ToString(), healColor, false);
+        var healColor = DamageColorConfig.Instance().GetColor(DamageColorType.Heal);
+        ShowText(args.Target, Mathf.RoundToInt(args.FinalAmount).ToString(), healColor, false);
     }
 
     public void ShowText(EntityBase entity, string text, Color color, bool isCrit)

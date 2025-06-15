@@ -22,7 +22,7 @@ public class OathAura : AuraBase
 
     public override void OnApply(AuraInstance instance)
     {
-        GameEvents.OnEntityDamaged.AddListener(OnEntityDamaged);
+        GameEvents.OnEntityDamageReceived.AddListener(OnEntityDamaged);
 
         AddVFX(instance);
 
@@ -32,14 +32,14 @@ public class OathAura : AuraBase
 
     public override void OnExpire(AuraInstance instance)
     {
-        GameEvents.OnEntityDamaged.RemoveListener(OnEntityDamaged);
+        GameEvents.OnEntityDamageReceived.RemoveListener(OnEntityDamaged);
 
         ClearVFX(instance);
         
         base.OnExpire(instance);
     }
 
-    private void OnEntityDamaged(DamageEventArgs args)
+    private void OnEntityDamaged(DamageContext args)
     {
         //todo filter dmg to only take basic & spin hits where target != player
         Debug.Log("EntityDamaged registered in OathAura.");
