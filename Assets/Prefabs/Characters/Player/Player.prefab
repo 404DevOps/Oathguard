@@ -1747,7 +1747,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5771449892187878204}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3954201546623c34cb5bfe722d77b825, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2139,7 +2139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6894643704269657912}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2306,6 +2306,7 @@ GameObject:
   - component: {fileID: 1734988682850859686}
   - component: {fileID: 4876108729119194115}
   - component: {fileID: 7644888237630406262}
+  - component: {fileID: 1683618154821580154}
   - component: {fileID: 275383270851436513}
   - component: {fileID: 2264834010105667010}
   - component: {fileID: 9037128752986202989}
@@ -2381,12 +2382,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb602b7123d16c342856dbe257862957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocity: {x: 0, y: 0, z: 0}
-  IsDodgeSlowdown: 0
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
-  ModelContainer: {fileID: 0}
+    m_Bits: 64
+  ModelContainer: {fileID: 381057462357210246}
   rotationSmoothing: 8
   alignmentThreshold: 0.5
 --- !u!114 &4582162716832998985
@@ -2453,6 +2452,22 @@ MonoBehaviour:
   CurrentHealth: 0
   EntityStats: {fileID: 0}
   Entity: {fileID: 0}
+--- !u!114 &1683618154821580154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624171491478358481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01ffab34a711a649933bf15ed8dcd0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsHurt: 0
+  HurtStateDuration: 0.2
+  HurtFlashDuration: 0
+  HurtColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &275383270851436513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2500,11 +2515,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 4
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!95 &4197703458024328138
 Animator:
   serializedVersion: 7
