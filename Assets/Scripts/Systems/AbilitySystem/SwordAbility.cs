@@ -14,15 +14,15 @@ public class SwordAbility : AbilityBase
 
         yield return WaitManager.Wait(WeaponActivationDelay);
         //enable sword
-        var sword = origin.Weapon;
-        sword.EnableHitbox();
-        sword.OnHit += ApplyEffects;
+        var weapon = origin.Weapon;
+        weapon.EnableHitbox();
+        weapon.OnHit += ApplyEffects;
 
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
 
         //disable sword
-        sword.DisableHitbox();
-        sword.OnHit -= ApplyEffects;
+        weapon.DisableHitbox();
+        weapon.OnHit -= ApplyEffects;
     }
 }
 

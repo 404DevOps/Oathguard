@@ -74,12 +74,15 @@ public class CombatTextManager : MonoBehaviour
             _mainCamera = Utility.Camera;
 
         CombatText ft = GetFloatingText();
+        
         ft.Color = color;
         ft.Text = text;
         ft.IsCrit = isCrit;
         ft.Entity = entity;
 
         ft.transform.SetParent(entity.CombatTextContainer);
+        ft.gameObject.transform.localPosition = Vector3.zero;
+
         ft.gameObject.SetActive(true);
     }
     #endregion

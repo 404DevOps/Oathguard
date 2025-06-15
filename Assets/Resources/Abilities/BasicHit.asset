@@ -28,7 +28,7 @@ MonoBehaviour:
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 0
+    AnimationDuration: 0.7
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:

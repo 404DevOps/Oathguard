@@ -48,9 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandlePossibleActions()
     {
-        _playerEntity.CanMove = !_playerEntity.Hurt.IsHurt;
-        _playerEntity.CanRotate = !_playerEntity.Hurt.IsHurt;
-        _playerEntity.CanUseAbilities = !_playerEntity.Hurt.IsHurt;
+        _playerEntity.CanMove = _playerEntity.IsDead ? false : !_playerEntity.Hurt.IsHurt;
+        _playerEntity.CanRotate = _playerEntity.IsDead ? false : !_playerEntity.Hurt.IsHurt;
+        _playerEntity.CanUseAbilities = _playerEntity.IsDead ? false : !_playerEntity.Hurt.IsHurt;
     }
 
     private void SetAnimationInfo()

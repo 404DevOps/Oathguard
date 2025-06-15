@@ -12,8 +12,9 @@ public class WeaponHitbox : MonoBehaviour
     private HashSet<EntityBase> alreadyHit = new();
     public void Initialize(EntityBase entity)
     {
-        Holder = GetComponentInParent<EntityBase>();
+        Holder = entity;
         Hitbox.enabled = false;
+        Hitbox.includeLayers = HitLayer;
     }
 
     public void EnableHitbox()
@@ -31,8 +32,9 @@ public class WeaponHitbox : MonoBehaviour
     {
         if (!Utility.IsInLayerMask(HitLayer, other.gameObject)) return;
 
-        if (other.TryGetComponent(out EntityBase target) && target != Holder)
+        if (other.transform.parent.TryGetComponent(out EntityBase target))
         {
+            if (target == Holder) return;
             if (alreadyHit.Contains(target)) return;
             alreadyHit.Add(target);
             Debug.Log("Hit: " + target.name);
