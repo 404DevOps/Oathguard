@@ -53,7 +53,7 @@ public class ActionBarUIHandler : MonoBehaviour
     {
         if (_player != null)
         {
-            var executor = _player.GetComponent<PlayerAbilityExecutor>();
+            var executor = _player.GetComponent<AbilityExecutor>();
             int abilityIndex = 0;
             var spawnTransform = _upperBar;
             foreach (var ability in executor.Abilities)

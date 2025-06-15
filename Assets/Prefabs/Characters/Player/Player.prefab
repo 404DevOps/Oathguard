@@ -2124,7 +2124,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6117402630572477826}
-  - component: {fileID: 145607858630547448}
   m_Layer: 10
   m_Name: Knight
   m_TagString: Untagged
@@ -2154,28 +2153,6 @@ Transform:
   - {fileID: 7743007913179038633}
   m_Father: {fileID: 381057462357210246}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &145607858630547448
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6894643704269657912}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9fffd360642cf47488054618f8c3f5d5, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6902626257723330126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2333,6 +2310,7 @@ GameObject:
   - component: {fileID: 2264834010105667010}
   - component: {fileID: 9037128752986202989}
   - component: {fileID: 4197703458024328138}
+  - component: {fileID: 7867654150766744195}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -2373,14 +2351,15 @@ MonoBehaviour:
   Id: 
   IsAlive: 1
   Type: 0
-  MainCollider: {fileID: 0}
-  Cooldowns: {fileID: 0}
+  Collider: {fileID: 0}
+  Weapon: {fileID: 0}
   Health: {fileID: 0}
+  Hurt: {fileID: 0}
   Resource: {fileID: 0}
   Stats: {fileID: 0}
   Animator: {fileID: 0}
-  Weapon: {fileID: 0}
   GCD: {fileID: 0}
+  Cooldowns: {fileID: 0}
   AuraVisualsContainer: {fileID: 0}
   CombatTextContainer: {fileID: 0}
   CanMove: 0
@@ -2469,10 +2448,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750951d89f4b9554a9128cac3856015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsHurt: 0
   CurrentHealth: 0
   EntityStats: {fileID: 0}
-  IsInvincible: 0
+  Entity: {fileID: 0}
 --- !u!114 &275383270851436513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2556,6 +2534,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7867654150766744195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624171491478358481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fda93483e92e847879657be3bf4c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7744423105759993715
 GameObject:
   m_ObjectHideFlags: 0

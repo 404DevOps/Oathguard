@@ -15,41 +15,40 @@ MonoBehaviour:
   _uniqueID: 4b1c4154-c900-453a-9272-ae957c585c71
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
-  _abilityInfo:
-    Name: Slash
-    Cooldown: 0
-    Description: Slash your Sword forward dealing moderate Damage and applying your
-      Oath Effects.
-    CausesGCD: 1
-    GCDDuration: 0.5
+  _abilityData:
     Icon: {fileID: -9018399632469994422, guid: 72e6edb4a5fbb2e47a8c5d70e21d99f7, type: 3}
-  _animationInfo:
-    AnimationDuration: 0.7
-    AnimationTriggerName: primaryAttack
-    AnimationVariations: 2
-    ScreenShakeIntensity: 0
+    Name: Slash
+    Description: A Melee Swing that damages nearby enemies
+    Cooldown: 0
+    UseGCD: 1
+    GCDDuration: 0.5
+  _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-  _soundEffectInfo:
+    AnimationTriggerName: primaryAttack
+    AnimationDuration: 0
+    AnimationVariationCount: 0
+    ScreenShakeIntensity: 0
+  _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868347758870595
+  - rid: 3209868417464008777
   WeaponActivationDelay: 0.2
   references:
     version: 2
     RefIds:
-    - rid: 3209868347758870595
-      type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
+    - rid: 3209868417464008777
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
-        MinDamage: 0
-        MaxDamage: 0
+        MinDamage: 90
+        MaxDamage: 100
         ShakeIntensity: 0
         IsTrueDamage: 0
-        CanCrit: 0
+        CanCrit: 1
         PreventHurt: 0

@@ -20,7 +20,7 @@ public class UserInput : Singleton<UserInput>
     GamepadIconCollection GamePadIcons;
     bool IsMenuOpened = false;
     public string CurrentControlScheme = "Keyboard";
-    PlayerAbilityExecutor _abilityExecutor;
+    AbilityExecutor _abilityExecutor;
 
     public PlayerInput PlayerInput;
     public Vector3 MovementInput { get; private set; }
@@ -85,7 +85,7 @@ public class UserInput : Singleton<UserInput>
         UIEvents.OnInGameMenuOpen.AddListener(OnMenuOpen);
 
         var player = EntityManager.Instance.Player;
-        _abilityExecutor = player.GetComponent<PlayerAbilityExecutor>();
+        _abilityExecutor = player.GetComponent<AbilityExecutor>();
         SetupInputActions();
     }
 

@@ -15,34 +15,34 @@ MonoBehaviour:
   _uniqueID: 7949999d-304d-4f3f-b38c-2aef25a86ad9
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
-  _abilityInfo:
-    Name: Oath of Binding
-    Cooldown: 0
-    Description: A vow of control that grants a chance to root enemies struck, temporarily
-      immobilizing them
-    CausesGCD: 1
-    GCDDuration: 0.5
+  _abilityData:
     Icon: {fileID: 7840184059218143156, guid: e7fd5e266b584f445aef027516761d6f, type: 3}
-  _animationInfo:
-    AnimationDuration: 0.9
-    AnimationTriggerName: castSeal
-    AnimationVariations: 0
-    ScreenShakeIntensity: 0
+    Name: Oath of Binding
+    Description: An oath of control that grants a chance to bind enemies struck,
+      temporarily locking them into place
+    Cooldown: 0
+    UseGCD: 0
+    GCDDuration: 0
+  _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-  _soundEffectInfo:
+    AnimationTriggerName: castOath
+    AnimationDuration: 0
+    AnimationVariationCount: 0
+    ScreenShakeIntensity: 0
+  _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868347758870802
+  - rid: 3209868417464008778
   references:
     version: 2
     RefIds:
-    - rid: 3209868347758870802
-      type: {class: ApplyAuraEffect, ns: , asm: Assembly-CSharp}
+    - rid: 3209868417464008778
+      type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
       data:
         Aura: {fileID: 11400000, guid: f93b48d60d5a1d24da68b1231d157d65, type: 2}

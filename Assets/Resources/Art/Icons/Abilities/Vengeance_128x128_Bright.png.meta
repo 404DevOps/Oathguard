@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vengeance_128x128_Bright_0: 8607340745257198578
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

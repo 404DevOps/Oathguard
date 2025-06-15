@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerAbilityExecutor : MonoBehaviour
+public class AbilityExecutor : MonoBehaviour
 {
     public List<AbilityBase> Abilities;
-    private PlayerEntity Player => GetPlayer();
-    private PlayerEntity _player;
+    private EntityBase Entity => GetEntity();
+    private EntityBase _entity;
 
-    private PlayerEntity GetPlayer()
+    private EntityBase GetEntity()
     {
-        if (_player != null)
-            return _player;
+        if (_entity != null)
+            return _entity;
         else
         {
-            _player = FindFirstObjectByType<PlayerEntity>();
-            return _player;
+            _entity = GetComponent<EntityBase>();
+            return _entity;
         }
     }
 
@@ -29,7 +29,7 @@ public class PlayerAbilityExecutor : MonoBehaviour
 
     private void Awake()
     {
-        _player = GetComponent<PlayerEntity>();
+        _entity = GetComponent<EntityBase>();
 
         foreach (var ability in Abilities)
         {
@@ -100,7 +100,7 @@ public class PlayerAbilityExecutor : MonoBehaviour
             QueueAbility(Abilities[index]);
             return false;
         }
-        else if (!Abilities[index].HasAnyCooldown(Player, false))
+        else if (!Abilities[index].HasAnyCooldown(Entity, false))
         {
             CurrentAbility = Abilities[index];
             ResetQueue();
@@ -112,7 +112,7 @@ public class PlayerAbilityExecutor : MonoBehaviour
     {
         if (CurrentAbility == null || IsAttacking)
             return false;
-        if (CurrentAbility.TryUseAbility(Player))
+        if (CurrentAbility.TryUseAbility(Entity))
         {
             Debug.Log("Executing Ability: " + CurrentAbility);
             CurrentAbility.OnAbilitiyFinished += StopAttack;
@@ -153,7 +153,7 @@ public class PlayerAbilityExecutor : MonoBehaviour
         if (NextAbility != null)
             return false;
 
-        if (!NextAbility.HasAnyCooldown(Player, false) && !IsAttacking)
+        if (!NextAbility.HasAnyCooldown(Entity, false) && !IsAttacking)
         {
             CurrentAbility = NextAbility;
             ResetQueue();

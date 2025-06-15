@@ -393,7 +393,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2175318039476727726}
-  - component: {fileID: 7286302126387649139}
   m_Layer: 0
   m_Name: Skeleton_Minion
   m_TagString: Untagged
@@ -426,28 +425,6 @@ Transform:
   - {fileID: 1894437363011344034}
   m_Father: {fileID: 1472029694846064787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7286302126387649139
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2521378520844581874}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2860217960996087831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,12 +1360,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8468986619602373727}
   - component: {fileID: 1034755189802172358}
+  - component: {fileID: 3107389302036341405}
   - component: {fileID: 8774632134074292800}
+  - component: {fileID: 4427808088461167494}
   - component: {fileID: 8469238499541700275}
   - component: {fileID: 5523587986150162956}
-  - component: {fileID: 3107389302036341405}
   - component: {fileID: 4017061209133784059}
-  - component: {fileID: 4427808088461167494}
+  - component: {fileID: 8253943519336556187}
+  - component: {fileID: 928357254996678}
   m_Layer: 0
   m_Name: Skeleton_Minion
   m_TagString: Untagged
@@ -1429,16 +1408,29 @@ MonoBehaviour:
   Id: 
   IsAlive: 0
   Type: 1
-  MainCollider: {fileID: 0}
-  Cooldowns: {fileID: 0}
+  Collider: {fileID: 0}
+  Weapon: {fileID: 0}
   Health: {fileID: 0}
+  Hurt: {fileID: 0}
   Resource: {fileID: 0}
   Stats: {fileID: 0}
   Animator: {fileID: 0}
-  Weapon: {fileID: 0}
   GCD: {fileID: 0}
+  Cooldowns: {fileID: 0}
   AuraVisualsContainer: {fileID: 0}
   CombatTextContainer: {fileID: 0}
+--- !u!114 &3107389302036341405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008863089857268104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcaa5f24050439c4aafc56d599dce719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8774632134074292800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,10 +1443,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750951d89f4b9554a9128cac3856015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsHurt: 0
   CurrentHealth: 0
   EntityStats: {fileID: 0}
-  IsInvincible: 0
+  Entity: {fileID: 0}
+--- !u!114 &4427808088461167494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008863089857268104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f690be8b8ff4654a90dfc671917a7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentResource: 0
 --- !u!114 &8469238499541700275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,18 +1483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c8de68670d68a43a386301de4d723a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3107389302036341405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5008863089857268104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcaa5f24050439c4aafc56d599dce719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4017061209133784059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,7 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceType: 0
---- !u!114 &4427808088461167494
+--- !u!114 &8253943519336556187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1513,10 +1505,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 5008863089857268104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f690be8b8ff4654a90dfc671917a7b5, type: 3}
+  m_Script: {fileID: 11500000, guid: e5c8de68670d68a43a386301de4d723a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentResource: 0
+--- !u!95 &928357254996678
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008863089857268104}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5027871975390338945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,10 +1976,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.60183716
+  m_Radius: 0.64206445
   m_Height: 2.316278
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0301878, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7162080713342690050
 GameObject:
   m_ObjectHideFlags: 0

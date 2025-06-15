@@ -65,7 +65,7 @@ public class AbilityDisplay : MonoBehaviour
         _cooldowns = _entity.Cooldowns;
         _gcd = _entity.GCD;
 
-        SetAbilityIcons(ability.AbilityInfo);
+        SetAbilityIcons(ability.AbilityData);
         UpdateKeybindSymbol(null);
 
         SetGlowState(false);
@@ -154,7 +154,7 @@ public class AbilityDisplay : MonoBehaviour
     private float GetRemainingCooldown() => Mathf.Max(0, _cooldownStartTime + _cooldownDuration - Time.time);
     private bool AbilityHasAnyCooldown() => GetRemainingCooldown() > 0 || GetRemainingGCD() > 0;
 
-    private float GetTrueAbilityCooldown(AbilityBase ability) => ability.AbilityInfo.Cooldown;
+    private float GetTrueAbilityCooldown(AbilityBase ability) => ability.AbilityData.Cooldown;
 
     private void SetAbilityIcons(AbilityData abilityInfo)
     {

@@ -15,34 +15,34 @@ MonoBehaviour:
   _uniqueID: f8553eed-8c45-47a4-be43-7633940cd800
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
-  _abilityInfo:
-    Name: Oath of Mercy
-    Cooldown: 0
-    Description: A vow to mercy which grants a chance to restore health when a enemies
-      is struck
-    CausesGCD: 1
-    GCDDuration: 0.5
+  _abilityData:
     Icon: {fileID: 7243693225362205131, guid: 8273438af2bf901489e9c7075557c4d2, type: 3}
-  _animationInfo:
-    AnimationDuration: 0.9
-    AnimationTriggerName: castSeal
-    AnimationVariations: 0
-    ScreenShakeIntensity: 0
+    Name: Oath of Mercy
+    Description: An oath of mercy that grants a chance to heal yourself whit each
+      sucessful hit.
+    Cooldown: 0
+    UseGCD: 0
+    GCDDuration: 0
+  _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-  _soundEffectInfo:
+    AnimationTriggerName: castOath
+    AnimationDuration: 0
+    AnimationVariationCount: 0
+    ScreenShakeIntensity: 0
+  _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868347758870802
+  - rid: 3209868417464008775
   references:
     version: 2
     RefIds:
-    - rid: 3209868347758870802
-      type: {class: ApplyAuraEffect, ns: , asm: Assembly-CSharp}
+    - rid: 3209868417464008775
+      type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
       data:
         Aura: {fileID: 11400000, guid: 91cd301a17779704f997e172ffcdce56, type: 2}

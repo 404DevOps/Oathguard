@@ -15,41 +15,40 @@ MonoBehaviour:
   _uniqueID: 48784e31-e79d-4cd9-afd2-cd0cf4eb7524
   VFX_Execute: {fileID: 11400000, guid: c02cb9c4bf7a7284486a64d0aacbb81e, type: 2}
   VFX_Pre: {fileID: 0}
-  _abilityInfo:
-    Name: Whirlwind
-    Cooldown: 1
-    Description: Spin your Sword dealing damage to everything it hits.
-    CausesGCD: 1
-    GCDDuration: 0.5
+  _abilityData:
     Icon: {fileID: 583435654101691703, guid: 5cecc6995cceee64e870b02d371617f2, type: 3}
-  _animationInfo:
-    AnimationDuration: 0.9
-    AnimationTriggerName: secondaryAttack
-    AnimationVariations: 0
-    ScreenShakeIntensity: 0
+    Name: Spin
+    Description: "A 360\xB0 Melee Swing that damages all nearby enemies"
+    Cooldown: 2
+    UseGCD: 1
+    GCDDuration: 0.5
+  _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-  _soundEffectInfo:
+    AnimationTriggerName: secondaryAttack
+    AnimationDuration: 0
+    AnimationVariationCount: 0
+    ScreenShakeIntensity: 0
+  _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868347758870595
+  - rid: 3209868417464008780
   WeaponActivationDelay: 0.3
   references:
     version: 2
     RefIds:
-    - rid: 3209868347758870595
-      type: {class: DamageEntityEffect, ns: , asm: Assembly-CSharp}
+    - rid: 3209868417464008780
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
-        OathType: 0
-        MinDamage: 0
-        MaxDamage: 0
+        MinDamage: 60
+        MaxDamage: 80
         ShakeIntensity: 0
         IsTrueDamage: 0
-        CanCrit: 0
+        CanCrit: 1
         PreventHurt: 0

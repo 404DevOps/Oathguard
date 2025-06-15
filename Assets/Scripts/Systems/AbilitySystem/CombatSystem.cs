@@ -68,7 +68,7 @@ public class CombatSystem : Singleton<CombatSystem>
             SourceEffect = effect
         };
 
-        context.BaseDamage = GetBaseDamage(origin, effect);
+        context.BaseDamage = GetBaseDamage(origin, effect.MinDamage, effect.MaxDamage);
         context.FinalDamage = context.BaseDamage;
 
         // Phase 1: Check Immunity
@@ -106,7 +106,7 @@ public class CombatSystem : Singleton<CombatSystem>
             SourceEffect = effect
         };
 
-        context.FinalAmount = context.BaseAmount;
+        context.FinalAmount = GetBaseDamage(origin, effect.MinAmount, effect.MaxAmount);
 
         if (!context.IsTrueHealing)
         {
@@ -129,9 +129,9 @@ public class CombatSystem : Singleton<CombatSystem>
         return 0;
     }
 
-    private float GetBaseDamage(EntityBase source, DamageEffect effect)
+    private float GetBaseDamage(EntityBase source, float min, float max)
     {
-        float roll = GetDamageRoll(effect.MinDamage, effect.MaxDamage);
+        float roll = GetDamageRoll(min, max);
         return source.Stats.Attack / 100f * roll;
     }
 

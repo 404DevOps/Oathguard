@@ -8,18 +8,18 @@ using UnityEngine;
 public abstract class AbilityBase : UniqueScriptableObject
 {
     public Action OnHitDetected;
-    public virtual AbilityData AbilityInfo => _abilityInfo;
-    public virtual AnimationData AnimationInfo => _animationInfo;
-    public virtual SoundEffectInfo SoundEffectInfo => _soundEffectInfo;
+    public virtual AbilityData AbilityData => _abilityData;
+    public virtual AnimationData AnimationData => _animationData;
+    public virtual SFXData SFXData => _sfxData;
 
-    public virtual event Action OnAbilitiyFinished;// get; set; }
+    public virtual event Action OnAbilitiyFinished;
 
     public AbilityVFXBase VFX_Execute;
     public AbilityVFXBase VFX_Pre;
 
-    [SerializeField] protected AbilityData _abilityInfo;
-    [SerializeField] protected AnimationData _animationInfo;
-    [SerializeField] protected SoundEffectInfo _soundEffectInfo;
+    [SerializeField] protected AbilityData _abilityData;
+    [SerializeField] protected AnimationData _animationData;
+    [SerializeField] protected SFXData _sfxData;
     [SerializeReference] public List<AbilityEffectBase> Effects;
 
     internal bool _wasInterrupted = false;
@@ -39,12 +39,12 @@ public abstract class AbilityBase : UniqueScriptableObject
         if (CanBeUsed(origin, true) && !HasAnyCooldown(origin, true))
         {
             _ownerId = origin.Id;
-            if (AbilityInfo.UseGCD)
+            if (AbilityData.UseGCD)
             {
-                StartGlobalCooldown(origin, _abilityInfo.GCDDuration);
+                StartGlobalCooldown(origin, _abilityData.GCDDuration);
             }
 
-            StartCooldown(origin, _abilityInfo.Cooldown);
+            StartCooldown(origin, _abilityData.Cooldown);
             CoroutineUtility.Instance.RunAbilityCoroutine(Use(origin, target), this.Id);
 
             if (VFX_Pre != null)
@@ -79,8 +79,8 @@ public abstract class AbilityBase : UniqueScriptableObject
 
     public IEnumerator WaitForAnimation(EntityBase origin)
     {
-        if (AnimationInfo.AnimationDuration > 0)
-            yield return WaitManager.Wait(AnimationInfo.AnimationDuration);
+        if (AnimationData.AnimationDuration > 0)
+            yield return WaitManager.Wait(AnimationData.AnimationDuration);
 
         InvokeAbilityFinished();
     }
@@ -89,13 +89,13 @@ public abstract class AbilityBase : UniqueScriptableObject
         if (origin == null) //assume origin dead.
             return;
 
-        origin.Animator.SetTrigger(AnimationInfo.AnimationTriggerName);
+        origin.Animator.SetTrigger(AnimationData.AnimationTriggerName);
         origin.Animator.SetInteger("animationIndex", _animationIndex);
 
         //Debug.Log("AnimationTrigger: " + AnimationTriggerName + " AnimationIndex: " + _animationIndex);
         _animationIndex++;
 
-        if (_animationIndex > AnimationInfo.AnimationVariationCount - 1)
+        if (_animationIndex > AnimationData.AnimationVariationCount - 1)
         {
             _animationIndex = 0;
         }
@@ -141,14 +141,14 @@ public abstract class AbilityBase : UniqueScriptableObject
     }
     internal virtual void PlayAbilitySound()
     {
-        if (SoundEffectInfo.SFX_Execution != null)
-            AudioManager.Instance.PlaySFX(SoundEffectInfo.SFX_Execution);
+        if (SFXData.SFX_Execution != null)
+            AudioManager.Instance.PlaySFX(SFXData.SFX_Execution);
     }
     internal virtual void PlayMissSound()
     {
         //AudioManager.Instance.PlayMissSFX();   
-        if (SoundEffectInfo.SFX_Execution != null)
-            AudioManager.Instance.PlaySFX(SoundEffectInfo.SFX_Miss);
+        if (SFXData.SFX_Execution != null)
+            AudioManager.Instance.PlaySFX(SFXData.SFX_Miss);
     }
 
     public virtual void AbortAbility()
@@ -160,7 +160,7 @@ public abstract class AbilityBase : UniqueScriptableObject
 
 
 [Serializable]
-public class SoundEffectInfo
+public class SFXData
 {
     public bool PlaySoundOneShot;
     public bool PlaySoundOnMiss;

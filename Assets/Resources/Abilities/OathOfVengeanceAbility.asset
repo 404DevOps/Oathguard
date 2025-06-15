@@ -15,34 +15,34 @@ MonoBehaviour:
   _uniqueID: ce35051b-2a28-4d64-b37c-8ab2e90b855a
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
-  _abilityInfo:
-    Name: Oath of the Fallen
-    Cooldown: 0
-    Description: A vow of vengeance that grants a chance to deal additional damage
-      to enemies struck
-    CausesGCD: 1
-    GCDDuration: 0.5
+  _abilityData:
     Icon: {fileID: 8607340745257198578, guid: 9fba884284465724cbdbe7f14485f891, type: 3}
-  _animationInfo:
-    AnimationDuration: 0.9
-    AnimationTriggerName: castSeal
-    AnimationVariations: 0
-    ScreenShakeIntensity: 0
+    Name: Oath of Vengeance
+    Description: An oath of vengeance that grants a chance to deal bonus damage to
+      enemies struck
+    Cooldown: 0
+    UseGCD: 0
+    GCDDuration: 0
+  _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-  _soundEffectInfo:
+    AnimationTriggerName: castOath
+    AnimationDuration: 0
+    AnimationVariationCount: 0
+    ScreenShakeIntensity: 0
+  _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868347758870802
+  - rid: 3209868417464008779
   references:
     version: 2
     RefIds:
-    - rid: 3209868347758870802
-      type: {class: ApplyAuraEffect, ns: , asm: Assembly-CSharp}
+    - rid: 3209868417464008779
+      type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
       data:
         Aura: {fileID: 11400000, guid: 331fe22c1e4de3b42b0ff82c37eeca0e, type: 2}

@@ -12,6 +12,11 @@ public class EntityResource : MonoBehaviour
 
     public void Initialize(ResourceData data)
     {
+        if (data == null || data?.ResourceType == ResourceType.None)
+        {
+            CurrentResource = 0;
+            return;
+        }
         CurrentResource = (MaxResource / 100) * data.StartAmountPercentage;
     }
 

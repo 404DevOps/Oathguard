@@ -17,22 +17,13 @@ public class PlayerMovement : MonoBehaviour
     private Plane _groundPlane;
 
     public float alignmentThreshold = 0.5f;
-
     #endregion
-    #region Dodge Variables
 
-    public bool IsDodging = false;
-    public float DodgeCooldown = 0;
-    private float _dodgeDirection;
-    private Vector2 _dodgeStartPosition;
-
-    #endregion
     #region References
     private PlayerEntity _playerEntity;
     private CharacterController _characterController;
-    private BoxCollider _playerCollider;
     private EntityStats _playerStats;
-    private PlayerAbilityExecutor _abilityExecutor;
+    private AbilityExecutor _abilityExecutor;
     private Rigidbody _rb;
     #endregion
 
@@ -41,17 +32,13 @@ public class PlayerMovement : MonoBehaviour
         _playerEntity = GetComponent<PlayerEntity>();
         ModelContainer = transform.Find("Model");
         _characterController = GetComponent<CharacterController>();
-        _playerCollider = GetComponentInChildren<BoxCollider>();
         _playerStats = _playerEntity.Stats;
-        _abilityExecutor = GetComponent<PlayerAbilityExecutor>();
+        _abilityExecutor = _playerEntity.AbilityExecutor;
         _rb = GetComponent<Rigidbody>();
         _groundPlane = new Plane(Vector3.up, transform.position);
     }
     private void Update()
     {
-        if (DodgeCooldown > 0)
-            DodgeCooldown -= Time.deltaTime;
-
         HandleMove();
 
         if (!_abilityExecutor.IsAttacking)
@@ -84,20 +71,6 @@ public class PlayerMovement : MonoBehaviour
         _playerEntity.Animator.SetBool("isStrafingRight", isStrafingRight);
         _playerEntity.Animator.SetBool("isMovingForward", alignment > alignmentThreshold);
     }
-
-    #region Collider Checks
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            IsDodging = false;
-            _dodgeDirection = 0;
-            Velocity = new Vector3(0, Velocity.y);
-        }
-    }
-
-    #endregion
 
     #region Movement
 
@@ -136,12 +109,11 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
-    #region Locking
+    #region Lock Character in Place
     private Coroutine lockCoroutine = null;
     private float _currentLockDuration = 0f;
     internal void LockCharacter(float duration)
     {
-        // If the new duration is longer, update it
         if (duration > _currentLockDuration)
         {
             _currentLockDuration = duration;

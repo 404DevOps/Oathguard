@@ -27,6 +27,7 @@ public class EntityBase : MonoBehaviour
     public Animator Animator;
     public EntityGCD GCD;
     public EntityCooldowns Cooldowns;
+    public AbilityExecutor AbilityExecutor;
 
     //containers
     public Transform AuraVisualsContainer;
@@ -60,7 +61,6 @@ public class EntityBase : MonoBehaviour
         Hurt = GetComponent<EntityHurt>();
         Hurt.Initialize(this);
 
-
         Resource = GetComponent<EntityResource>();
         Resource.Initialize(AppearanceConfig.Instance().GetResourceData(Stats.ResourceType));
 
@@ -70,6 +70,8 @@ public class EntityBase : MonoBehaviour
 
         Weapon = GetComponentInChildren<WeaponHitbox>();
         Weapon.Initialize(this);
+
+        AbilityExecutor = GetComponent<AbilityExecutor>();
 
         AuraVisualsContainer = transform.Find("AuraVFX");
         CombatTextContainer = transform.Find("CombatText");
