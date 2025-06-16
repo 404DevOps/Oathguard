@@ -34,6 +34,9 @@ public class EntityBase : MonoBehaviour
     public Transform AuraVisualsContainer;
     public Transform CombatTextContainer;
 
+    [Header("Misc")]
+    public Vector3 CombatTextOffset;
+
     private void Start()
     {
         Id = IdentifierService.GetNextId();

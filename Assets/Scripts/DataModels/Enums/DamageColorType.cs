@@ -4,6 +4,7 @@
     Normal,
     Critical,
     Heal,
-    Immune
+    Immune,
+    PlayerCritical
 }
 

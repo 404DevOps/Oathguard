@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5322045277353069860}
   - component: {fileID: 6089770621668858916}
   - component: {fileID: 1801055232426641895}
+  - component: {fileID: 6238129692379157407}
   m_Layer: 0
   m_Name: HitEffect_Basic
   m_TagString: Untagged
@@ -45,7 +46,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.75
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 1
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4914,6 +4915,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6238129692379157407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190757195193394668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102766b00d4551f44b5127177ce45db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &858127046867275658
 GameObject:
   m_ObjectHideFlags: 0

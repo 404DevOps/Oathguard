@@ -77,7 +77,7 @@ public abstract class AbilityBase : UniqueScriptableObject
     
     internal abstract IEnumerator Use(EntityBase origin, EntityBase target = null);
 
-    public IEnumerator WaitForAnimation(EntityBase origin)
+    public virtual IEnumerator WaitForAnimation(EntityBase origin)
     {
         if (AnimationData.AnimationDuration > 0)
             yield return WaitManager.Wait(AnimationData.AnimationDuration);

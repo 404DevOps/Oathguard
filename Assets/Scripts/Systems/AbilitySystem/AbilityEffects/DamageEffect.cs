@@ -26,7 +26,7 @@ public class DamageEffect : AbilityEffectBase
         var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, this);
         if (!dmgData.IsImmune && dmgData.FinalDamage > 0)
         {
-            HitEffectManager.Instance.InstantiateHitEffect(origin, target);
+            HitEffectManager.Instance.PlayHitVFX(origin, target);
             health.ApplyDamage(dmgData);
             HandleShake(ShakeIntensity);
         }

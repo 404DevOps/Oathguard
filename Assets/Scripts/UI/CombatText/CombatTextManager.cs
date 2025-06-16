@@ -6,36 +6,31 @@ using UnityEngine;
 
 public class CombatTextManager : MonoBehaviour
 {
-    [SerializeField] GameObject _floatingTextPrefab;
+    [SerializeField] GameObject _combatTextPrefab;
     [SerializeField] private int _poolSize = 20;
 
-    private Queue<CombatText> _combatTextPool = new Queue<CombatText>();
-    private GameObject InstantiationObject;
-    private Camera _mainCamera;
+    private Queue<CombatText> _textPool = new Queue<CombatText>();
     private Transform TextPool;
 
     private void Start()
     {
-        transform.Find("TextPool");
+        TextPool = transform.Find("TextPool");
+
+        //warm up pool
+        if (_textPool.Count == 0)
+        {
+            for (int i = 0; i < _poolSize; i++)
+            {
+                _textPool.Enqueue(CreateText());
+            }
+        }
     }
 
     private void OnEnable()
     {
         GameEvents.OnEntityDamageReceived.AddListener(OnEntityDamaged);
         GameEvents.OnEntityHealed.AddListener(OnEntityHealed);
-        InstantiationObject = new GameObject();
-        InstantiationObject.SetActive(false);
 
-        _mainCamera = Utility.Camera;
-
-        //warm up pool
-        if (_combatTextPool.Count == 0)
-        {
-            for (int i = 0; i < _poolSize; i++)
-            {
-                _combatTextPool.Enqueue(CreateText());
-            }
-        }
     }
     private void OnDisable()
     {
@@ -46,27 +41,29 @@ public class CombatTextManager : MonoBehaviour
     #region Event Handlers
     private void OnEntityDamaged(DamageContext args)
     {
+        if (args.FinalDamage <= 0) return;
+
         if (args.IsImmune)
         {
             var immuneColor = DamageColorConfig.Instance().GetColor(DamageColorType.Immune);
             ShowText(args.Target, "Immune", immuneColor, false);
             return;
         }
-        string baseTextColor;
+        Color baseTextColor = Color.white;
 
         if (args.Target is PlayerEntity)
-            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.PlayerDamage).ToHexString();
+            baseTextColor = DamageColorConfig.Instance().GetColor(args.IsCritical ? DamageColorType.PlayerCritical : DamageColorType.PlayerDamage);
         else if (args.IsCritical)
-            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.Critical).ToHexString();
+            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.Critical);
         else
-            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.PlayerDamage).ToHexString();
+            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.Normal);
 
-        var dmgTextString = $"<color=#{baseTextColor}>{Mathf.RoundToInt(args.FinalDamage)}</color>";
+        var dmgTextString = Mathf.RoundToInt(args.FinalDamage).ToString();
 
-        if (args.IsCritical)
-            dmgTextString = "<sprite name=crit_sprite>" + dmgTextString;
+        //if (args.IsCritical)
+            //add crit sprite?
 
-        ShowText(args.Target, dmgTextString, Color.white, args.IsCritical);
+        ShowText(args.Target, dmgTextString, baseTextColor, args.IsCritical);
     }
     private void OnEntityHealed(HealingContext args)
     {
@@ -76,19 +73,9 @@ public class CombatTextManager : MonoBehaviour
 
     public void ShowText(EntityBase entity, string text, Color color, bool isCrit)
     {
-        if (_mainCamera == null)
-            _mainCamera = Utility.Camera;
-
         CombatText ft = GetFloatingText();
-        
-        ft.Color = color;
-        ft.Text = text;
-        ft.IsCrit = isCrit;
-        ft.Entity = entity;
-
         ft.transform.SetParent(entity.CombatTextContainer);
-        ft.gameObject.transform.localPosition = Vector3.zero;
-
+        ft.Setup(entity, text, color, isCrit);
         ft.gameObject.SetActive(true);
     }
     #endregion
@@ -96,9 +83,9 @@ public class CombatTextManager : MonoBehaviour
 
     private CombatText GetFloatingText()
     {
-        if (_combatTextPool.Count > 0)
+        if (_textPool.Count > 0)
         {
-            var floatingText = _combatTextPool.Dequeue();
+            var floatingText = _textPool.Dequeue();
             return floatingText;
         }
         return CreateText();
@@ -106,7 +93,7 @@ public class CombatTextManager : MonoBehaviour
 
     private CombatText CreateText()
     {
-        var floatingTextGo = Instantiate(_floatingTextPrefab, TextPool);
+        var floatingTextGo = Instantiate(_combatTextPrefab, TextPool);
         CombatText ft = floatingTextGo.GetComponent<CombatText>();
         ft.OnTextFinished += () => ReturnToPool(ft);
         return ft;
@@ -114,7 +101,7 @@ public class CombatTextManager : MonoBehaviour
     private void ReturnToPool(CombatText ft)
     {
         ft.gameObject.SetActive(false);
-        _combatTextPool.Enqueue(ft);
+        _textPool.Enqueue(ft);
     }
 
     #endregion

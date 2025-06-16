@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region References
     private PlayerEntity _playerEntity;
-    private CharacterController _characterController;
+    private TopDownCharacterController _characterController;
     private EntityStats _playerStats;
     private AbilityExecutor _abilityExecutor;
     private Rigidbody _rb;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerEntity = GetComponent<PlayerEntity>();
         ModelContainer = transform.Find("Model");
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<TopDownCharacterController>();
         _playerStats = _playerEntity.Stats;
         _abilityExecutor = _playerEntity.AbilityExecutor;
         _rb = GetComponent<Rigidbody>();
@@ -36,7 +36,11 @@ public class PlayerMovement : MonoBehaviour
     {
         HandlePossibleActions();
 
-        if (_playerEntity.IsDead) return;
+        if (_playerEntity.IsDead)
+        {
+            _characterController.Move(Vector3.zero); //stop eventual movement
+            return;
+        }
 
         HandleMove();
 
