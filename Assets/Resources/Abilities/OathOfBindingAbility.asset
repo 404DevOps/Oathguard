@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uniqueID: 7949999d-304d-4f3f-b38c-2aef25a86ad9
   VFX_Execute: {fileID: 0}
-  VFX_Pre: {fileID: 0}
+  VFX_Pre: {fileID: 11400000, guid: e6140dc07e4c963449704765445de0b4, type: 2}
   _abilityData:
     Icon: {fileID: 7840184059218143156, guid: e7fd5e266b584f445aef027516761d6f, type: 3}
     Name: Oath of Binding

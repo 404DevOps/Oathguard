@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damageColorPairs:
   - DamageType: 0
-    Color: {r: 0.8207547, g: 0.042586334, b: 0.042586334, a: 1}
+    Color: {r: 0.8490566, g: 0.18478645, b: 0.10012458, a: 1}
   - DamageType: 1
-    Color: {r: 1, g: 0.92013705, b: 0, a: 1}
+    Color: {r: 0.8867924, g: 0.8228174, b: 0.071110725, a: 1}
   - DamageType: 2
-    Color: {r: 1, g: 0.5506037, b: 0, a: 1}
+    Color: {r: 0.8962264, g: 0.51683056, b: 0.054957304, a: 1}
   - DamageType: 3
-    Color: {r: 0.12723091, g: 0.8584906, b: 0.06074225, a: 1}
+    Color: {r: 0.1280185, g: 0.7735849, b: 0.0693307, a: 1}
   - DamageType: 4
     Color: {r: 1, g: 1, b: 1, a: 1}
