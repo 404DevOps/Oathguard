@@ -28,7 +28,7 @@ MonoBehaviour:
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: secondaryAttack
-    AnimationDuration: 0.8
+    AnimationDuration: 1
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -38,7 +38,8 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008780
-  WeaponActivationDelay: 0.5
+  WeaponActivationDelay: 0.4
+  WeaponActiveDuration: 0.5
   references:
     version: 2
     RefIds:

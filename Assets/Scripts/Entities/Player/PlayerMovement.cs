@@ -67,8 +67,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (angle > SnapThreshold)
             {
-                // Snap to direction for fast 180 turns
-                ModelContainer.rotation = targetRotation;
+                float boostedSpeed = 50f; // Boost factor for sharp turns
+                ModelContainer.rotation = Quaternion.Slerp(
+                    ModelContainer.rotation,
+                    targetRotation,
+                    Time.deltaTime * boostedSpeed
+                );
             }
             else
             {
