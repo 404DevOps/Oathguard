@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 289450
   packageName: Status Effects and Auras FREE
   packageVersion: 1.0
-  assetPath: Assets/Matthew Guz/Status Effects and Auras FREE/Prefab/Stun.prefab
+  assetPath: Assets/Prefabs/VFX/ParticleSystems/AuraVFX/Stun.prefab
   uploadId: 693322
