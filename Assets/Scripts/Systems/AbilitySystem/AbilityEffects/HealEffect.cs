@@ -10,7 +10,7 @@
     {
         var tar = Target == TargetType.Origin ? origin : target;
         if (tar == null) return;
-        var healContext = CombatSystem.Instance.CalculateHealing(origin, target, this);
+        var healContext = CombatSystem.Instance.CalculateHealing(origin, tar, this);
 
         if(healContext.FinalAmount > 0)
             tar.Health.ApplyHealing(healContext);

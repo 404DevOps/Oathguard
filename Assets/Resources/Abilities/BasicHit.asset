@@ -38,8 +38,8 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008777
-  WeaponActivationDelay: 0.2
-  WeaponActiveDuration: 0.3
+  WeaponActivationDelay: 0.25
+  WeaponActiveDuration: 0.4
   references:
     version: 2
     RefIds:

@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region Rotation
     [Header("Rotation")]
+    public float TurnSpeed = 10f;
+    public float SnapThreshold = 160f; // Degrees for a near-180 turn
+
     public LayerMask GroundLayer;
     public Transform ModelContainer;
     public float rotationSmoothing;
     private Plane _groundPlane;
 
     public float alignmentThreshold = 0.5f;
+
+    public Vector3 _moveDirection;
     #endregion
 
     #region References
@@ -38,16 +44,42 @@ public class PlayerMovement : MonoBehaviour
 
         if (_playerEntity.IsDead)
         {
-            _characterController.Move(Vector3.zero); //stop eventual movement
+            _moveDirection = Vector3.zero;
+            _characterController.Move(_moveDirection); //stop eventual movement
             return;
         }
 
         HandleMove();
 
         if (!_abilityExecutor.IsAttacking && _playerEntity.CanRotate)
-            HandleRotation();
+            HandleRotationInDirection();
+            //HandleRotation();
 
         SetAnimationInfo();
+    }
+
+    private void HandleRotationInDirection()
+    {
+        if (_moveDirection.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
+            float angle = Quaternion.Angle(ModelContainer.rotation, targetRotation);
+
+            if (angle > SnapThreshold)
+            {
+                // Snap to direction for fast 180 turns
+                ModelContainer.rotation = targetRotation;
+            }
+            else
+            {
+                // Smoothly turn toward movement
+                ModelContainer.rotation = Quaternion.Slerp(
+                    ModelContainer.rotation,
+                    targetRotation,
+                    Time.deltaTime * TurnSpeed
+                );
+            }
+        }
     }
 
     private void HandlePossibleActions()
@@ -91,12 +123,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_playerStats == null)
             return;
-        Vector3 moveVector = Vector3.zero;
+        _moveDirection = Vector3.zero;
 
         if(_playerEntity.CanMove)
-            moveVector = new Vector3(UserInput.Instance.MovementInput.x * _playerStats.MoveSpeed, 0, UserInput.Instance.MovementInput.y * _playerStats.MoveSpeed);
+            _moveDirection = new Vector3(UserInput.Instance.MovementInput.x, 0, UserInput.Instance.MovementInput.y).normalized * _playerStats.MoveSpeed;
         
-        _characterController.Move(moveVector);
+        _characterController.Move(_moveDirection);
     }
     private void HandleRotation()
     {
