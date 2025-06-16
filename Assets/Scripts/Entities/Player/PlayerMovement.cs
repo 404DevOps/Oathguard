@@ -63,18 +63,16 @@ public class PlayerMovement : MonoBehaviour
 
         // Check dot product: <-0.5 = moving backward, between -0.5 and 0.5 = strafing, >0.5 = forward
         Vector3 translatedInput = new Vector3(moveDirection.x, 0, moveDirection.y);
-        float alignment = Vector3.Dot(facingDirection, translatedInput);
-        float sideAlignment = Vector3.Dot(ModelContainer.transform.right, moveDirection);
+        float moveY = Vector3.Dot(facingDirection, translatedInput);
+        float moveX = Vector3.Dot(ModelContainer.transform.right, moveDirection);
 
-        //todo adjust threshold to have smooth front/back/strafe movement
-        bool isStrafing = alignment > -alignmentThreshold && alignment < alignmentThreshold;
-        bool isStrafingLeft = isStrafing && sideAlignment < -0.1f;
-        bool isStrafingRight = isStrafing && sideAlignment > 0.1f;
-
-        _playerEntity.Animator.SetBool("isMovingBackward", alignment < -alignmentThreshold);
-        _playerEntity.Animator.SetBool("isStrafingLeft", isStrafingLeft);
-        _playerEntity.Animator.SetBool("isStrafingRight", isStrafingRight);
-        _playerEntity.Animator.SetBool("isMovingForward", alignment > alignmentThreshold);
+        moveX = Mathf.Clamp(moveX, -1f, 1f);
+        moveY = Mathf.Clamp(moveY, -1f, 1f);
+        if (Mathf.Abs(moveX) < 0.2f) moveX = 0;
+        if (Mathf.Abs(moveY) < 0.2f) moveY = 0;
+        // For Blend Tree: X = right/left, Y = forward/back
+        _playerEntity.Animator.SetFloat("moveX", moveX);
+        _playerEntity.Animator.SetFloat("moveY", moveY);
     }
 
     #region Movement
