@@ -31,6 +31,25 @@ public class DamageEffect : AbilityEffectBase
             HandleShake(ShakeIntensity);
         }
     }
+    public override void Apply(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
+    {
+        EntityBase tar = TargetType == TargetType.Origin ? origin : target;
+        if (tar == null) return;
+
+        var health = tar.Health;
+        if (health == null)
+            return;
+
+        var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, this);
+        if (!dmgData.IsImmune && dmgData.FinalDamage > 0)
+        {
+            HitEffectManager.Instance.PlayHitVFX(origin, target);
+            health.ApplyDamage(dmgData);
+            HandleShake(ShakeIntensity);
+        }
+
+        dmgData.SourceOathUpgrade = sourceOathUpgrade;
+    }
 
     private void HandleShake(float shakeIntensity)
     {

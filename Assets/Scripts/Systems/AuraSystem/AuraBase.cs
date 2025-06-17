@@ -6,6 +6,7 @@ using UnityEngine;
 public class AuraBase : UniqueScriptableObject
 {
     public string Name;
+    public string Description;
     public Sprite Icon;
 
     public TargetType TargetType;

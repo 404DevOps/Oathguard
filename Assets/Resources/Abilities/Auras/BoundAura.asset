@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dda48a82f993224bb226af060ad8267, type: 3}
+  m_Name: BoundAura
+  m_EditorClassIdentifier: 
+  _uniqueID: ecfc813f-404f-4aa1-b568-e7c39374dfdc
+  Name: Bound
+  Description: Temporarily Immobilized.
+  Icon: {fileID: 0}
+  TargetType: 0
+  Type: 1
+  Duration: 5
+  Modifiers:
+  - SourceId: 
+    StatType: 4
+    Operator: 1
+    Value: 100
+    OathType: 0
+  ShowAuraDisplay: 1

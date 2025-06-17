@@ -15,6 +15,7 @@ MonoBehaviour:
   Type: 1
   UpgradeName: Base Heal
   Description: Heals you for 5%-10% of your Attack Power.
+  ProccChance: 20
   Effects:
   - rid: 3209868394618683731
   references:

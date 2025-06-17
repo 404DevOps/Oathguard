@@ -26,3 +26,5 @@ MonoBehaviour:
   SwordAuraParticles: {fileID: 3081362037621676516, guid: fe05d085e8348b941928faf4ef0065a9, type: 3}
   SwordParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordParticleRotation: {x: 90, y: 90, z: 0}
+  OathUpgrades:
+  - {fileID: 11400000, guid: fdbbc55ba3deb50478a192c4f45b978d, type: 2}

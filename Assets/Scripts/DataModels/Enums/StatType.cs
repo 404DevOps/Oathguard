@@ -13,4 +13,5 @@ public enum StatType
     MoveSpeed,
     CritChance,
     MaxResource,
+    OathTwistWindow,
 }

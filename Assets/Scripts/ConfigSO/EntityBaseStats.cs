@@ -14,6 +14,8 @@ public class EntityBaseStats : ScriptableObject
     public float Defense;
     public List<OathModifier> OathModifier;
     public ResourceType ResourceType;
+
+    public float OathTwistWindow;
 }
 
 [Serializable]

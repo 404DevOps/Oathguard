@@ -9,14 +9,16 @@ public class OathUpgrade : ScriptableObject
     public string UpgradeName;
     public string Description;
 
+    public float ProccChance;
+
     [SerializeReference]
     public List<AbilityEffectBase> Effects;
 
-    public virtual void Apply(EntityBase origin, EntityBase target)
+    public virtual void Apply(DamageContext ctx)
     {
         foreach (var effect in Effects)
         {
-            effect.Apply(origin, target);
+            effect.Apply(ctx.Origin, ctx.Target, this);
         }
     }
 

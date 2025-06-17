@@ -12,6 +12,14 @@ public class AbilityEffectPropertyDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        // If this property is not a managed reference, just draw default property field
+        if (property.propertyType != SerializedPropertyType.ManagedReference)
+        {
+            // Draw normally for non-managed references (nested fields)
+            EditorGUI.PropertyField(position, property, label, true);
+            return;
+        }
+
         EditorGUI.BeginProperty(position, label, property);
 
         // Draw the foldout with the clean type name or a default label if not selected

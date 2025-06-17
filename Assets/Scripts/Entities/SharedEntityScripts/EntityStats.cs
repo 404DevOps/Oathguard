@@ -61,6 +61,13 @@ public class EntityStats : MonoBehaviour
             return _mediator.GetModifiedStat(StatType.CritChance, _baseStats.CritChance);
         }
     }
+    public float OathTwistWindow
+    {
+        get
+        {
+            return _mediator.GetModifiedStat(StatType.OathTwistWindow, _baseStats.OathTwistWindow);
+        }
+    }
     public float OathModifier(OathType Oath)
     {
         var baseOathModifier = _baseStats.OathModifier.FirstOrDefault(em => em.Oath == Oath);

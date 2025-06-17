@@ -47,12 +47,16 @@ public class OathAura : AuraBase
     {
         if (instance.Target != args.Origin) return; //only trigger if holder was attacker
         if (instance.Target == args.Target) return; //only trigger on enemy struck
-
         //TBD: filter dmg to only take basic & spin hits?
         Debug.Log("OnEntityDamaged fired in OathAura.");
 
         foreach (var upgrade in OathUpgrades)
-            upgrade.Apply(args.Origin, args.Target);
+        {
+            if (args.SourceOathUpgrade == upgrade) return; //dont trigger self
+            //calc procc chance
+            if (UnityEngine.Random.value <= upgrade.ProccChance / 100f)
+                upgrade.Apply(args);
+        }
     }
 
     #region VFX

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uniqueID: 5522e231-cac9-4fae-a705-484b26947897
   Name: Oath of Binding
+  Description: 
   Icon: {fileID: 7840184059218143156, guid: e7fd5e266b584f445aef027516761d6f, type: 3}
   TargetType: 1
   Type: 2
@@ -26,4 +27,5 @@ MonoBehaviour:
   SwordAuraParticles: {fileID: 3081362037621676516, guid: d51556dbe7bb2564a9d85c711b195d82, type: 3}
   SwordParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordParticleRotation: {x: 90, y: 90, z: 0}
-  OathUpgrades: []
+  OathUpgrades:
+  - {fileID: 11400000, guid: f0711db0648b32344b47be4d0d2377a0, type: 2}
