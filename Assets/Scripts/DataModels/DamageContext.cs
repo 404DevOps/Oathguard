@@ -16,4 +16,6 @@
     public bool IsImmune;
     public DamageEffect SourceEffect;
     public OathUpgrade SourceOathUpgrade;
+
+    public bool IgnoreHurt;
 }

@@ -22,14 +22,14 @@ MonoBehaviour:
       hit but damages yourself for a portion of this bonus.
     Cooldown: 0
     UseGCD: 0
-    GCDDuration: 0
+    GCDDuration: 0.2
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-    AnimationTriggerName: castOath
-    AnimationDuration: 0.5
+    AnimationTriggerName: 
+    AnimationDuration: 0
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:

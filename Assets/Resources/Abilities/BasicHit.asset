@@ -21,14 +21,14 @@ MonoBehaviour:
     Description: A Melee Swing that damages nearby enemies
     Cooldown: 0
     UseGCD: 1
-    GCDDuration: 0.5
+    GCDDuration: 0.2
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 1
+    AnimationDuration: 0.5
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -38,8 +38,8 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008777
-  WeaponActivationDelay: 0.25
-  WeaponActiveDuration: 0.4
+  WeaponActivationDelay: 0.1
+  WeaponActiveDuration: 0.3
   references:
     version: 2
     RefIds:
@@ -53,3 +53,4 @@ MonoBehaviour:
         IsTrueDamage: 0
         CanCrit: 1
         PreventHurt: 0
+        Type: 2

@@ -21,11 +21,12 @@ MonoBehaviour:
   Duration: 20
   Modifiers: []
   ShowAuraDisplay: 0
+  ReactToDamageTypes: 0100000002000000
   OathType: 5
+  OathUpgrades:
+  - {fileID: 11400000, guid: 270fb3f3ccd7f8842bb12598c4ca5b2c, type: 2}
   AuraParticles: {fileID: 3854921247714698391, guid: 1cf443b8dc6f0a9409b26c0a1a05068d, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
   SwordAuraParticles: {fileID: 3081362037621676516, guid: 638ed5e0c7ceed14592df43e2e4dabeb, type: 3}
   SwordParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordParticleRotation: {x: 90, y: 90, z: 0}
-  OathUpgrades:
-  - {fileID: 11400000, guid: 270fb3f3ccd7f8842bb12598c4ca5b2c, type: 2}

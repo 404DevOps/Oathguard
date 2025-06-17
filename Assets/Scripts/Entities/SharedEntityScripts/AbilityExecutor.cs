@@ -45,7 +45,7 @@ public class AbilityExecutor : MonoBehaviour
         if (CurrentAbility != null)
         {
             CurrentAbility.OnAbilitiyFinished -= OnAbilityFinished;
-            CurrentAbility.AbortAbility();   
+            CurrentAbility.AbortAbility();
         }
         CurrentAbility = null;
         IsAttacking = false;

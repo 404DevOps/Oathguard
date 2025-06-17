@@ -11,7 +11,7 @@ public class OathAbility : AbilityBase
         if (VFX_Execute != null)
             VFX_Execute.PlayVFX(origin, this, target);
 
-        ApplyEffects(origin, null);
+        ApplyEffects(origin, target);
 
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
     }

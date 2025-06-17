@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UI.Image;
 
 [CreateAssetMenu(menuName = "Ability/SwordAbility", fileName = "NewSwordAbility")]
 public class SwordAbility : AbilityBase
@@ -17,7 +20,9 @@ public class SwordAbility : AbilityBase
         //enable sword
         var weapon = origin.Weapon;
         weapon.EnableHitbox();
+        weapon.OnHit = null; //reset previous event listeners
         weapon.OnHit += ApplyEffects;
+        weapon.OnHit += PlayOnHitEffect;
 
         yield return WaitManager.Wait(WeaponActiveDuration);
 
@@ -25,7 +30,13 @@ public class SwordAbility : AbilityBase
         //disable sword
         weapon.DisableHitbox();
         weapon.OnHit -= ApplyEffects;
+        weapon.OnHit -= PlayOnHitEffect;
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
+    }
+
+    private void PlayOnHitEffect(EntityBase origin, EntityBase target)
+    {
+        HitEffectManager.Instance.PlayHitVFX(origin, target);
     }
 
     public override IEnumerator WaitForAnimation(EntityBase origin)

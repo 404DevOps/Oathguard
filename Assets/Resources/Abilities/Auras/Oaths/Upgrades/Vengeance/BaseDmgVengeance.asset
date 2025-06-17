@@ -30,5 +30,6 @@ MonoBehaviour:
         MaxDamage: 70
         ShakeIntensity: 0
         IsTrueDamage: 0
-        CanCrit: 0
+        CanCrit: 1
         PreventHurt: 0
+        Type: 2

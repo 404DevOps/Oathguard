@@ -81,6 +81,8 @@ public abstract class AbilityBase : UniqueScriptableObject
     {
         if (AnimationData.AnimationDuration > 0)
             yield return WaitManager.Wait(AnimationData.AnimationDuration);
+        else
+            yield return null; //still wait a frame so ability executor is ready for finish event.
 
         InvokeAbilityFinished();
     }
@@ -111,7 +113,7 @@ public abstract class AbilityBase : UniqueScriptableObject
         foreach (var effect in Effects)
         {
             effect.Apply(origin, target);
-        }
+        } 
     }
     internal virtual bool CanBeUsed(EntityBase origin, bool notifyPlayer, bool checkCasting = true)
     {

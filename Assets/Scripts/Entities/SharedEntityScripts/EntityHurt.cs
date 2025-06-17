@@ -34,11 +34,12 @@ public class EntityHurt : MonoBehaviour
     private void OnDamageReceived(DamageContext data)
     {
         if (data.Target != _health.Entity) return;
+        if (data.IgnoreHurt) return;
 
         if (_health.CurrentHealth > 0)
         {
             _animator.SetTrigger("isHurt");
-            _entity.AbilityExecutor.ForceStopAbility();
+            //_entity.AbilityExecutor.ForceStopAbility();
             _flash.FlashRed();
             StartCoroutine(HandleHurt());
         }

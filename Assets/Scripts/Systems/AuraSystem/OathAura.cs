@@ -7,9 +7,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Aura/OathAura", fileName = "NewOathAura")]
 public class OathAura : AuraBase
 {
+    public List<DamageType> ReactToDamageTypes;
     public OathType OathType;
+    public List<OathUpgrade> OathUpgrades;
 
-    [Header("Player Particles")]
+
+    [Header("Visuals")]
     public GameObject AuraParticles;
     public Vector3 ParticleOffset;
 
@@ -18,12 +21,11 @@ public class OathAura : AuraBase
     public Vector3 SwordParticleOffset;
     public Vector3 SwordParticleRotation;
 
-    public List<OathUpgrade> OathUpgrades;
-
     public override void OnApply(AuraInstance instance)
     {
         base.OnApply(instance);
 
+        instance.DamageListener = null;
         instance.DamageListener += (args) => OnEntityDamaged(instance, args);
         GameEvents.OnEntityDamageReceived.AddListener(instance.DamageListener);
 
@@ -39,7 +41,6 @@ public class OathAura : AuraBase
         }
 
         ClearVFX(instance);
-
         base.OnExpire(instance);
     }
 
@@ -47,14 +48,15 @@ public class OathAura : AuraBase
     {
         if (instance.Target != args.Origin) return; //only trigger if holder was attacker
         if (instance.Target == args.Target) return; //only trigger on enemy struck
-        //TBD: filter dmg to only take basic & spin hits?
+        if (!ReactToDamageTypes.Contains(args.Type)) return;
+
         Debug.Log("OnEntityDamaged fired in OathAura.");
 
         foreach (var upgrade in OathUpgrades)
         {
             if (args.SourceOathUpgrade == upgrade) return; //dont trigger self
-            //calc procc chance
-            if (UnityEngine.Random.value <= upgrade.ProccChance / 100f)
+            
+            if (UnityEngine.Random.value <= upgrade.ProccChance / 100f) //procc chance
                 upgrade.Apply(args);
         }
     }

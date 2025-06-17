@@ -21,14 +21,14 @@ MonoBehaviour:
     Description: "A 360\xB0 Melee Swing that damages all nearby enemies"
     Cooldown: 2
     UseGCD: 1
-    GCDDuration: 0.5
+    GCDDuration: 0.2
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: secondaryAttack
-    AnimationDuration: 1
+    AnimationDuration: 0.6
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -53,3 +53,4 @@ MonoBehaviour:
         IsTrueDamage: 0
         CanCrit: 1
         PreventHurt: 0
+        Type: 2

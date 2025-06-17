@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class AuraInstance
+public class AuraInstance : IDisposable
 {
     public AuraInstance(AuraBase template, EntityBase origin, EntityBase target)
     {
@@ -37,5 +38,16 @@ public class AuraInstance
     internal void Apply()
     {
         Template.OnApply(this);
+    }
+
+    public void Dispose()
+    {
+        DamageListener = null;
+        foreach (var visual in VisualInstances)
+            CoroutineUtility.Destroy(visual);
+
+        Origin = null;
+        Target = null;
+        Template = null;
     }
 }

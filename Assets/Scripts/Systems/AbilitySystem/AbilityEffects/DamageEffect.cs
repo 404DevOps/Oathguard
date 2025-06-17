@@ -12,7 +12,7 @@ public class DamageEffect : AbilityEffectBase
     public bool CanCrit;
     public bool PreventHurt;
 
-    public DamageType Type { get; internal set; }
+    public DamageType Type;
 
     public override void Apply(EntityBase origin, EntityBase target)
     {
@@ -24,9 +24,9 @@ public class DamageEffect : AbilityEffectBase
             return;
 
         var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, this);
+        dmgData.Type = Type;
         if (!dmgData.IsImmune && dmgData.FinalDamage > 0)
         {
-            HitEffectManager.Instance.PlayHitVFX(origin, target);
             health.ApplyDamage(dmgData);
             HandleShake(ShakeIntensity);
         }
@@ -41,14 +41,12 @@ public class DamageEffect : AbilityEffectBase
             return;
 
         var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, this);
+        dmgData.SourceOathUpgrade = sourceOathUpgrade;
         if (!dmgData.IsImmune && dmgData.FinalDamage > 0)
         {
-            HitEffectManager.Instance.PlayHitVFX(origin, target);
             health.ApplyDamage(dmgData);
             HandleShake(ShakeIntensity);
         }
-
-        dmgData.SourceOathUpgrade = sourceOathUpgrade;
     }
 
     private void HandleShake(float shakeIntensity)

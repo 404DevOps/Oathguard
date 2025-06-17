@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,8 +63,7 @@ internal class AuraManager : Singleton<AuraManager>
             var currentOath = auraList.FirstOrDefault(a => a.Template is OathAura && a.Template.Id != newAura.Id);
             if (currentOath != null)
             {
-                currentOath.Expire();
-                auraList.Remove(currentOath);
+                StartCoroutine(ExpireAfterDelay(currentOath));
             }
         }
 
@@ -73,6 +73,18 @@ internal class AuraManager : Singleton<AuraManager>
         newAura.OnApply(instance);
         return instance;
     }
+
+    private IEnumerator ExpireAfterDelay(AuraInstance currentOath)
+    {
+        yield return WaitManager.Wait(currentOath.Target.Stats.OathTwistWindow);
+
+        if (_activeAuras[currentOath.Target.Id].Contains(currentOath))
+        {
+            currentOath.Expire();
+            _activeAuras[currentOath.Target.Id].Remove(currentOath); 
+        }
+    }
+
     public void CancelAuraById(string entityId, string auraId)
     {
         for (int i = 0; i < _activeAuras[entityId]?.Count; i++)
