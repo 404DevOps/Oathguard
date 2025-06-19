@@ -89,7 +89,6 @@ public class CombatSystem : Singleton<CombatSystem>
         }
 
         // Phase 4: Apply Auras, Elemental, On-hit Modifiers
-        ApplyOathModifiers(context);
         // Add future hooks here
 
         return context;
@@ -130,7 +129,7 @@ public class CombatSystem : Singleton<CombatSystem>
     private float GetBaseDamage(EntityBase source, float min, float max)
     {
         float roll = GetDamageRoll(min, max);
-        return source.Stats.Attack / 100f * roll;
+        return source.Weapon.Data.BaseDamage / 100f * roll;
     }
 
     private void ApplyMitigation(DamageContext context)
@@ -145,14 +144,6 @@ public class CombatSystem : Singleton<CombatSystem>
     {
         var auras = AuraManager.Instance.GetEntityAuras(target.Id);
         return auras.Any(a => a.Template is ImmunityAura);
-    }
-
-    private void ApplyOathModifiers(DamageContext context)
-    {
-        if (ActiveOathAura == null) return;
-
-        var oathMod = context.Target.Stats.OathModifier(ActiveOathAura.OathType);
-        context.FinalDamage *= oathMod;
     }
 
     public static float GetDamageRoll(float min, float max)

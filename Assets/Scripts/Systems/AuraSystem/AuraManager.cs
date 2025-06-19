@@ -63,7 +63,8 @@ internal class AuraManager : Singleton<AuraManager>
             var currentOath = auraList.FirstOrDefault(a => a.Template is OathAura && a.Template.Id != newAura.Id);
             if (currentOath != null)
             {
-                StartCoroutine(ExpireAfterDelay(currentOath));
+                currentOath.Expire();
+                auraList.Remove(currentOath);
             }
         }
 
@@ -72,17 +73,6 @@ internal class AuraManager : Singleton<AuraManager>
         auraList.Add(instance);
         newAura.OnApply(instance);
         return instance;
-    }
-
-    private IEnumerator ExpireAfterDelay(AuraInstance currentOath)
-    {
-        yield return WaitManager.Wait(currentOath.Target.Stats.OathTwistWindow);
-
-        if (_activeAuras[currentOath.Target.Id].Contains(currentOath))
-        {
-            currentOath.Expire();
-            _activeAuras[currentOath.Target.Id].Remove(currentOath); 
-        }
     }
 
     public void CancelAuraById(string entityId, string auraId)

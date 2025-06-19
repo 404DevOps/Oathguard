@@ -1,10 +1,11 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class AbilityDisplay : MonoBehaviour
+public class AbilityDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public int Index;
     public AbilityBase Ability;
@@ -178,5 +179,15 @@ public class AbilityDisplay : MonoBehaviour
 
         _gcdStartTime = args.StartTime;
         _gcdDuration = args.Duration;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        UIEvents.OnTooltipShow.Invoke(new TooltipData(Ability));
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        UIEvents.OnTooltipHide.Invoke();
     }
 }

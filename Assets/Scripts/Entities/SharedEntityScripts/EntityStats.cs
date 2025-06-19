@@ -33,13 +33,13 @@ public class EntityStats : MonoBehaviour
             return _mediator.GetModifiedStat(StatType.MaxResource, _baseStats.MaxResource);
         }
     }
-    public float Attack
-    {
-        get
-        {
-            return _mediator.GetModifiedStat(StatType.Attack, _baseStats.Attack);
-        }
-    }
+    //public float Attack
+    //{
+    //    get
+    //    {
+    //        return _mediator.GetModifiedStat(StatType.Attack, _baseStats.Attack);
+    //    }
+    //}
     public float Defense
     {
         get
@@ -61,39 +61,15 @@ public class EntityStats : MonoBehaviour
             return _mediator.GetModifiedStat(StatType.CritChance, _baseStats.CritChance);
         }
     }
-    public float OathTwistWindow
-    {
-        get
-        {
-            return _mediator.GetModifiedStat(StatType.OathTwistWindow, _baseStats.OathTwistWindow);
-        }
-    }
-    public float OathModifier(OathType Oath)
-    {
-        var baseOathModifier = _baseStats.OathModifier.FirstOrDefault(em => em.Oath == Oath);
-        var baseValue = baseOathModifier == default ? 0 : baseOathModifier.Value;
 
-        return _mediator.GetModifiedStat(StatType.OathModifier, baseValue, Oath);
-    }
     public List<StatData> GetAllStatsAsList()
     {
         var result = new List<StatData>(){
             new (StatType.MaxHealth, MaxHealth),
             new (StatType.MoveSpeed, MoveSpeed),
-            new (StatType.Attack, Attack),
             new (StatType.Defense, Defense),
             new (StatType.CritChance, CritChance)
         };
-
-        var oathValues = Enum.GetValues(typeof(OathType));
-        foreach (OathType oath in oathValues)
-        {
-            if (oath == OathType.None)
-                continue;
-
-            var value = OathModifier(oath);
-            result.Add(new StatData(StatType.OathModifier, value, oath));
-        }
 
         return result;
     }

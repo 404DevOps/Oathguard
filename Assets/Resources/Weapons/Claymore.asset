@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f13e1e8a406c73745805f5ed395e83be, type: 3}
+  m_Name: Claymore
+  m_EditorClassIdentifier: 
+  Image: {fileID: 21300000, guid: 24e920e5edad7cc4382bd4fbe48cf584, type: 3}
+  Name: Claymore
+  Description: The Claymore is slow but may utilize a Whirlwind Effect to Damage
+    all nearby Enemies.
+  Type: 0
+  BaseDamage: 30
+  CritChance: 20
+  Defense: 0
+  WeaponAbilities:
+  - {fileID: 11400000, guid: 8d1fed6705acbe24f83ccbcea30c3828, type: 2}
+  - {fileID: 11400000, guid: f316f6b3c221da540abe6e45c65cdc18, type: 2}
+  MainHandPrefab: {fileID: 8201766371972389910, guid: 7eb1cb0c19492af419776b558c7ea2f0, type: 3}
+  OffhandPrefab: {fileID: 0}

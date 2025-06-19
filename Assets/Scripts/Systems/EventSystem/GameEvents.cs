@@ -30,4 +30,6 @@ public static class GameEvents
     public static readonly Event<AuraExpiredEventArgs> OnAuraExpired = new();
     public static readonly Event<AuraAppliedEventArgs> OnAuraApplied = new();
     public static readonly Event<AuraRefreshedEventArgs> OnAuraRefreshed = new();
+
+    public static readonly Event<WeaponSet> OnWeaponSelected = new();
 }

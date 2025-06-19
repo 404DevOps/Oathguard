@@ -18,8 +18,8 @@ MonoBehaviour:
   _abilityData:
     Icon: {fileID: 8607340745257198578, guid: 9fba884284465724cbdbe7f14485f891, type: 3}
     Name: Oath of Vengeance
-    Description: An oath of vengeance that grants a chance to deal bonus damage to
-      enemies struck
+    Description: An oath of vengeance that grants your physical Abilities a 20% chance
+      to deal bonus damage to enemies struck.
     Cooldown: 0
     UseGCD: 0
     GCDDuration: 0.2

@@ -9,5 +9,10 @@ internal class UIEvents
 {
     public static readonly Event OnInGameMenuOpen = new();
     public static readonly Event OnInGameMenuClose = new();
+
+    public static readonly Event OnTooltipHide = new();
+    public static readonly Event<TooltipData> OnTooltipShow = new();
+
+
 }
 

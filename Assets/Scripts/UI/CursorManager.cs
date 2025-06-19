@@ -1,17 +1,18 @@
+using System;
 using UnityEngine;
 
 public class CursorManager : MonoBehaviour
 {
     public Texture2D AimCursor;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        Cursor.SetCursor(AimCursor, Vector2.zero, CursorMode.Auto);
+        GameEvents.OnWeaponSelected.AddListener(OnWeaponSelected);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnWeaponSelected(WeaponSet set)
     {
-        
+        Vector2 hotspot = new Vector2(AimCursor.width / 2f, AimCursor.height / 2f);
+        Cursor.SetCursor(AimCursor, hotspot, CursorMode.Auto);
     }
 }

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: f6fc4da3eb6e4c34ebe76dcaf52bda98
+guid: 994bdcc0b3b5c8f4ab455714baf27e5d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: knight_texture
-    second: {fileID: 2100000, guid: c4854a46fb7a7744bad0702de97fd2c0, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

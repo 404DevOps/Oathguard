@@ -1,13 +1,4 @@
-﻿using Mono.Cecil;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEditor;
+﻿using System.Collections;
 using UnityEngine;
 
 public class EntityBase : MonoBehaviour
@@ -70,9 +61,6 @@ public class EntityBase : MonoBehaviour
 
         GCD = GetComponent<EntityGCD>();
         Cooldowns = GetComponent<EntityCooldowns>();
-
-        Weapon = GetComponentInChildren<WeaponHitbox>();
-        Weapon.Initialize(this);
 
         AbilityExecutor = GetComponent<AbilityExecutor>();
         AbilityExecutor.Initialize(this);

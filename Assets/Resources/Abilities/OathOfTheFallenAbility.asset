@@ -17,9 +17,9 @@ MonoBehaviour:
   VFX_Pre: {fileID: 0}
   _abilityData:
     Icon: {fileID: -9105323192478943849, guid: 3b69db89d1602524a9274217f76b564f, type: 3}
-    Name: 
-    Description: An oath of the fallen that deals bonus damage with each sucessful
-      hit but damages yourself for a portion of this bonus.
+    Name: Oath of the Fallen
+    Description: An oath of the fallen that deals 70% bonus damage with each sucessful
+      hit but damages yourself for 15% of the damage done
     Cooldown: 0
     UseGCD: 0
     GCDDuration: 0.2

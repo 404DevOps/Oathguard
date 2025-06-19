@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     #endregion
 
+    public bool _isInitialized = false;
+
     internal void Initialize()
     {
         _playerEntity = GetComponent<PlayerEntity>();
@@ -37,9 +39,13 @@ public class PlayerMovement : MonoBehaviour
         _abilityExecutor = _playerEntity.AbilityExecutor;
         _rb = GetComponent<Rigidbody>();
         _groundPlane = new Plane(Vector3.up, transform.position);
+        _isInitialized = true;
+
     }
     private void Update()
     {
+        if (!_isInitialized) return;
+
         HandlePossibleActions();
 
         if (_playerEntity.IsDead)
@@ -67,12 +73,13 @@ public class PlayerMovement : MonoBehaviour
 
             if (angle > SnapThreshold)
             {
-                float boostedSpeed = 50f; // Boost factor for sharp turns
-                ModelContainer.rotation = Quaternion.Slerp(
-                    ModelContainer.rotation,
-                    targetRotation,
-                    Time.deltaTime * boostedSpeed
-                );
+                //float boostedSpeed = 50f; // Boost factor for sharp turns
+                //ModelContainer.rotation = Quaternion.Slerp(
+                //    ModelContainer.rotation,
+                //    targetRotation,
+                //    Time.deltaTime * boostedSpeed
+                //);
+                ModelContainer.rotation = targetRotation;
             }
             else
             {

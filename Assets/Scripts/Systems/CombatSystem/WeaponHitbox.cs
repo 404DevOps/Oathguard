@@ -8,13 +8,16 @@ public class WeaponHitbox : MonoBehaviour
     public Collider Hitbox;
     public Action<EntityBase, EntityBase> OnHit;
     public LayerMask HitLayer;
+    public WeaponSet Data;
 
     private HashSet<EntityBase> alreadyHit = new();
-    public void Initialize(EntityBase entity)
+
+    public void Initialize(EntityBase entity, WeaponSet weaponData)
     {
         Holder = entity;
         Hitbox.enabled = false;
         Hitbox.includeLayers = HitLayer;
+        Data = weaponData;
     }
 
     public void EnableHitbox()

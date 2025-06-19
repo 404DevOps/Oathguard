@@ -12,8 +12,8 @@ public class EntityBaseStats : ScriptableObject
     public float MoveSpeed;
     public float CritChance;
     public float Defense;
-    public List<OathModifier> OathModifier;
     public ResourceType ResourceType;
+    public WeaponSet Weapon;
 
     public float OathTwistWindow;
 }

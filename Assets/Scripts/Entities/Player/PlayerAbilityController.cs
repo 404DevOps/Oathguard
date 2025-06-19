@@ -11,18 +11,26 @@ public class PlayerAbilityController : MonoBehaviour
     private float queueTimer;
     private PlayerEntity _playerEntity;
 
+    private bool _isInitialized = false;
+
     private void Update()
     {
+        if (!_isInitialized) return;
+
         HandleInput();
         HandleQueue();
     }
 
-    public void Initialize(PlayerEntity entity)
+    public void Initialize(PlayerEntity entity, List<AbilityBase> abilities)
     {
         _playerEntity = entity;
         _executor = entity.AbilityExecutor;
+
+        Abilities = abilities;
         foreach (var ability in Abilities)
             ability.Initialize();
+
+        _isInitialized = true;
     }
 
     private void HandleInput()
