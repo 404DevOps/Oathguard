@@ -19,7 +19,7 @@ MonoBehaviour:
     Icon: {fileID: -1263440504906371088, guid: 2f23b4edc8ce781409c8fcd2023192d1, type: 3}
     Name: Haemorrage
     Description: Slash with both Swords causing Damage to nearby Enemies, dealing
-      extra Damage to bleeding Targets.
+      double Damage to bleeding Targets.
     Cooldown: 10
     UseGCD: 1
     GCDDuration: 0.2
@@ -39,6 +39,7 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008780
+  - rid: 3209868539726659664
   WeaponActivationDelay: 0.3
   WeaponActiveDuration: 0.5
   references:
@@ -53,5 +54,17 @@ MonoBehaviour:
         ShakeIntensity: 0
         IsTrueDamage: 0
         CanCrit: 1
-        PreventHurt: 0
+        IgnoreHurt: 0
         Type: 2
+    - rid: 3209868539726659664
+      type: {class: DamageIfAuraActiveEffect, ns: , asm: Assembly-CSharp}
+      data:
+        TargetType: 0
+        MinDamage: 70
+        MaxDamage: 70
+        ShakeIntensity: 0
+        IsTrueDamage: 0
+        CanCrit: 0
+        IgnoreHurt: 0
+        Type: 2
+        ConditionAura: {fileID: 11400000, guid: 5f8fd8623932068419271815cf9bc6c6, type: 2}
