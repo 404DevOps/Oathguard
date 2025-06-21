@@ -16,21 +16,22 @@ public class WeaponAbility : AbilityBase
         if (VFX_Execute != null)
             VFX_Execute.PlayVFX(origin, this, target);
 
-        yield return WaitManager.Wait(WeaponActivationDelay);
-        //enable weapon
         var weapon = origin.WeaponInstance;
-        weapon.EnableHitboxes();
         weapon.OnHit = null; //reset previous event listeners
         weapon.OnHit += ApplyEffects;
         weapon.OnHit += PlayOnHitEffect;
 
+        yield return WaitManager.Wait(WeaponActivationDelay);
+        //enable weapon
+        
+        weapon.EnableHitboxes();
+
         yield return WaitManager.Wait(WeaponActiveDuration);
 
-
         //disable weapon
+        weapon.DisableHitboxes();
         weapon.OnHit -= ApplyEffects;
         weapon.OnHit -= PlayOnHitEffect;
-        weapon.DisableHitboxes();
 
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
     }

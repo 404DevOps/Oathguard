@@ -52,7 +52,7 @@ MonoBehaviour:
       data:
         TargetType: 0
         MinDamage: 90
-        MaxDamage: 90
+        MaxDamage: 100
         ShakeIntensity: 0
         IsTrueDamage: 0
         CanCrit: 0
