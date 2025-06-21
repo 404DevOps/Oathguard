@@ -4,8 +4,8 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.UI.Image;
 
-[CreateAssetMenu(menuName = "Ability/SwordAbility", fileName = "NewSwordAbility")]
-public class SwordAbility : AbilityBase
+[CreateAssetMenu(menuName = "Ability/WeaponAbility", fileName = "NewWeaponAbility")]
+public class WeaponAbility : AbilityBase
 {
     public float WeaponActivationDelay;
     public float WeaponActiveDuration;

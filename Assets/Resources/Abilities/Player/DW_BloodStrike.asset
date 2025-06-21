@@ -9,27 +9,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
+  m_Script: {fileID: 11500000, guid: b58ef41149f2c3543b375a9a360959af, type: 3}
   m_Name: DW_BloodStrike
   m_EditorClassIdentifier: 
-  _uniqueID: d40725ad-7c9d-4323-a753-fdb59fbfe2d0
+  _uniqueID: f5b7e490-4cb9-4517-8d57-a183ef52b6ed
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
   _abilityData:
     Icon: {fileID: -6303261766934575597, guid: 79676bb4b152228479282ca61914bc47, type: 3}
     Name: Blood Strike
-    Description: Two Melee Swings that deal 90% Weapon Damage and apply Bleed to
-      Taragets hit.
+    Description: Two Melee Swings that deal Damage and apply Bleed to Taragets hit.
     Cooldown: 0
-    UseGCD: 1
-    GCDDuration: 0.3
+    UseGCD: 0
+    GCDDuration: 0
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 0.5
+    AnimationDuration: 1.2
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -38,13 +37,17 @@ MonoBehaviour:
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868417464008777
-  WeaponActivationDelay: 0.2
-  WeaponActiveDuration: 0.2
+  - rid: 3209868539726659661
+  - rid: 3209868539726659663
+  SimultaneousStrike: 0
+  MainHandActivationDelay: 0.4
+  MainHandActiveDuration: 0.2
+  OffHandActivationDelay: 0.2
+  OffHandActiveDuration: 0.3
   references:
     version: 2
     RefIds:
-    - rid: 3209868417464008777
+    - rid: 3209868539726659661
       type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
@@ -52,6 +55,10 @@ MonoBehaviour:
         MaxDamage: 90
         ShakeIntensity: 0
         IsTrueDamage: 0
-        CanCrit: 1
-        PreventHurt: 0
+        CanCrit: 0
+        IgnoreHurt: 0
         Type: 2
+    - rid: 3209868539726659663
+      type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
+      data:
+        Aura: {fileID: 11400000, guid: 5f8fd8623932068419271815cf9bc6c6, type: 2}

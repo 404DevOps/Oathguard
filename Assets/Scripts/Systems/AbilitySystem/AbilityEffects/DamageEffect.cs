@@ -10,7 +10,7 @@ public class DamageEffect : AbilityEffectBase
     public float ShakeIntensity;
     public bool IsTrueDamage;
     public bool CanCrit;
-    public bool PreventHurt;
+    public bool IgnoreHurt;
 
     public DamageType Type;
 

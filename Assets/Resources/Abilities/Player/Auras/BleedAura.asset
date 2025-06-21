@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dda48a82f993224bb226af060ad8267, type: 3}
+  m_Name: BleedAura
+  m_EditorClassIdentifier: 
+  _uniqueID: 2f45f876-09e5-4798-90f8-735b506e4039
+  Name: Bleeding
+  Description: Taking Damage every 2 seconds
+  Icon: {fileID: 0}
+  TargetType: 0
+  Type: 1
+  TickRate: 2
+  Duration: 20
+  ShowAuraDisplay: 1
+  Modifiers: []
+  TickEffects:
+  - rid: 3209868539726659662
+  AuraParticles: {fileID: 1402907112848892706, guid: eb1059abcfc425d42a8d0e415ab3e441, type: 3}
+  ParticleOffset: {x: 0, y: 3, z: 0}
+  SwordAuraParticles: {fileID: 0}
+  SwordParticleOffset: {x: 0, y: 0, z: 0}
+  SwordParticleRotation: {x: 0, y: 0, z: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 3209868539726659662
+      type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        TargetType: 0
+        MinDamage: 5
+        MaxDamage: 7
+        ShakeIntensity: 0
+        IsTrueDamage: 0
+        CanCrit: 0
+        IgnoreHurt: 1
+        Type: 2

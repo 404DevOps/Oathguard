@@ -16,11 +16,13 @@ public class AuraInstance : IDisposable
     public Action<DamageContext> DamageListener;
     public bool IsExpired => Time.time >= StartTime + Template.Duration;
 
+
     public EntityBase Origin;
     public EntityBase Target;
     public AuraBase Template;
     public float StartTime;
     public List<GameObject> VisualInstances;
+    public float LastTick;
 
     public void Expire()
     {
@@ -38,6 +40,11 @@ public class AuraInstance : IDisposable
     internal void Apply()
     {
         Template.OnApply(this);
+    }
+
+    internal void DoTick()
+    {
+        Template.OnTick(this);
     }
 
     public void Dispose()

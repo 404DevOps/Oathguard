@@ -34,6 +34,13 @@ internal class AuraManager : Singleton<AuraManager>
             var list = kv.Value;
             for (int i = list.Count - 1; i >= 0; i--)
             {
+                if (list[i].Template.TickRate > 0)
+                {
+                    if (Time.time >= list[i].LastTick + list[i].Template.TickRate)
+                    {
+                        list[i].DoTick();
+                    }
+                }
                 if (list[i].IsExpired)
                 {
                     list[i].Expire();

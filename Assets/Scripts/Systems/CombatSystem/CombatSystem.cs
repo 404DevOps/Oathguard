@@ -63,7 +63,8 @@ public class CombatSystem : Singleton<CombatSystem>
         {
             Type = effect.Type,
             IsTrueDamage = effect.IsTrueDamage,
-            SourceEffect = effect
+            SourceEffect = effect,
+            IgnoreHurt = effect.IgnoreHurt
         };
 
         context.BaseDamage = GetBaseDamage(origin, effect.MinDamage, effect.MaxDamage);

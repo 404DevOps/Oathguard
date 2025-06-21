@@ -1,42 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 public class WeaponSetInstance
 {
     public Action<EntityBase, EntityBase> OnHit;
-
-    public List<WeaponHitbox> Weapons;   
     public WeaponSet Data;
 
-    public WeaponSetInstance(EntityBase entity, WeaponSet data, List<WeaponHitbox> hitboxes) 
+    public List<WeaponHitbox> Weapons;
+
+    public WeaponHitbox MainHand;
+    public WeaponHitbox OffHand;
+
+    public WeaponSetInstance(EntityBase entity, WeaponSet data, WeaponHitbox mainhand, WeaponHitbox offhand)
     {
         Data = data;
-        Weapons = hitboxes;
-        foreach (var hb in Weapons)
+        Weapons = new List<WeaponHitbox> { mainhand };
+
+        MainHand = mainhand;
+        MainHand.Initialize(entity, data);
+
+        if (offhand != null)
         {
-            hb.Initialize(entity, data);
+            Weapons.Add(offhand);
+
+            OffHand = offhand;
+            OffHand.Initialize(entity, data);
         }
     }
 
-    public void EnableHitboxes()
+    public void EnableHitboxes(bool mainHand = true, bool offHand = false)
     {
-        foreach (var weaponHitbox in Weapons)
+        if (mainHand)
         {
-            weaponHitbox.EnableHitbox();
-            weaponHitbox.OnHit += OnHit;
+            MainHand.EnableHitbox();
+            MainHand.OnHit += OnHit;
+        }
+        if (offHand && OffHand != null)
+        {
+            OffHand.EnableHitbox();
+            OffHand.OnHit += OnHit;
         }
     }
 
-    public void DisableHitboxes()
+    public void DisableHitboxes(bool mainHand = true, bool offHand = false)
     {
-        foreach (var weaponHitbox in Weapons)
+        if (mainHand)
         {
-            weaponHitbox.OnHit -= OnHit;
-            weaponHitbox.DisableHitbox();
+            MainHand.DisableHitbox();
+            MainHand.OnHit -= OnHit;
+        }
+        if (offHand && OffHand != null)
+        {
+            OffHand.DisableHitbox();
+            OffHand.OnHit -= OnHit;
         }
     }
 }

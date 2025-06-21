@@ -25,18 +25,20 @@ public class WeaponSet : ScriptableObject
     {
         List<WeaponHitbox> weapons = new List<WeaponHitbox>();
 
-        var mainHand = Instantiate(this.MainHandPrefab, handSlotR);
-        weapons.Add(mainHand.GetComponent<WeaponHitbox>());
+        var mainHandGO = Instantiate(this.MainHandPrefab, handSlotR);
+        WeaponHitbox mainHand = mainHandGO.GetComponent<WeaponHitbox>();
+
+        WeaponHitbox offhand = null;
         if (OffhandPrefab != null)
         {
-            var offhand = Instantiate(OffhandPrefab, handSlotL);
-            offhand.transform.localPosition += OffHandOffset;
+            var offhandGO = Instantiate(OffhandPrefab, handSlotL);
+            offhandGO.transform.localPosition += OffHandOffset;
 
             if (Type != WeaponType.SNS) //dont add shield
-                weapons.Add(offhand.GetComponent<WeaponHitbox>());
+                offhand = offhandGO.GetComponent<WeaponHitbox>();
         }
 
-        var instance = new WeaponSetInstance(entity, this, weapons);
+        var instance = new WeaponSetInstance(entity, this, mainHand, offhand);
         return instance;
     }
 }

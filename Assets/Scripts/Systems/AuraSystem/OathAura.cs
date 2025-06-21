@@ -12,14 +12,7 @@ public class OathAura : AuraBase
     public List<OathUpgrade> OathUpgrades;
 
 
-    [Header("Visuals")]
-    public GameObject AuraParticles;
-    public Vector3 ParticleOffset;
 
-    [Header("Sword Particles")]
-    public GameObject SwordAuraParticles;
-    public Vector3 SwordParticleOffset;
-    public Vector3 SwordParticleRotation;
 
     public override void OnApply(AuraInstance instance)
     {
@@ -28,8 +21,6 @@ public class OathAura : AuraBase
         instance.DamageListener = null;
         instance.DamageListener += (args) => OnEntityDamaged(instance, args);
         GameEvents.OnEntityDamageReceived.AddListener(instance.DamageListener);
-
-        AddVFX(instance);
     }
 
     public override void OnExpire(AuraInstance instance)
@@ -39,8 +30,6 @@ public class OathAura : AuraBase
             GameEvents.OnEntityDamageReceived.RemoveListener(instance.DamageListener);
             instance.DamageListener = null;
         }
-
-        ClearVFX(instance);
         base.OnExpire(instance);
     }
 
@@ -61,37 +50,6 @@ public class OathAura : AuraBase
         }
     }
 
-    #region VFX
-    private void AddVFX(AuraInstance instance)
-    {
-        if (AuraParticles != null)
-        {
-            var holder = instance.Target.AuraVisualsContainer.transform;
-            var particles = Instantiate(AuraParticles, holder.position + ParticleOffset, Quaternion.identity, holder);
-            instance.VisualInstances.Add(particles);
-        }
-        if (SwordAuraParticles != null)
-        {
-            var swordHolders = instance.Target.WeaponInstance.Weapons;
-            foreach (var holder in swordHolders)
-            {
-                var swordParticles = Instantiate(SwordAuraParticles, holder.transform);
-                swordParticles.transform.localPosition = SwordParticleOffset;
-                swordParticles.transform.localRotation = Quaternion.Euler(SwordParticleRotation);
-                instance.VisualInstances.Add(swordParticles);
-            }
-        }
-    }
-    private void ClearVFX(AuraInstance instance)
-    {
-        if (instance.VisualInstances != null)
-        {
-            foreach (var visualGO in instance.VisualInstances)
-                Destroy(visualGO);
-        }
-        instance.VisualInstances.Clear();
-    }
-
-    #endregion
+  
 }
 
