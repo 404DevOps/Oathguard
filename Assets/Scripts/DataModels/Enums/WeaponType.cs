@@ -1,6 +1,7 @@
 ﻿public enum WeaponType
 {
-    Claymore,
-    SNS,
-    DualSword
+    Claymore = 0,
+    SNS = 1,
+    DualSword = 2,
+    Minion
 }

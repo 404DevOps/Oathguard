@@ -17,9 +17,9 @@ public class SwordAbility : AbilityBase
             VFX_Execute.PlayVFX(origin, this, target);
 
         yield return WaitManager.Wait(WeaponActivationDelay);
-        //enable sword
-        var weapon = origin.Weapon;
-        weapon.EnableHitbox();
+        //enable weapon
+        var weapon = origin.WeaponInstance;
+        weapon.EnableHitboxes();
         weapon.OnHit = null; //reset previous event listeners
         weapon.OnHit += ApplyEffects;
         weapon.OnHit += PlayOnHitEffect;
@@ -27,10 +27,11 @@ public class SwordAbility : AbilityBase
         yield return WaitManager.Wait(WeaponActiveDuration);
 
 
-        //disable sword
-        weapon.DisableHitbox();
+        //disable weapon
         weapon.OnHit -= ApplyEffects;
         weapon.OnHit -= PlayOnHitEffect;
+        weapon.DisableHitboxes();
+
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
     }
 

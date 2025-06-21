@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13e1e8a406c73745805f5ed395e83be, type: 3}
   m_Name: SwordAndBoard
   m_EditorClassIdentifier: 
-  Image: {fileID: 21300000, guid: 52622fed9073a8c4fa4817237b771e25, type: 3}
+  Image: {fileID: 1595393756709602084, guid: 4c12c73389e56684f89ac40b52751c12, type: 3}
   Name: Sword and Board
   Description: Sword and Board grants you strong Defenses and a Shield Block Ability.
   Type: 1
   BaseDamage: 15
   CritChance: 10
   Defense: 10
+  WeaponAbilities:
+  - {fileID: 11400000, guid: cc629b85ef521714f9aaf39db1e83749, type: 2}
+  - {fileID: 11400000, guid: 17814630260f0fe46841b2c7cc6249cb, type: 2}
   MainHandPrefab: {fileID: 3513425645202981756, guid: 7720f024d6bff3b4180262a4f99841dd, type: 3}
   OffhandPrefab: {fileID: 1262216896805149534, guid: 731bb0fe97823ce48a5be6ed946ebfe1, type: 3}
+  OffHandOffset: {x: 0, y: 0, z: 0.2}

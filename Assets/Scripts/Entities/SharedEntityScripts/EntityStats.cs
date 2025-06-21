@@ -33,13 +33,13 @@ public class EntityStats : MonoBehaviour
             return _mediator.GetModifiedStat(StatType.MaxResource, _baseStats.MaxResource);
         }
     }
-    //public float Attack
-    //{
-    //    get
-    //    {
-    //        return _mediator.GetModifiedStat(StatType.Attack, _baseStats.Attack);
-    //    }
-    //}
+    public float Attack
+    {
+        get
+        {
+            return _mediator.GetModifiedStat(StatType.Attack, _baseStats.Attack);
+        }
+    }
     public float Defense
     {
         get

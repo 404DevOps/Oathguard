@@ -88,7 +88,22 @@ public class CombatSystem : Singleton<CombatSystem>
             context.FinalDamage *= 2f;
         }
 
-        // Phase 4: Apply Auras, Elemental, On-hit Modifiers
+        // Phase 4: Apply Shields
+        if (target.Shield.GetShieldAmount() > 0)
+        {
+            float currentShield = target.Shield.GetShieldAmount();
+            float shieldAbsorbed = Mathf.Min(context.FinalDamage, currentShield);
+
+            //damage / shield remaining
+            float damageAfterShield = context.FinalDamage - shieldAbsorbed;
+            float remainingShield = currentShield - shieldAbsorbed;
+
+            //apply the leftover damage/shield
+            context.FinalDamage = damageAfterShield;
+            target.Shield.SetShieldAmount(remainingShield);
+        }
+
+        // Phase 5: Auras, Elemental, On-hit Modifiers
         // Add future hooks here
 
         return context;
@@ -129,12 +144,12 @@ public class CombatSystem : Singleton<CombatSystem>
     private float GetBaseDamage(EntityBase source, float min, float max)
     {
         float roll = GetDamageRoll(min, max);
-        return source.Weapon.Data.BaseDamage / 100f * roll;
+        return (source.WeaponInstance.Data.BaseDamage + source.Stats.Attack) / 100f * roll;
     }
 
     private void ApplyMitigation(DamageContext context)
     {
-        var defense = context.Target.Stats.Defense;
+        var defense = context.Target.Stats.Defense + context.Target.WeaponInstance.Data.Defense;
         context.FinalDamage -= defense;
         if (context.FinalDamage < 0)
             context.FinalDamage = 0;

@@ -2309,6 +2309,7 @@ GameObject:
   - component: {fileID: 1734988682850859686}
   - component: {fileID: 4876108729119194115}
   - component: {fileID: 7644888237630406262}
+  - component: {fileID: 8688946757156382634}
   - component: {fileID: 1683618154821580154}
   - component: {fileID: 275383270851436513}
   - component: {fileID: 2264834010105667010}
@@ -2362,6 +2363,7 @@ MonoBehaviour:
   Weapon: {fileID: 0}
   Health: {fileID: 0}
   Hurt: {fileID: 0}
+  Shield: {fileID: 0}
   Resource: {fileID: 0}
   Stats: {fileID: 0}
   Animator: {fileID: 0}
@@ -2399,6 +2401,7 @@ MonoBehaviour:
   rotationSmoothing: 8
   alignmentThreshold: 0.5
   _moveDirection: {x: 0, y: 0, z: 0}
+  _isInitialized: 0
 --- !u!114 &4582162716832998985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2461,6 +2464,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHealth: 0
+  EntityStats: {fileID: 0}
+  Entity: {fileID: 0}
+--- !u!114 &8688946757156382634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624171491478358481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d067e698940bac48b8c8d8526b56e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentShield: 0
   EntityStats: {fileID: 0}
   Entity: {fileID: 0}
 --- !u!114 &1683618154821580154

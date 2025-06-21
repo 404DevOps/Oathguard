@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dda48a82f993224bb226af060ad8267, type: 3}
+  m_Name: Aegis
+  m_EditorClassIdentifier: 
+  _uniqueID: 0781607b-4818-499a-94a5-544f60219ecb
+  Name: 
+  Description: 
+  Icon: {fileID: 5894269974566663758, guid: 1ace85da8f1b3de45a78c2b5ae6849a0, type: 3}
+  TargetType: 1
+  Type: 0
+  Duration: 5
+  Modifiers: []
+  ShowAuraDisplay: 0

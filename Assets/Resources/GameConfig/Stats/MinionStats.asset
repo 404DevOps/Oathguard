@@ -18,6 +18,6 @@ MonoBehaviour:
   MoveSpeed: 8
   CritChance: 0
   Defense: 0
-  OathModifier: []
   ResourceType: 0
+  Weapon: {fileID: 11400000, guid: dd06942ac324ea845addcb12cc36501b, type: 2}
   OathTwistWindow: 0

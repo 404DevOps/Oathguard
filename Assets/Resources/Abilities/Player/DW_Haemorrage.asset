@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
-  m_Name: BasicHit
+  m_Name: DW_Haemorrage
   m_EditorClassIdentifier: 
-  _uniqueID: 4b1c4154-c900-453a-9272-ae957c585c71
-  VFX_Execute: {fileID: 0}
+  _uniqueID: bf755106-9b3a-4bef-8839-9dfdff1f873b
+  VFX_Execute: {fileID: 11400000, guid: c02cb9c4bf7a7284486a64d0aacbb81e, type: 2}
   VFX_Pre: {fileID: 0}
   _abilityData:
-    Icon: {fileID: -9018399632469994422, guid: 72e6edb4a5fbb2e47a8c5d70e21d99f7, type: 3}
-    Name: Slash
-    Description: A Melee Swing that damages nearby enemies
-    Cooldown: 0
+    Icon: {fileID: -1263440504906371088, guid: 2f23b4edc8ce781409c8fcd2023192d1, type: 3}
+    Name: Haemorrage
+    Description: Slash with both Swords causing Damage to nearby Enemies, dealing
+      extra Damage to bleeding Targets.
+    Cooldown: 10
     UseGCD: 1
-    GCDDuration: 0.3
+    GCDDuration: 0.2
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
-    AnimationTriggerName: primaryAttack
-    AnimationDuration: 0.3
+    AnimationTriggerName: secondaryAttack
+    AnimationDuration: 0.6
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -37,18 +38,18 @@ MonoBehaviour:
     SFX_Execution: {fileID: 0}
     SFX_Miss: {fileID: 0}
   Effects:
-  - rid: 3209868417464008777
-  WeaponActivationDelay: 0
-  WeaponActiveDuration: 0.3
+  - rid: 3209868417464008780
+  WeaponActivationDelay: 0.3
+  WeaponActiveDuration: 0.5
   references:
     version: 2
     RefIds:
-    - rid: 3209868417464008777
+    - rid: 3209868417464008780
       type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
         TargetType: 0
-        MinDamage: 90
-        MaxDamage: 100
+        MinDamage: 70
+        MaxDamage: 70
         ShakeIntensity: 0
         IsTrueDamage: 0
         CanCrit: 1

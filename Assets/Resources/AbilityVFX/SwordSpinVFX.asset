@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpinVFXPrefab: {fileID: 836962265145189425, guid: b71618d69ec5817488b89abaa1ee9bec, type: 3}
   TargetType: 1
-  DelayBeforePlay: 0.5
+  DelayBeforePlay: 0.7
   Duration: 1

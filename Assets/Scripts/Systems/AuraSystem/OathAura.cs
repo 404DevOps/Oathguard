@@ -72,11 +72,14 @@ public class OathAura : AuraBase
         }
         if (SwordAuraParticles != null)
         {
-            var swordHolder = instance.Target.Weapon.transform;
-            var swordParticles = Instantiate(SwordAuraParticles, swordHolder);
-            swordParticles.transform.localPosition = SwordParticleOffset;
-            swordParticles.transform.localRotation = Quaternion.Euler(SwordParticleRotation); 
-            instance.VisualInstances.Add(swordParticles);
+            var swordHolders = instance.Target.WeaponInstance.Weapons;
+            foreach (var holder in swordHolders)
+            {
+                var swordParticles = Instantiate(SwordAuraParticles, holder.transform);
+                swordParticles.transform.localPosition = SwordParticleOffset;
+                swordParticles.transform.localRotation = Quaternion.Euler(SwordParticleRotation);
+                instance.VisualInstances.Add(swordParticles);
+            }
         }
     }
     private void ClearVFX(AuraInstance instance)

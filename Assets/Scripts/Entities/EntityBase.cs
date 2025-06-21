@@ -10,9 +10,10 @@ public class EntityBase : MonoBehaviour
    
     [Header("References")] 
     public Collider Collider;
-    public WeaponHitbox Weapon;
+    public WeaponSetInstance WeaponInstance;
     public EntityHealth Health;
     public EntityHurt Hurt;
+    public EntityShield Shield;
     public EntityResource Resource;
     public EntityStats Stats;
     public Animator Animator;
@@ -21,7 +22,9 @@ public class EntityBase : MonoBehaviour
     public AbilityExecutor AbilityExecutor;
     public EntityImmunity Immunity;
 
-    [Header("Containers")] 
+    [Header("Containers")]
+    public Transform HandSlotL;
+    public Transform HandSlotR;
     public Transform AuraVisualsContainer;
     public Transform CombatTextContainer;
 
@@ -52,6 +55,9 @@ public class EntityBase : MonoBehaviour
 
         Health = GetComponent<EntityHealth>();
         Health.Initialize(this);
+
+        Shield = GetComponent<EntityShield>();
+        Shield.Initialize(this);
 
         Hurt = GetComponent<EntityHurt>();
         Hurt.Initialize(this);

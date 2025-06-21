@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
-  m_Name: SpinHit
+  m_Name: 2H_Spin
   m_EditorClassIdentifier: 
   _uniqueID: 48784e31-e79d-4cd9-afd2-cd0cf4eb7524
   VFX_Execute: {fileID: 11400000, guid: c02cb9c4bf7a7284486a64d0aacbb81e, type: 2}

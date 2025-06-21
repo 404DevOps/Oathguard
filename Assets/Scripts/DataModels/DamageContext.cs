@@ -9,6 +9,7 @@
     public EntityBase Target;
     public float BaseDamage;
     public float FinalDamage;
+    public float ShieldedDamage;
     public bool IsCritical;
     public bool IsTrueDamage;
     public DamageType Type;

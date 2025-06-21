@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 52622fed9073a8c4fa4817237b771e25
+guid: 2f23b4edc8ce781409c8fcd2023192d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3224000772885037458
-    second: SNS_Icon_Fail_0
+      213: -1263440504906371088
+    second: DW_Special_128x128_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SNS_Icon_Fail_0
+      name: DW_Special_128x128_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6e3a98e06c0243d0800000000000000
-      internalID: -3224000772885037458
+      spriteID: 0ff27360e8b577ee0800000000000000
+      internalID: -1263440504906371088
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      SNS_Icon_Fail_0: -3224000772885037458
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

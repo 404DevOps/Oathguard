@@ -6,12 +6,8 @@ public class NPCEntity : EntityBase
     {
         Initialize();
 
-
         var weapon = EntityStatMapping.Instance().GetBaseStats(Type).Weapon;
-
-        Weapon = GetComponentInChildren<WeaponHitbox>();
-        Weapon.Initialize(this, weapon);
-
+        WeaponInstance = weapon.CreateInstance(this, HandSlotL, HandSlotR);
         StartCoroutine(NotifyNextFrame());
     }
 }
