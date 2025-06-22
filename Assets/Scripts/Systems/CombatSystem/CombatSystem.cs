@@ -89,22 +89,7 @@ public class CombatSystem : Singleton<CombatSystem>
             context.FinalDamage *= 2f;
         }
 
-        // Phase 4: Apply Shields
-        if (target.Shield.GetShieldAmount() > 0)
-        {
-            float currentShield = target.Shield.GetShieldAmount();
-            float shieldAbsorbed = Mathf.Min(context.FinalDamage, currentShield);
-
-            //damage / shield remaining
-            float damageAfterShield = context.FinalDamage - shieldAbsorbed;
-            float remainingShield = currentShield - shieldAbsorbed;
-
-            //apply the leftover damage/shield
-            context.FinalDamage = damageAfterShield;
-            target.Shield.SetShieldAmount(remainingShield);
-        }
-
-        // Phase 5: Auras, Elemental, On-hit Modifiers
+        // Phase 4: Auras, Elemental, On-hit Modifiers
         // Add future hooks here
 
         return context;

@@ -30,12 +30,20 @@ public class CombatTextManager : MonoBehaviour
     {
         GameEvents.OnEntityDamageReceived.AddListener(OnEntityDamaged);
         GameEvents.OnEntityHealed.AddListener(OnEntityHealed);
+        GameEvents.OnEntityShieldAbsorbed.AddListener(OnShieldAbsorbed);
 
     }
     private void OnDisable()
     {
         GameEvents.OnEntityDamageReceived.RemoveListener(OnEntityDamaged);
         GameEvents.OnEntityHealed.RemoveListener(OnEntityHealed);
+        GameEvents.OnEntityShieldAbsorbed.RemoveListener(OnShieldAbsorbed);
+    }
+
+    private void OnShieldAbsorbed(ShieldAbsorbedEventArgs args)
+    {
+        var baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.ShieldAbsorbed);
+        ShowText(args.Entity, Mathf.RoundToInt(args.AbsorbedAmount).ToString(), baseTextColor, false);
     }
 
     #region Event Handlers

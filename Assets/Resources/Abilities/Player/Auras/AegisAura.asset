@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7862ee7ef6a4e743ba0b2be9a57000b, type: 3}
+  m_Name: AegisAura
+  m_EditorClassIdentifier: 
+  _uniqueID: 47296ef0-944b-49c2-beda-d1ad62fb92c6
+  Name: Aegis
+  Description: Protects you from Incoming Damage.
+  Icon: {fileID: 5894269974566663758, guid: 1ace85da8f1b3de45a78c2b5ae6849a0, type: 3}
+  TargetType: 1
+  Type: 0
+  TickRate: 0
+  Duration: 5
+  ShowAuraDisplay: 1
+  Modifiers: []
+  TickEffects: []
+  AuraParticles: {fileID: 0}
+  ParticleOffset: {x: 0, y: 0, z: 0}
+  SwordAuraParticles: {fileID: 0}
+  SwordParticleOffset: {x: 0, y: 0, z: 0}
+  SwordParticleRotation: {x: 0, y: 0, z: 0}
+  ShieldAmount: 50
+  references:
+    version: 2
+    RefIds: []

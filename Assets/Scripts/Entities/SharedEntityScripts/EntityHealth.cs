@@ -25,15 +25,39 @@ public class EntityHealth : MonoBehaviour
         if (CurrentHealth <= 0)
             return;
 
-        CurrentHealth -= damageData.FinalDamage;
-        CurrentHealth = Mathf.Max(0, CurrentHealth); //clamp
+        float damageLeft = damageData.FinalDamage;
+        float absorbedByShield = 0f;
 
-        GameEvents.OnEntityDamageReceived.Invoke(damageData);
-        GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(damageData.Target, CurrentHealth, MaxHealth));
-
-        if (CurrentHealth <= 0)
+        //apply shield before health
+        var shield = Entity.Shield;
+        if (shield != null && shield.CurrentShield > 0)
         {
-            GameEvents.OnEntityDied.Invoke(Entity.Id);
+            float before = shield.CurrentShield;
+            shield.ReduceShield(damageLeft);
+            absorbedByShield = before - shield.CurrentShield;
+            damageLeft -= absorbedByShield;
+
+            if (absorbedByShield > 0)
+            {
+                GameEvents.OnEntityShieldAbsorbed.Invoke(new ShieldAbsorbedEventArgs(
+                    damageData.Target,
+                    absorbedByShield
+                ));
+            }
+        }
+
+        if (damageLeft > 0)
+        {
+            CurrentHealth -= damageLeft;
+            CurrentHealth = Mathf.Max(0, CurrentHealth);
+
+            GameEvents.OnEntityDamageReceived.Invoke(damageData);
+            GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(damageData.Target, CurrentHealth, MaxHealth));
+
+            if (CurrentHealth <= 0)
+            {
+                GameEvents.OnEntityDied.Invoke(Entity.Id);
+            }
         }
     }
 

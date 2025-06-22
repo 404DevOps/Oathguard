@@ -1,11 +1,13 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EntityShield : MonoBehaviour
 {
-    public float CurrentShield;
+    public float CurrentShield => GetTotalShield();
 
-    //references
+    private List<ShieldSource> sources = new List<ShieldSource>();
+
     public EntityStats EntityStats;
     public EntityBase Entity;
 
@@ -13,27 +15,78 @@ public class EntityShield : MonoBehaviour
     {
         Entity = entity;
         EntityStats = entity.Stats;
-        CurrentShield = 0;
+        sources.Clear();
     }
 
-    public float GetShieldAmount()
+    public float GetTotalShield()
     {
-        return CurrentShield;
+        float total = 0f;
+        foreach (var source in sources)
+            total += source.Amount;
+        return total;
     }
 
-    public void AddShield(float amount)
+    public void SetShield(string sourceId, SourceType sourceType, float amount)
     {
-        CurrentShield += amount;
+        var source = sources.Find(s => s.SourceId == sourceId);
+        if (source != null)
+        {
+            source.Amount = amount;
+        }
+        else
+        {
+            sources.Add(new ShieldSource(sourceId, sourceType, amount));
+        }
     }
+
     public void ReduceShield(float amount)
     {
-        CurrentShield -= amount;
-        if (CurrentShield <= 0)
-            CurrentShield = 0;
+        //reduce shields FIFO
+        for (int i = 0; i < sources.Count && amount > 0; i++)
+        {
+            var source = sources[i];
+            if (source.Amount <= amount)
+            {
+                amount -= source.Amount;
+                source.Amount = 0;
+            }
+            else
+            {
+                source.Amount -= amount;
+                amount = 0;
+            }
+        }
+        var depletedShieldSources = sources.Where(s => s.Amount <= 0).ToList();
+        foreach (var shield in depletedShieldSources)
+        {
+            if (shield.SourceType == SourceType.Aura)
+                AuraManager.Instance.CancelAuraById(Entity.Id, shield.SourceId);
+        }
+        sources.RemoveAll(s => s.Amount <= 0);
     }
 
-    internal void SetShieldAmount(float remainingShield)
+    public float GetSourceAmount(string sourceId)
     {
-        CurrentShield = remainingShield;
+        var source = sources.Find(s => s.SourceId == sourceId);
+        return source != null ? source.Amount : 0f;
+    }
+
+    public void RemoveSource(string sourceId) //should be called from source
+    {
+        sources.RemoveAll(s => s.SourceId == sourceId);
+    }
+}
+
+public class ShieldSource
+{
+    public string SourceId;
+    public SourceType SourceType;
+    public float Amount;
+
+    public ShieldSource(string sourceId, SourceType sourceType, float amount)
+    {
+        SourceId = sourceId;
+        SourceType = sourceType;
+        Amount = amount;
     }
 }

@@ -44,4 +44,4 @@ MonoBehaviour:
     - rid: 3209868417464008779
       type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
       data:
-        Aura: {fileID: 11400000, guid: 5f5f26765e2358345897691c8ecbecb7, type: 2}
+        Aura: {fileID: 11400000, guid: c4e369a6ead7f6b4baee890ffbf19b22, type: 2}

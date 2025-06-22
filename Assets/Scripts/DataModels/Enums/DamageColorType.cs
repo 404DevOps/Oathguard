@@ -5,6 +5,7 @@
     Critical,
     Heal,
     Immune,
-    PlayerCritical
+    PlayerCritical,
+    ShieldAbsorbed
 }
 
