@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class WorldUnitFrameUIHandler : MonoBehaviour
 {
@@ -13,19 +14,35 @@ public class WorldUnitFrameUIHandler : MonoBehaviour
         _healthbar = GetComponentInChildren<HealthBarUIHandler>(true);
 
         GameEvents.OnEntityInitialized.AddListener(OnEntityInitialized);
+        GameEvents.OnEntityDied.AddListener(OnEntityDied);
         GameEvents.OnEntityHealthChanged.AddListener(OnHealthChanged);
 
     }
     private void OnDisable()
     {
         GameEvents.OnEntityInitialized.RemoveListener(OnEntityInitialized);
+        GameEvents.OnEntityDied.RemoveListener(OnEntityDied);
         GameEvents.OnEntityHealthChanged.RemoveListener(OnHealthChanged);
+    }
+
+    private void Update()
+    {
+        if(Entity != null)
+
+        transform.LookAt(transform.position + Utility.Camera.transform.rotation * Vector3.forward,
+                         Utility.Camera.transform.rotation * Vector3.up);
     }
 
     private void OnEntityInitialized(EntityBase entity)
     {
         if (entity.Id != Entity.Id) return;
         InitializeFrame(entity);
+    }
+
+    private void OnEntityDied(string entityId)
+    {
+        if (entityId != Entity.Id) return;
+        gameObject.SetActive(false);
     }
 
     private void InitializeFrame(EntityBase entity)
