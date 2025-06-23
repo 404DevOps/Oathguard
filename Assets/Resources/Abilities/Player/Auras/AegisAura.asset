@@ -23,8 +23,8 @@ MonoBehaviour:
   ShowAuraDisplay: 1
   Modifiers: []
   TickEffects: []
-  AuraParticles: {fileID: 0}
-  ParticleOffset: {x: 0, y: 0, z: 0}
+  AuraParticles: {fileID: 7988896541937368347, guid: b7f712d56e67e0b44be5412a08b09dd3, type: 3}
+  ParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordAuraParticles: {fileID: 0}
   SwordParticleOffset: {x: 0, y: 0, z: 0}
   SwordParticleRotation: {x: 0, y: 0, z: 0}

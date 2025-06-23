@@ -29,4 +29,6 @@ public static class GameEvents
     public static readonly Event<AuraRefreshedEventArgs> OnAuraRefreshed = new();
 
     public static readonly Event<WeaponSet> OnWeaponSelected = new();
+
+    public static readonly Event OnGameStarted = new();
 }
