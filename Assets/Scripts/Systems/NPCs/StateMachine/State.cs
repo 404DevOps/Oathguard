@@ -14,21 +14,5 @@ public abstract class State
     public virtual void Enter() { }
     public virtual void Tick() { }
     public virtual void Exit() { }
-
-    public AIState? CheckGlobalInterrupts()
-    {
-        if (context.Entity.IsDead)
-        {
-            return AIState.Dead;
-        }
-        else if (context.Entity.Knockback.IsKnockBack)
-        {
-            return AIState.Knockback;
-        }
-        else
-        {
-            return null; // Default: stay in current state
-        }
-    }
     public abstract AIState? GetNextState();
 }

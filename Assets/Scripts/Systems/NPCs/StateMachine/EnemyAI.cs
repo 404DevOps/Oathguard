@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     {
         Entity = entity;
         Agent = GetComponent<NavMeshAgent>();
-        StateMachine = new StateMachine();
+        StateMachine = new StateMachine(this);
 
         //StateMachine.AddState(AIState.Idle, new IdleState(this, StateMachine));
         StateMachine.AddState(AIState.Chase, new ChaseState(this, StateMachine));

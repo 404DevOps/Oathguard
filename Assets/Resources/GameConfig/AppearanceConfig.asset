@@ -15,4 +15,4 @@ MonoBehaviour:
   _resourceData:
   - ResourceType: 1
     StartAmountPercentage: 0
-    ResourceBarColor: {r: 1, g: 0.7812411, b: 0, a: 1}
+    ResourceBarColor: {r: 0.49411765, g: 0.35686275, b: 0.9372549, a: 1}

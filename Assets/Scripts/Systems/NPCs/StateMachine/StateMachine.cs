@@ -2,9 +2,16 @@
 
 public class StateMachine
 {
+    public State CurrentState { get; set; }
+    private AIState CurrentStateID { get; set; }
+
     private Dictionary<AIState, State> _states = new();
-    public State CurrentState { get; private set; }
-    public AIState CurrentStateID { get; private set; }
+    private EnemyAI _context;
+
+    public StateMachine(EnemyAI context)
+    {
+        _context = context;
+    }
 
     public void AddState(AIState id, State state)
     {
@@ -19,6 +26,7 @@ public class StateMachine
     {
         var state = GetState(stateId);
         CurrentState = state;
+        CurrentStateID = stateId;
         CurrentState.Enter();
     }
 
@@ -26,14 +34,36 @@ public class StateMachine
     {
         if (CurrentState == null) return;
 
-        var next = CurrentState.GetNextState();
-        if (next != null && next != CurrentStateID)
+        var interrupt = CheckGlobalInterrupts();
+        if (interrupt != null && interrupt != CurrentStateID)
         {
-            CurrentState.Exit();
-            CurrentState = GetState(next.Value);
-            CurrentState.Enter();
+            SwitchToState(interrupt.Value);
+            return;
+        }
+
+        var nextState = CurrentState.GetNextState();
+        if (nextState != null && nextState != CurrentStateID)
+        {
+            SwitchToState(nextState.Value);
         }
 
         CurrentState.Tick();
+    }
+    private AIState? CheckGlobalInterrupts()
+    {
+        if (_context.Entity.IsDead)
+            return AIState.Dead;
+
+        if (_context.Entity.Knockback.IsKnockBack)
+            return AIState.Knockback;
+
+        return null;
+    }
+    private void SwitchToState(AIState newState)
+    {
+        CurrentState.Exit();
+        CurrentStateID = newState;
+        CurrentState = GetState(newState);
+        CurrentState.Enter();
     }
 }

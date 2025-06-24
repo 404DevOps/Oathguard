@@ -12,11 +12,7 @@ public class IdleState : State
 
     public override AIState? GetNextState()
     {
-        var interrupt = CheckGlobalInterrupts();
-        if (interrupt != null)
-            return interrupt;
-
-        else if (context.DistanceToPlayer < context.ChaseRange)
+        if (context.DistanceToPlayer < context.ChaseRange)
             return AIState.Chase;
         else return null;
     }

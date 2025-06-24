@@ -14,10 +14,6 @@
 
     public override AIState? GetNextState()
     {
-        var interrupt = CheckGlobalInterrupts();
-        if (interrupt != null)
-            return interrupt;
-
         if (context.DistanceToPlayer <= context.AttackRange)
         {
             return AIState.Attack;
