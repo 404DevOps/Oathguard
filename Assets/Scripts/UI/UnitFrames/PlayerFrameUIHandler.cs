@@ -78,7 +78,7 @@ public class PlayerFrameUIHandler : MonoBehaviour
         if (Player == null || Player.Id != args.Entity.Id)
             return;
 
-        _xpBar.SetNewValue(args.CurrentXP, args.MaxXP, args.Entity.Experience.CurrentLevel, false);
+        StartCoroutine(_xpBar.SetNewValue(args.CurrentXP, args.MaxXP, args.Entity.Experience.CurrentLevel, false));
     }
 
     //private void ActivateAuraGrid()

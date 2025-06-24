@@ -29,6 +29,7 @@ public class HitEffectManager : Singleton<HitEffectManager>
 
     public void PlayHitVFX(EntityBase origin, EntityBase target)
     {
+        if (target.IsDead) return;
         Vector3 direction = (origin.transform.position - target.transform.position).normalized;
         Vector3 impactPos = target.transform.position + direction * ImpactOffsetDistance;
         impactPos.y = 1.4f;

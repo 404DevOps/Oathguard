@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EntityExperience : MonoBehaviour
 {
-    public int CurrentLevel { get; private set; }
-    public float MaxXP { get; private set; }
-    public float CurrentXP { get; private set; }
+    public int CurrentLevel;
+    public float MaxXP;
+    public float CurrentXP;
 
     private PlayerEntity _player;
 
@@ -43,7 +43,8 @@ public class EntityExperience : MonoBehaviour
             MaxXP = GetCurrentLevelXP();
 
             //loop until none left.
-            AddXP(levelLeftover);
+            if (levelLeftover > 0)
+                AddXP(levelLeftover);
 
             //invoke later to allow for level up to show properly on xp bar 
             StartCoroutine(InvokeXPChangedDelayed(finalAmount));
@@ -57,6 +58,7 @@ public class EntityExperience : MonoBehaviour
     {
         yield return WaitManager.Wait(1);
         GameEvents.OnEntityXPChanged?.Invoke(new XPChangedEventArgs(_player, CurrentXP, MaxXP, finalAmount));
+        yield return WaitManager.Wait(2);
         GameEvents.OnEntityLeveledUp?.Invoke(_player);
     }
 }

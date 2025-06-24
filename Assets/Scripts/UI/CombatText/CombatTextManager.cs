@@ -46,7 +46,7 @@ public class CombatTextManager : MonoBehaviour
 
     private void OnXPGained(XPChangedEventArgs args)
     {
-        var baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.ShieldAbsorbed);
+        var baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.ExperienceGained);
         ShowText(args.Entity, Mathf.RoundToInt(args.CurrentXP).ToString(), baseTextColor, false);
     }
 

@@ -5,7 +5,6 @@ public class NPCEntity : EntityBase
     public EntityKnockback Knockback;
     void Awake()
     {
-        GameEvents.OnEntityDied.AddListener(OnEntityDied);
         Initialize();
 
         var weapon = EntityStatMapping.Instance().GetBaseStats(Type).Weapon;

@@ -8,7 +8,6 @@ public class DeadState : State
 
     public override void Enter()
     {
-        context.Agent.ResetPath();
         Debug.Log("Dead!");
     }
 

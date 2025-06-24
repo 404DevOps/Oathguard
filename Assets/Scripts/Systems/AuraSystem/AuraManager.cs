@@ -41,7 +41,7 @@ internal class AuraManager : Singleton<AuraManager>
                         list[i].DoTick();
                     }
                 }
-                if (list[i].IsExpired)
+                if (list[i].IsExpired || list[i].Target.IsDead)
                 {
                     list[i].Expire();
                     list.RemoveAt(i);

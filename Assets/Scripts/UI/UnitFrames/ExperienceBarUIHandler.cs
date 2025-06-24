@@ -30,7 +30,7 @@ public class ExperienceBarUIHandler : MonoBehaviour
     private void UpdateTexts(float currentXP, float maxXP, int currentLevel)
     {
         _levelText.text = currentLevel.ToString();
-        _xpText.text = Mathf.CeilToInt(currentXP).ToString() + "/" + Mathf.CeilToInt(maxXP).ToString();
+        _xpText.text = Mathf.CeilToInt(currentXP).ToString() + " / " + Mathf.CeilToInt(maxXP).ToString();
     }
 
     private IEnumerator UpdateBar(bool updateInstant = false)
