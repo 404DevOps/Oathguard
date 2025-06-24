@@ -14,4 +14,5 @@ public enum StatType
     CritChance,
     MaxResource,
     OathTwistWindow,
+    ExperienceRate
 }

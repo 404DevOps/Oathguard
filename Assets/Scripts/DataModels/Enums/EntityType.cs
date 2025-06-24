@@ -8,9 +8,9 @@ public enum EntityType
 {
     Player,
     Minion,
-    Shielded,
+    Armored,
     Mage,
     Archer,
     Necromancer,
-    Boss,
+    Golem,
 }

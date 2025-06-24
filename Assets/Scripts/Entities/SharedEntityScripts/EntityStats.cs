@@ -61,6 +61,20 @@ public class EntityStats : MonoBehaviour
             return _mediator.GetModifiedStat(StatType.CritChance, _baseStats.CritChance);
         }
     }
+    public float Experience
+    {
+        get
+        {
+            return _baseStats.Experience;
+        }
+    }
+    public float ExperienceGainRate
+    {
+        get
+        {
+            return _mediator.GetModifiedStat(StatType.ExperienceRate, 1);
+        }
+    }
 
     public List<StatData> GetAllStatsAsList()
     {

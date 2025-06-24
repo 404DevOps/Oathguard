@@ -21,6 +21,7 @@ public class EntityBase : MonoBehaviour
     public EntityCooldowns Cooldowns;
     public AbilityExecutor AbilityExecutor;
     public EntityImmunity Immunity;
+    
 
     [Header("Containers")]
     public Transform HandSlotL;

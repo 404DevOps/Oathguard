@@ -5,21 +5,21 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "DamageColorConfig", fileName = "DamageColorConfig")]
-internal class DamageColorConfig : ScriptableObject
+internal class TextColorConfig : ScriptableObject
 {
     [SerializeField] private List<DamageColorPair> _damageColorPairs;
 
-    private static DamageColorConfig _instance;
-    public static DamageColorConfig Instance()
+    private static TextColorConfig _instance;
+    public static TextColorConfig Instance()
     {
         if (_instance == null)
         {
-            _instance = Resources.Load("GameConfig/" + typeof(DamageColorConfig).Name) as DamageColorConfig;
+            _instance = Resources.Load("GameConfig/" + typeof(TextColorConfig).Name) as TextColorConfig;
         }
         return _instance;
     }
 
-    public Color GetColor(DamageColorType type)
+    public Color GetColor(TextColorType type)
     {
         try
         {
@@ -36,6 +36,6 @@ internal class DamageColorConfig : ScriptableObject
 [Serializable]
 public class DamageColorPair
 {
-    public DamageColorType DamageType;
+    public TextColorType DamageType;
     public Color Color;
 }

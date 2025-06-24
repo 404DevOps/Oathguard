@@ -15,6 +15,7 @@ public static class GameEvents
     public static readonly Event<ShieldAbsorbedEventArgs> OnEntityShieldAbsorbed = new();
     public static readonly Event<HealthChangedEventArgs> OnEntityHealthChanged = new();
     public static readonly Event<ResourceChangedEventArgs> OnEntityResourceChanged = new();
+    public static readonly Event<XPChangedEventArgs> OnEntityXPChanged = new();
 
     //abilities
     public static readonly Event<GCDStartedEventArgs> OnGCDStart = new();
@@ -28,7 +29,8 @@ public static class GameEvents
     public static readonly Event<AuraAppliedEventArgs> OnAuraApplied = new();
     public static readonly Event<AuraRefreshedEventArgs> OnAuraRefreshed = new();
 
-    public static readonly Event<WeaponSet> OnWeaponSelected = new();
-
+    //gamecycle
     public static readonly Event OnGameStarted = new();
+    public static readonly Event<EntityBase> OnEntityLeveledUp = new();
+    public static readonly Event<WeaponSet> OnWeaponSelected = new();
 }

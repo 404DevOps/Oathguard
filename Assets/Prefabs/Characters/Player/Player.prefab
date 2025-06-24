@@ -2309,6 +2309,7 @@ GameObject:
   - component: {fileID: 1734988682850859686}
   - component: {fileID: 4876108729119194115}
   - component: {fileID: 7644888237630406262}
+  - component: {fileID: 6004704548441865286}
   - component: {fileID: 8688946757156382634}
   - component: {fileID: 1683618154821580154}
   - component: {fileID: 275383270851436513}
@@ -2360,7 +2361,6 @@ MonoBehaviour:
   IsDead: 0
   Type: 0
   Collider: {fileID: 4090504600254569660}
-  Weapon: {fileID: 0}
   Health: {fileID: 0}
   Hurt: {fileID: 0}
   Shield: {fileID: 0}
@@ -2371,6 +2371,8 @@ MonoBehaviour:
   Cooldowns: {fileID: 0}
   AbilityExecutor: {fileID: 0}
   Immunity: {fileID: 0}
+  HandSlotL: {fileID: 5554660503104116765}
+  HandSlotR: {fileID: 4436523407451235655}
   AuraVisualsContainer: {fileID: 0}
   CombatTextContainer: {fileID: 0}
   CombatTextOffset: {x: 0, y: 1.5, z: 0}
@@ -2378,8 +2380,7 @@ MonoBehaviour:
   CanRotate: 0
   CanUseAbilities: 0
   AbilityController: {fileID: 0}
-  HandSlotL: {fileID: 5554660503104116765}
-  HandSlotR: {fileID: 4436523407451235655}
+  Experience: {fileID: 0}
 --- !u!114 &7156628793874189909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2392,7 +2393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb602b7123d16c342856dbe257862957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnSpeed: 5
+  TurnSpeed: 20
   SnapThreshold: 160
   GroundLayer:
     serializedVersion: 2
@@ -2466,6 +2467,20 @@ MonoBehaviour:
   CurrentHealth: 0
   EntityStats: {fileID: 0}
   Entity: {fileID: 0}
+--- !u!114 &6004704548441865286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624171491478358481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c6cc9d5109d0e48923ec33a4cf6ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseXP: 50
+  Exponent: 1.35
 --- !u!114 &8688946757156382634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,7 +2493,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d067e698940bac48b8c8d8526b56e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentShield: 0
   EntityStats: {fileID: 0}
   Entity: {fileID: 0}
 --- !u!114 &1683618154821580154

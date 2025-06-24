@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 public class CombatTextManager : MonoBehaviour
 {
@@ -31,8 +32,25 @@ public class CombatTextManager : MonoBehaviour
         GameEvents.OnEntityDamageReceived.AddListener(OnEntityDamaged);
         GameEvents.OnEntityHealed.AddListener(OnEntityHealed);
         GameEvents.OnEntityShieldAbsorbed.AddListener(OnShieldAbsorbed);
+        GameEvents.OnEntityXPChanged.AddListener(OnXPGained);
+        GameEvents.OnEntityLeveledUp.AddListener(OnLevelUp);
+
 
     }
+
+    private void OnLevelUp(EntityBase entity)
+    {
+        var baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.LevelUp);
+        ShowText(entity, "Level Up!", baseTextColor, false);
+    }
+
+    private void OnXPGained(XPChangedEventArgs args)
+    {
+        var baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.ShieldAbsorbed);
+        ShowText(args.Entity, Mathf.RoundToInt(args.CurrentXP).ToString(), baseTextColor, false);
+    }
+
+
     private void OnDisable()
     {
         GameEvents.OnEntityDamageReceived.RemoveListener(OnEntityDamaged);
@@ -42,7 +60,7 @@ public class CombatTextManager : MonoBehaviour
 
     private void OnShieldAbsorbed(ShieldAbsorbedEventArgs args)
     {
-        var baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.ShieldAbsorbed);
+        var baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.ShieldAbsorbed);
         ShowText(args.Entity, Mathf.RoundToInt(args.AbsorbedAmount).ToString(), baseTextColor, false);
     }
 
@@ -53,18 +71,18 @@ public class CombatTextManager : MonoBehaviour
 
         if (args.IsImmune)
         {
-            var immuneColor = DamageColorConfig.Instance().GetColor(DamageColorType.Immune);
+            var immuneColor = TextColorConfig.Instance().GetColor(TextColorType.Immune);
             ShowText(args.Target, "Immune", immuneColor, false);
             return;
         }
         Color baseTextColor = Color.white;
 
         if (args.Target is PlayerEntity)
-            baseTextColor = DamageColorConfig.Instance().GetColor(args.IsCritical ? DamageColorType.PlayerCritical : DamageColorType.PlayerDamage);
+            baseTextColor = TextColorConfig.Instance().GetColor(args.IsCritical ? TextColorType.PlayerCriticalReceived : TextColorType.PlayerDamageReceived);
         else if (args.IsCritical)
-            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.Critical);
+            baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.CriticalDamageDone);
         else
-            baseTextColor = DamageColorConfig.Instance().GetColor(DamageColorType.Normal);
+            baseTextColor = TextColorConfig.Instance().GetColor(TextColorType.NormalDamageDone);
 
         var dmgTextString = Mathf.RoundToInt(args.FinalDamage).ToString();
 
@@ -75,7 +93,7 @@ public class CombatTextManager : MonoBehaviour
     }
     private void OnEntityHealed(HealingContext args)
     {
-        var healColor = DamageColorConfig.Instance().GetColor(DamageColorType.Heal);
+        var healColor = TextColorConfig.Instance().GetColor(TextColorType.Heal);
         ShowText(args.Target, Mathf.RoundToInt(args.FinalAmount).ToString(), healColor, false);
     }
 

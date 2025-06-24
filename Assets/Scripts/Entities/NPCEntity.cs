@@ -5,6 +5,7 @@ public class NPCEntity : EntityBase
     public EntityKnockback Knockback;
     void Awake()
     {
+        GameEvents.OnEntityDied.AddListener(OnEntityDied);
         Initialize();
 
         var weapon = EntityStatMapping.Instance().GetBaseStats(Type).Weapon;
@@ -17,6 +18,12 @@ public class NPCEntity : EntityBase
         enemyContext.Initialize(this);
 
         StartCoroutine(NotifyNextFrame());
+    }
+
+    public override void OnEntityDied(string entityId)
+    {
+        base.OnEntityDied(entityId);
+        EntityManager.Instance.Player.Experience.AddXP(Stats.Experience);
     }
 }
 

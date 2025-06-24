@@ -12,6 +12,7 @@ public class PlayerEntity : EntityBase
     public bool CanUseAbilities;
 
     public PlayerAbilityController AbilityController;
+    public EntityExperience Experience;
 
     void Awake()
     {
@@ -32,6 +33,9 @@ public class PlayerEntity : EntityBase
 
         AbilityController = GetComponent<PlayerAbilityController>();
         AbilityController.Initialize(this, weaponSet.WeaponAbilities);
+
+        Experience = GetComponent<EntityExperience>();
+        Experience.Initialize(this);
 
         var movement = gameObject.GetComponent<PlayerMovement>();
         movement.Initialize();

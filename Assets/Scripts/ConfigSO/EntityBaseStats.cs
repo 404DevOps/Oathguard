@@ -14,6 +14,7 @@ public class EntityBaseStats : ScriptableObject
     public float Defense;
     public ResourceType ResourceType;
     public WeaponSet Weapon;
+    public float Experience;
 
     public float OathTwistWindow;
 }

@@ -44,4 +44,9 @@ public class StatMediator
 
         return query.Value;
     }
+
+    internal float GetModifiedStat(StatType experienceRate1, object experienceRate2)
+    {
+        throw new NotImplementedException();
+    }
 }

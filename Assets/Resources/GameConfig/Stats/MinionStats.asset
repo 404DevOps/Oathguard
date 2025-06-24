@@ -20,4 +20,5 @@ MonoBehaviour:
   Defense: 0
   ResourceType: 0
   Weapon: {fileID: 11400000, guid: dd06942ac324ea845addcb12cc36501b, type: 2}
+  Experience: 20
   OathTwistWindow: 0
