@@ -24,7 +24,7 @@ public class PlayerFrameUIHandler : MonoBehaviour
         GameEvents.OnEntityHealthChanged.AddListener(OnHealthChanged);
         GameEvents.OnEntityResourceChanged.AddListener(OnResourceChanged);
         GameEvents.OnEntityXPChanged.AddListener(OnXPChanged);
-
+        GameEvents.OnEntityShieldChanged.AddListener(OnEntityShieldChanged);
     }
 
 
@@ -33,6 +33,16 @@ public class PlayerFrameUIHandler : MonoBehaviour
         GameEvents.OnEntityInitialized.RemoveListener(OnEntityInitialized);
         GameEvents.OnEntityHealthChanged.RemoveListener(OnHealthChanged);
         GameEvents.OnEntityResourceChanged.RemoveListener(OnResourceChanged);
+        GameEvents.OnEntityXPChanged.RemoveListener(OnXPChanged);
+        GameEvents.OnEntityShieldChanged.RemoveListener(OnEntityShieldChanged);
+    }
+
+    private void OnEntityShieldChanged(ShieldChangedEventArgs args)
+    {
+        if (Player == null || Player.Id != args.Entity.Id)
+            return;
+
+        _healthbar.SetNewShield(args.CurrentShield, false);
     }
 
     private void OnEntityInitialized(EntityBase entity)

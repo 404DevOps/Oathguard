@@ -16,6 +16,7 @@ public static class GameEvents
     public static readonly Event<HealthChangedEventArgs> OnEntityHealthChanged = new();
     public static readonly Event<ResourceChangedEventArgs> OnEntityResourceChanged = new();
     public static readonly Event<XPChangedEventArgs> OnEntityXPChanged = new();
+    public static readonly Event<ShieldChangedEventArgs> OnEntityShieldChanged = new();
 
     //abilities
     public static readonly Event<GCDStartedEventArgs> OnGCDStart = new();

@@ -28,7 +28,7 @@ MonoBehaviour:
   SwordAuraParticles: {fileID: 0}
   SwordParticleOffset: {x: 0, y: 0, z: 0}
   SwordParticleRotation: {x: 0, y: 0, z: 0}
-  ShieldAmount: 50
+  ShieldAmount: 20
   references:
     version: 2
     RefIds: []

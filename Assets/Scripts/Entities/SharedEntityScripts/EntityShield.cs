@@ -37,6 +37,8 @@ public class EntityShield : MonoBehaviour
         {
             sources.Add(new ShieldSource(sourceId, sourceType, amount));
         }
+
+        GameEvents.OnEntityShieldChanged?.Invoke(new ShieldChangedEventArgs(Entity, GetTotalShield()));
     }
 
     public void ReduceShield(float amount)
@@ -63,6 +65,7 @@ public class EntityShield : MonoBehaviour
                 AuraManager.Instance.CancelAuraById(Entity.Id, shield.SourceId);
         }
         sources.RemoveAll(s => s.Amount <= 0);
+        GameEvents.OnEntityShieldChanged?.Invoke(new ShieldChangedEventArgs(Entity, GetTotalShield()));
     }
 
     public float GetSourceAmount(string sourceId)
@@ -74,6 +77,7 @@ public class EntityShield : MonoBehaviour
     public void RemoveSource(string sourceId) //should be called from source
     {
         sources.RemoveAll(s => s.SourceId == sourceId);
+        GameEvents.OnEntityShieldChanged?.Invoke(new ShieldChangedEventArgs(Entity, GetTotalShield()));
     }
 }
 
