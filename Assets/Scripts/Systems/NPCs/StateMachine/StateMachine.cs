@@ -3,7 +3,7 @@
 public class StateMachine
 {
     public State CurrentState { get; set; }
-    private AIState CurrentStateID { get; set; }
+    public AIState CurrentStateID { get; set; }
 
     private Dictionary<AIState, State> _states = new();
     private EnemyAI _context;
