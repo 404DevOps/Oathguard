@@ -161,11 +161,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 0.67151, b: 0.2216981, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.74958014, b: 0.2028302, a: 1}
+    m_PressedColor: {r: 0.8301887, g: 0.62131226, b: 0.16055535, a: 1}
+    m_SelectedColor: {r: 1, g: 0.8545047, b: 0.33490568, a: 1}
+    m_DisabledColor: {r: 1, g: 0.83667994, b: 0.4764151, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8107335828873353801}
   - component: {fileID: 2811252677683976878}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PanelTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,15 +253,15 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
+  m_sharedMaterial: {fileID: -3850300612866721745, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282568693
+  m_fontColor: {r: 0.9622642, g: 0.81229615, b: 0.25872195, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -460,14 +460,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 6f4b64ab5633245449e1b38f480ad444, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -570,15 +570,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Confirm
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
+  m_sharedMaterial: {fileID: -3850300612866721745, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -699,6 +699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4196230127769256338}
     m_Modifications:
+    - target: {fileID: 1017810759556234528, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2099564852062660047, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -810,6 +814,10 @@ PrefabInstance:
     - target: {fileID: 4130143075302021597, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558654949811250625, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6834257782542008334, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_Name
@@ -865,6 +873,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4196230127769256338}
     m_Modifications:
+    - target: {fileID: 1017810759556234528, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2099564852062660047, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -976,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 4130143075302021597, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558654949811250625, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6834257782542008334, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_Name
@@ -1031,6 +1047,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4196230127769256338}
     m_Modifications:
+    - target: {fileID: 1017810759556234528, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2099564852062660047, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1142,6 +1162,10 @@ PrefabInstance:
     - target: {fileID: 4130143075302021597, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558654949811250625, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6834257782542008334, guid: 42221d7fc96d26044a5c16338977a49c, type: 3}
       propertyPath: m_Name

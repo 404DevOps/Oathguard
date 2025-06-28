@@ -68,15 +68,15 @@ MonoBehaviour:
   m_text: Dual Swords are fast and may cause your Targets to build up Bleed and cause
     Haemorrhage
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
+  m_sharedMaterial: {fileID: -3850300612866721745, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4290048509
+  m_fontColor: {r: 0.990566, g: 0.94398606, b: 0.70554465, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 3316940925629798189}
   - component: {fileID: 450114570758401829}
   - component: {fileID: 1017810759556234528}
+  - component: {fileID: 3509352723125015029}
   m_Layer: 0
   m_Name: SelectedBorder
   m_TagString: Untagged
@@ -213,6 +214,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3509352723125015029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3384670822815998256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  image: {fileID: 1017810759556234528}
 --- !u!1 &6834257782542008334
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,15 +389,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dual Swords
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
+  m_sharedMaterial: {fileID: -3850300612866721745, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4284924659
+  m_fontColor: {r: 0.9529412, g: 0.7596266, b: 0.39999998, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -454,6 +469,7 @@ GameObject:
   - component: {fileID: 1212961944012027169}
   - component: {fileID: 420141423106984262}
   - component: {fileID: 5558654949811250625}
+  - component: {fileID: 6893301126323762229}
   m_Layer: 0
   m_Name: IconImage
   m_TagString: Untagged
@@ -518,6 +534,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6893301126323762229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248955548855395242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb30198aa32dd140b5750692dd48104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 8
+  image: {fileID: 5558654949811250625}
 --- !u!1 &9172393250842963786
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,15 +617,15 @@ MonoBehaviour:
 
     Critical Hit Chance: 82'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
+  m_sharedMaterial: {fileID: -3850300612866721745, guid: 665346fe512dfe2429ebaf4af8658eee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4290048509
+  m_fontColor: {r: 0.990566, g: 0.94398606, b: 0.70554465, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
