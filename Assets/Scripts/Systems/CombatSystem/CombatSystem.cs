@@ -83,7 +83,7 @@ public class CombatSystem : Singleton<CombatSystem>
             ApplyMitigation(context);
 
         // Phase 3: Crits
-        if (effect.CanCrit && GetCriticalRoll(origin.Stats.CritChance))
+        if (effect.CanCrit && GetCriticalRoll(origin.WeaponInstance.Data.CritChance + origin.Stats.CritChance))
         {
             context.IsCritical = true;
             context.FinalDamage *= 2f;
@@ -112,9 +112,10 @@ public class CombatSystem : Singleton<CombatSystem>
             context.FinalAmount *= (1f - healReduction);
         }
 
-        if (context.IsCritical)
+        if (effect.CanCrit && GetCriticalRoll(origin.Stats.CritChance))
         {
-            context.FinalAmount *= 1.5f; // Or whatever crit heal multiplier
+            context.IsCritical = true;
+            context.FinalAmount *= 1.5f;
         }
 
         context.FinalAmount = Mathf.Clamp(context.FinalAmount, 0, float.MaxValue);

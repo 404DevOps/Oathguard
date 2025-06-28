@@ -55,7 +55,7 @@ MonoBehaviour:
         MaxDamage: 100
         ShakeIntensity: 0
         IsTrueDamage: 0
-        CanCrit: 0
+        CanCrit: 1
         IgnoreHurt: 0
         Type: 2
     - rid: 3209868539726659663

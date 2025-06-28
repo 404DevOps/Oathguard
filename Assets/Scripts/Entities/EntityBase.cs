@@ -39,6 +39,7 @@ public class EntityBase : MonoBehaviour
 
     void Awake()
     {
+        Animator.enabled = true;
         Initialize();
     }
     internal IEnumerator NotifyNextFrame()
@@ -85,13 +86,14 @@ public class EntityBase : MonoBehaviour
         if (entityId != Id) return;
 
         IsDead = true;
-        Animator.SetBool("isDead", true);
+        Animator.Play("Death", 0,0);
         StartCoroutine(SetPlayedDeadAnim());
     }
 
     private IEnumerator SetPlayedDeadAnim()
     {
         yield return null;
+        Animator.enabled = false;
         Animator.SetBool("playedDeathAnimation", true);
     }
 }

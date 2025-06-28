@@ -25,3 +25,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f316f6b3c221da540abe6e45c65cdc18, type: 2}
   MainHandPrefab: {fileID: 8201766371972389910, guid: 7eb1cb0c19492af419776b558c7ea2f0, type: 3}
   OffhandPrefab: {fileID: 0}
+  OffHandOffset: {x: 0, y: 0, z: 0}

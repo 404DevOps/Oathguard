@@ -35,6 +35,8 @@ public class PlayerAbilityController : MonoBehaviour
 
     private void HandleInput()
     {
+        if (!_playerEntity.CanUseAbilities) return;
+
         if (UserInput.Instance.PrimaryAttackPressed)
         {
             TrySetOrQueue(0);

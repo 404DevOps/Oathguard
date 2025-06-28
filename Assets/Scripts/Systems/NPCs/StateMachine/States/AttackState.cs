@@ -8,18 +8,22 @@ public class AttackState : State
 
     public override void Enter()
     {
+        //initial attack
         context.Agent.ResetPath();
-        var ab = context.Entity.AbilityController.GetAbility();
-        if (ab != null)
-        {
-            Debug.Log("Enemy using Ability " + ab);
-            context.Entity.AbilityExecutor.TryExecuteAbility(ab);
-        }
     }
 
     public override void Tick()
     {
-
+        //try to attack as many times while in the state while not overlapping attacks & respecting cooldowns
+        if (!context.Entity.AbilityExecutor.IsAttacking)
+        {
+            var ab = context.Entity.AbilityController.GetAbility();
+            if (ab != null && !ab.HasAnyCooldown(context.Entity, false))
+            {
+                Debug.Log("Enemy using Ability: " + ab);
+                context.Entity.AbilityExecutor.TryExecuteAbility(ab);
+            }
+        }
     }
     public override AIState? GetNextState()
     {

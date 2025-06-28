@@ -19,7 +19,8 @@ MonoBehaviour:
   BaseDamage: 10
   CritChance: 2
   Defense: 0
-  WeaponAbilities: []
+  WeaponAbilities:
+  - {fileID: 11400000, guid: d630c1cadada6af47b1e19ffc3e76909, type: 2}
   MainHandPrefab: {fileID: 8898146689815369523, guid: 0dbaebda0c5a5ef459f29dbc0d86dcf3, type: 3}
   OffhandPrefab: {fileID: 0}
   OffHandOffset: {x: 0, y: 0, z: 0}

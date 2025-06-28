@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class CombatText : MonoBehaviour
 {
@@ -20,8 +21,10 @@ public class CombatText : MonoBehaviour
     public float _critScaleDuration = 0.15f;
 
     public Action OnTextFinished;
+    public float spawnTime;
+    public float Age => Time.time - spawnTime;
 
-    private EntityBase _entity;
+    public EntityBase Entity;
     private TextMeshPro _tmpText;
     private float _timer;
 
@@ -39,7 +42,8 @@ public class CombatText : MonoBehaviour
         if (_tmpText == null)
             _tmpText = GetComponentInChildren<TextMeshPro>();
 
-        _entity = entity;
+        spawnTime = Time.time;
+        Entity = entity;
         _text = text;
         _isCrit = isCrit;
         color.a = 1;
@@ -61,7 +65,7 @@ public class CombatText : MonoBehaviour
                                         UnityEngine.Random.Range(0f, 0.75f),
                                         0);
 
-        transform.localPosition = _entity.CombatTextOffset + randomOffset;
+        transform.localPosition = Entity.CombatTextOffset + randomOffset;
     }
 
     void LateUpdate()

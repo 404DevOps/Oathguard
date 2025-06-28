@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
   m_Name: 1H_Strike
   m_EditorClassIdentifier: 
-  _uniqueID: 571f5ba4-4c81-45c2-b642-7c73cc47499b
+  _uniqueID: efdc7a63-d112-427f-abb1-8835176dc501
   VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
   _abilityData:
     Icon: {fileID: 4279778568888681825, guid: 6105e7375c8f31746b474f6ee5b5dda8, type: 3}
     Name: Strike
     Description: A Melee Strike that damages nearby enemies
-    Cooldown: 0
+    Cooldown: 1.5
     UseGCD: 1
     GCDDuration: 0.3
   _animationData:
@@ -28,7 +28,7 @@ MonoBehaviour:
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 0.5
+    AnimationDuration: 0.8
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -39,7 +39,7 @@ MonoBehaviour:
   Effects:
   - rid: 3209868417464008777
   WeaponActivationDelay: 0.2
-  WeaponActiveDuration: 0.2
+  WeaponActiveDuration: 0.8
   references:
     version: 2
     RefIds:
@@ -52,5 +52,5 @@ MonoBehaviour:
         ShakeIntensity: 0
         IsTrueDamage: 0
         CanCrit: 1
-        PreventHurt: 0
+        IgnoreHurt: 0
         Type: 2

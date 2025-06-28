@@ -4,7 +4,8 @@
     public float MinAmount;
     public float MaxAmount;
 
-    public bool IsTrueHealing { get; internal set; }
+    public bool IsTrueHealing;
+    public bool CanCrit;
 
     public override void Apply(EntityBase origin, EntityBase target)
     {
