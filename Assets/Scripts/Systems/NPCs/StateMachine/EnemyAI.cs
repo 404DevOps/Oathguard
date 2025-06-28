@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public NPCEntity Entity;
     public StateMachine StateMachine;
-    public Transform Player => EntityManager.Instance.Player.transform;
+    public PlayerEntity Player => EntityManager.Instance.Player;
     public NavMeshAgent Agent;
 
     public float AttackRange = 2.5f;
@@ -47,5 +47,5 @@ public class EnemyAI : MonoBehaviour
         StateMachine.Tick();
     }
 
-    public float DistanceToPlayer => Vector3.Distance(transform.position, Player.position);
+    public float DistanceToPlayer => Vector3.Distance(transform.position, Player.transform.position);
 }

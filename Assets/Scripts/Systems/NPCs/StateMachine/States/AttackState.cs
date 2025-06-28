@@ -14,6 +14,7 @@ public class AttackState : State
 
     public override void Tick()
     {
+        
         //try to attack as many times while in the state while not overlapping attacks & respecting cooldowns
         if (!context.Entity.AbilityExecutor.IsAttacking)
         {
@@ -27,6 +28,8 @@ public class AttackState : State
     }
     public override AIState? GetNextState()
     {
+        if (context.Player.IsDead)
+            return AIState.Idle;
         if (context.Entity.AbilityExecutor.IsAttacking)
             return null; //dont switch while still attacking
         if (context.DistanceToPlayer > context.AttackRange)

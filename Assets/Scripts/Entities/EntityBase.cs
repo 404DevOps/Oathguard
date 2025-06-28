@@ -93,7 +93,6 @@ public class EntityBase : MonoBehaviour
     private IEnumerator SetPlayedDeadAnim()
     {
         yield return null;
-        Animator.enabled = false;
         Animator.SetBool("playedDeathAnimation", true);
     }
 }

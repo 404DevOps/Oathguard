@@ -1,18 +1,15 @@
-using System;
 using UnityEngine;
 
 public class ActionBarUIHandler : MonoBehaviour
 {
     PlayerEntity _player;
     [SerializeField] GameObject _abilityDisplayPrefab;
-    Transform _upperBar;
-    Transform _lowerBar;
+    public Transform AbilityContainer;
 
     void Awake()
     {
         GameEvents.OnEntityInitialized.AddListener(OnEntityInitialized);
-        _upperBar = transform.Find("UpperBar");
-        _lowerBar = transform.Find("LowerBar");
+        AbilityContainer = transform.Find("AbilityContainer");
     }
 
     private void OnEntityInitialized(EntityBase entity)
@@ -43,10 +40,8 @@ public class ActionBarUIHandler : MonoBehaviour
 
     void ClearAbilities()
     {
-        if (_upperBar.childCount > 0)
-            _upperBar.DeleteChildren();
-        if (_lowerBar.childCount > 0)
-            _lowerBar.DeleteChildren();
+        if (AbilityContainer.childCount > 0)
+            AbilityContainer.DeleteChildren();
     }
 
     void BuildActionBar()
@@ -55,16 +50,12 @@ public class ActionBarUIHandler : MonoBehaviour
         {
             var abilityController = _player.GetComponent<PlayerAbilityController>();
             int abilityIndex = 0;
-            var spawnTransform = _upperBar;
             foreach (var ability in abilityController.Abilities)
             {
-                var abilityDisplayGo = Instantiate(_abilityDisplayPrefab, spawnTransform);
+                var abilityDisplayGo = Instantiate(_abilityDisplayPrefab, AbilityContainer);
                 var abilityDisplayScript = abilityDisplayGo.GetComponent<AbilityDisplay>();
                 abilityDisplayScript.Initialize(abilityIndex, ability, _player);
                 abilityIndex++;
-
-                if (abilityIndex == 2)
-                    spawnTransform = _lowerBar;
             }
         }
     }

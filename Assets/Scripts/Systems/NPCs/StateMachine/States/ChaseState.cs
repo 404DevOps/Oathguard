@@ -19,7 +19,7 @@ public class ChaseState : State
 
         if (dist >= context.AttackRange)
         {
-            context.Agent.SetDestination(context.Player.position);
+            context.Agent.SetDestination(context.Player.transform.position);
         }
     }
 
