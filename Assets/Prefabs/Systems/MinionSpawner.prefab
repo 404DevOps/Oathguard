@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4061559994881195026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4059082583248698638}
+  - component: {fileID: 6084536278940487474}
+  - component: {fileID: 824146759480544060}
+  m_Layer: 0
+  m_Name: MinionSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4059082583248698638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061559994881195026}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6084536278940487474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061559994881195026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b0f2f0ad2b61b43bfda48f2cbc649f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionTypes:
+  - Type: 1
+    Prefab: {fileID: 5008863089857268104, guid: 6d560ad81704ceb49a62152bcdcfe0a5, type: 3}
+    InitialPoolSize: 10
+--- !u!114 &824146759480544060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061559994881195026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a31007b723d90499381500367bd62d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionSpawner: {fileID: 6084536278940487474}
+  waves:
+  - waveName: 1
+    preWaveDelay: 0
+    entries:
+    - MinionType: 1
+      Count: 3
+      SpawnInterval: 1
+    postWaveDelay: 0
+  - waveName: 2
+    preWaveDelay: 0
+    entries:
+    - MinionType: 1
+      Count: 5
+      SpawnInterval: 0.5
+    postWaveDelay: 0
+  - waveName: 3
+    preWaveDelay: 0
+    entries:
+    - MinionType: 1
+      Count: 0
+      SpawnInterval: 7
+    postWaveDelay: 1
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

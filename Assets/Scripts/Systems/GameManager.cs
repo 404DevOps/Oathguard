@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public int CurrentWave { get; private set; }
     public Transform Canvas;
     public GameObject WeaponSelectionUI;
 
@@ -27,5 +28,21 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1f;
         HUDToggle.Instance.Toggle(true);
         GameEvents.OnGameStarted.Invoke();
+
+        StartRound();
+
+    }
+
+    private void StartRound()
+    {
+        OnWaveEnded();
+        WaveSpawner.Instance.OnWaveEnded += OnWaveEnded;
+    }
+
+    private void OnWaveEnded()
+    {
+        CurrentWave++;
+        WaveSpawner.Instance.SpawnWave(CurrentWave);
+        WaveDisplayUI.Instance.Show(CurrentWave);
     }
 }

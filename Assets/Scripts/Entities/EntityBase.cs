@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class EntityBase : MonoBehaviour
@@ -37,11 +38,6 @@ public class EntityBase : MonoBehaviour
         Id = IdentifierService.GetNextId();
     }
 
-    void Awake()
-    {
-        Animator.enabled = true;
-        Initialize();
-    }
     internal IEnumerator NotifyNextFrame()
     {
         yield return null;
@@ -49,8 +45,11 @@ public class EntityBase : MonoBehaviour
     }
     protected virtual void Initialize()
     {
+        IsDead = false;
         Id = IdentifierService.GetNextId();
+
         Animator = GetComponent<Animator>();
+        Animator.enabled = true;
 
         Stats = GetComponent<EntityStats>();
         Stats.Initialize(this);

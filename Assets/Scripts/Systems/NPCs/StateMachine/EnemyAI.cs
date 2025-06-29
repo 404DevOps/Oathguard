@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
         StateMachine = new StateMachine(this);
 
-        //StateMachine.AddState(AIState.Idle, new IdleState(this, StateMachine));
+        StateMachine.AddState(AIState.Idle, new IdleState(this, StateMachine));
         StateMachine.AddState(AIState.Chase, new ChaseState(this, StateMachine));
         StateMachine.AddState(AIState.Attack, new AttackState(this, StateMachine));
         StateMachine.AddState(AIState.Knockback, new KnockbackState(this, StateMachine));

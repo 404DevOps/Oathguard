@@ -13,4 +13,5 @@ public enum EntityType
     Archer,
     Necromancer,
     Golem,
+    None
 }

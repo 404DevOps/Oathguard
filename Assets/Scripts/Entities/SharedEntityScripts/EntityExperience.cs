@@ -56,9 +56,9 @@ public class EntityExperience : MonoBehaviour
 
     private IEnumerator InvokeXPChangedDelayed(float finalAmount)
     {
-        yield return WaitManager.Wait(1);
+        yield return WaitManager.Wait(0.5f);
         GameEvents.OnEntityXPChanged?.Invoke(new XPChangedEventArgs(_player, CurrentXP, MaxXP, finalAmount));
-        yield return WaitManager.Wait(2);
+        yield return WaitManager.Wait(0.5f);
         GameEvents.OnEntityLeveledUp?.Invoke(_player);
     }
 }

@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TooltipUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -53,6 +54,10 @@ public class TooltipUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
         _durationText.text = data.DurationText;
         _damageTypeText.text = data.DamageTypeText;
         _remainingFadeOutTime = _fadeOutDuration;
+
+        var rect = this.GetComponent<RectTransform>();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+
         ContainerCanvasGroup.alpha = 1;
         _keepTooltipOpen = true;
         _enabled = true;
@@ -91,7 +96,7 @@ public struct TooltipData
         }
         else
         {
-            DamageTypeText = "";
+            DamageTypeText = "Spell";
         }
     }
     public TooltipData(AuraBase aura)
