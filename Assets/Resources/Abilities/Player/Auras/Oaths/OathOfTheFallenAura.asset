@@ -13,20 +13,27 @@ MonoBehaviour:
   m_Name: OathOfTheFallenAura
   m_EditorClassIdentifier: 
   _uniqueID: d301ff11-b999-4473-a244-3813f145001b
-  Name: Oath of the Binding
-  Description: 
+  Name: Oath of the Fallen
+  Description: Your weapon swings deal increased damage, but a portion of it also
+    harms you
   Icon: {fileID: -9105323192478943849, guid: 3b69db89d1602524a9274217f76b564f, type: 3}
   TargetType: 1
   Type: 2
+  TickRate: 0
   Duration: 20
-  Modifiers: []
   ShowAuraDisplay: 0
-  ReactToDamageTypes: 0100000002000000
-  OathType: 5
-  OathUpgrades:
-  - {fileID: 11400000, guid: 270fb3f3ccd7f8842bb12598c4ca5b2c, type: 2}
+  Modifiers: []
+  TickEffects: []
   AuraParticles: {fileID: 3854921247714698391, guid: 1cf443b8dc6f0a9409b26c0a1a05068d, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
   SwordAuraParticles: {fileID: 3081362037621676516, guid: 638ed5e0c7ceed14592df43e2e4dabeb, type: 3}
   SwordParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordParticleRotation: {x: 90, y: 90, z: 0}
+  ReactToDamageTypes: 0100000002000000
+  OathType: 5
+  OathUpgrades:
+  - {fileID: 11400000, guid: 270fb3f3ccd7f8842bb12598c4ca5b2c, type: 2}
+  FlavorText: The fallen do not fear pain. They wield it.
+  references:
+    version: 2
+    RefIds: []

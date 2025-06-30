@@ -5,25 +5,19 @@ public class PlayerFrameUIHandler : MonoBehaviour
 {
     public PlayerEntity Player;
 
-    private HealthBarUIHandler _healthbar;
-    private ResourceBarUIHandler _resourcebar;
-    private ExperienceBarUIHandler _xpBar;
+    [SerializeField] private HealthBarUIHandler _healthbar;
+    [SerializeField] private ResourceBarUIHandler _resourcebar;
+    [SerializeField] private ExperienceBarUIHandler _xpBar;
 
     [SerializeField] private bool _isPlayerFrame;
     private EntityHealth _entityHealth;
     private EntityResource _entityResource;
-    private EntityExperience _entityXP;
 
     void OnEnable()
     {
-        _healthbar = GetComponentInChildren<HealthBarUIHandler>(true);
-        _resourcebar = GetComponentInChildren<ResourceBarUIHandler>(true);
-        _xpBar = GetComponentInChildren<ExperienceBarUIHandler>(true);
-
         GameEvents.OnEntityInitialized.AddListener(OnEntityInitialized);
         GameEvents.OnEntityHealthChanged.AddListener(OnHealthChanged);
         GameEvents.OnEntityResourceChanged.AddListener(OnResourceChanged);
-        GameEvents.OnEntityXPChanged.AddListener(OnXPChanged);
         GameEvents.OnEntityShieldChanged.AddListener(OnEntityShieldChanged);
     }
 
@@ -33,7 +27,6 @@ public class PlayerFrameUIHandler : MonoBehaviour
         GameEvents.OnEntityInitialized.RemoveListener(OnEntityInitialized);
         GameEvents.OnEntityHealthChanged.RemoveListener(OnHealthChanged);
         GameEvents.OnEntityResourceChanged.RemoveListener(OnResourceChanged);
-        GameEvents.OnEntityXPChanged.RemoveListener(OnXPChanged);
         GameEvents.OnEntityShieldChanged.RemoveListener(OnEntityShieldChanged);
     }
 
@@ -58,9 +51,6 @@ public class PlayerFrameUIHandler : MonoBehaviour
         _entityHealth = Player.Health;
         _healthbar.InitializeBar(_entityHealth.CurrentHealth, _entityHealth.MaxHealth);
 
-        _entityXP = Player.Experience;
-        _xpBar.InitializeBar(_entityXP.CurrentXP, _entityXP.MaxXP, Player.Experience.CurrentLevel);
-
         _entityResource = Player.Resource;
         var resourceData = AppearanceConfig.Instance().GetResourceData(_entityResource.ResourceType);
         _resourcebar.InitializeBar(_entityResource.CurrentResource, _entityResource.MaxResource, resourceData.ResourceBarColor);
@@ -83,13 +73,7 @@ public class PlayerFrameUIHandler : MonoBehaviour
         _resourcebar.SetNewValue(data.CurrentResource, data.MaxResource, true);
     }
 
-    private void OnXPChanged(XPChangedEventArgs args)
-    {
-        if (Player == null || Player.Id != args.Entity.Id)
-            return;
 
-        StartCoroutine(_xpBar.SetNewValue(args.CurrentXP, args.MaxXP, args.Entity.Experience.CurrentLevel, false));
-    }
 
     //private void ActivateAuraGrid()
     //{

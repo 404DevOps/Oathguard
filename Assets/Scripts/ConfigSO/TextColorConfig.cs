@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "DamageColorConfig", fileName = "DamageColorConfig")]
+[CreateAssetMenu(menuName = "Config/DamageColorConfig", fileName = "DamageColorConfig")]
 internal class TextColorConfig : ScriptableObject
 {
     [SerializeField] private List<DamageColorPair> _damageColorPairs;

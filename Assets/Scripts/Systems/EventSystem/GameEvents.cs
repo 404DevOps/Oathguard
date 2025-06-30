@@ -31,7 +31,9 @@ public static class GameEvents
     public static readonly Event<AuraRefreshedEventArgs> OnAuraRefreshed = new();
 
     //gamecycle
-    public static readonly Event OnGameStarted = new();
-    public static readonly Event<EntityBase> OnEntityLeveledUp = new();
+    public static readonly Event OnRoundStarted = new();
+    public static readonly Event<PlayerEntity> OnEntityLeveledUp = new();
     public static readonly Event<WeaponSet> OnWeaponSelected = new();
+    public static readonly Event<OathAura> OnOathSelected = new();
+    public static readonly Event OnPerkSelected = new();
 }

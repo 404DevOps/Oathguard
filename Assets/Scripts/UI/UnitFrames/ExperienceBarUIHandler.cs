@@ -29,13 +29,14 @@ public class ExperienceBarUIHandler : MonoBehaviour
 
     private void UpdateTexts(float currentXP, float maxXP, int currentLevel)
     {
-        _levelText.text = currentLevel.ToString();
+        _levelText.text = "Level: " + currentLevel.ToString();
         _xpText.text = Mathf.CeilToInt(currentXP).ToString() + " / " + Mathf.CeilToInt(maxXP).ToString();
     }
 
     private IEnumerator UpdateBar(bool updateInstant = false)
     {
         var percentage = _currentXP / _maxXP;
+        percentage = Mathf.Clamp(percentage, 0, 1); //no too wide bars
 
         if (!updateInstant)
             yield return StartCoroutine(SmoothChangeXP(percentage));

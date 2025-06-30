@@ -41,7 +41,7 @@ public class ActionBarUIHandler : MonoBehaviour
     void ClearAbilities()
     {
         if (AbilityContainer.childCount > 0)
-            AbilityContainer.DeleteChildren();
+            AbilityContainer.Clear();
     }
 
     void BuildActionBar()

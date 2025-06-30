@@ -5,7 +5,7 @@ using System.Xml.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "AppearanceConfig", fileName = "Config/AppearanceConfig")]
+[CreateAssetMenu(menuName = "Config/AppearanceConfig", fileName = "AppearanceConfig")]
 internal class AppearanceConfig : ScriptableObject
 {
     [SerializeField] private List<ResourceData> _resourceData;

@@ -11,8 +11,7 @@ public class OathAura : AuraBase
     public OathType OathType;
     public List<OathUpgrade> OathUpgrades;
 
-
-
+    public string FlavorText;
 
     public override void OnApply(AuraInstance instance)
     {
@@ -44,8 +43,16 @@ public class OathAura : AuraBase
         foreach (var upgrade in OathUpgrades)
         {
             if (args.SourceOathUpgrade == upgrade) return; //dont trigger self
-            
-            if (UnityEngine.Random.value <= upgrade.ProccChance / 100f) //procc chance
+
+
+            var levelAddition = 0;
+            if (instance.Target is PlayerEntity)
+            { 
+                var player = (PlayerEntity)instance.Target;
+                levelAddition = player.Experience.CurrentLevel;
+            }
+
+            if (UnityEngine.Random.value <= upgrade.ProccChance + levelAddition / 100f) //procc chance
                 upgrade.Apply(args);
         }
     }

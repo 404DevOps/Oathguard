@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d8a756df70b034ba3f2a4e2d1588e1, type: 3}
+  m_Name: OathCollection
+  m_EditorClassIdentifier: 
+  _oathAuras:
+  - {fileID: 11400000, guid: 91cd301a17779704f997e172ffcdce56, type: 2}
+  - {fileID: 11400000, guid: 323d062d29ace5b449346f860759abc0, type: 2}
+  - {fileID: 11400000, guid: 331fe22c1e4de3b42b0ff82c37eeca0e, type: 2}
+  - {fileID: 11400000, guid: f93b48d60d5a1d24da68b1231d157d65, type: 2}

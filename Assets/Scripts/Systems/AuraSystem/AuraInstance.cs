@@ -14,7 +14,7 @@ public class AuraInstance : IDisposable
         VisualInstances = new();
     }
     public Action<DamageContext> DamageListener;
-    public bool IsExpired => Time.time >= StartTime + Template.Duration;
+    public bool IsExpired => Template.Duration > 0 && Time.time >= StartTime + Template.Duration;
 
 
     public EntityBase Origin;

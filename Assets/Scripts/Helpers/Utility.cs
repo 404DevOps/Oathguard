@@ -12,7 +12,7 @@ public static class Utility
         }
     }
 
-    public static void DeleteChildren(this Transform transform)
+    public static void Clear(this Transform transform)
     {
         while (transform.childCount > 0) Object.DestroyImmediate(transform.GetChild(0).gameObject);
     }

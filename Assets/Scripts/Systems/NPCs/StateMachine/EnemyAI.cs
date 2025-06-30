@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent Agent;
 
     public float AttackRange = 2.5f;
-    public float ChaseRange = 10f;
+    public float ChaseRange = 50f;
     public AIType Type;
 
     private bool _initialized;
@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     {
         Entity = entity;
         Agent = GetComponent<NavMeshAgent>();
+        Agent.enabled = true;
         StateMachine = new StateMachine(this);
 
         StateMachine.AddState(AIState.Idle, new IdleState(this, StateMachine));

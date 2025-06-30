@@ -14,18 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uniqueID: 5522e231-cac9-4fae-a705-484b26947897
   Name: Oath of Binding
-  Description: 
+  Description: Your weapon swings have a chance to root enemies, temporarily locking
+    them into in place
   Icon: {fileID: 7840184059218143156, guid: e7fd5e266b584f445aef027516761d6f, type: 3}
   TargetType: 1
   Type: 2
+  TickRate: 0
   Duration: 20
-  Modifiers: []
   ShowAuraDisplay: 0
-  OathType: 3
+  Modifiers: []
+  TickEffects: []
   AuraParticles: {fileID: 3854921247714698391, guid: 884d0f3d230ae5c4595729dee98d55d8, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
   SwordAuraParticles: {fileID: 3081362037621676516, guid: d51556dbe7bb2564a9d85c711b195d82, type: 3}
   SwordParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordParticleRotation: {x: 90, y: 90, z: 0}
+  ReactToDamageTypes: 
+  OathType: 3
   OathUpgrades:
   - {fileID: 11400000, guid: f0711db0648b32344b47be4d0d2377a0, type: 2}
+  FlavorText: Chains forged in fury. Bound by Faith.
+  references:
+    version: 2
+    RefIds: []

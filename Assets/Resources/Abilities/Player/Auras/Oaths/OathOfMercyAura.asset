@@ -14,17 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uniqueID: b8619251-744b-462c-b03a-f606a2ff0a4a
   Name: Oath of Mercy
+  Description: Your weapon swings have a chance to restore a portion of your health
+    on hit
   Icon: {fileID: 7243693225362205131, guid: 8273438af2bf901489e9c7075557c4d2, type: 3}
   TargetType: 1
   Type: 2
+  TickRate: 0
   Duration: 20
-  Modifiers: []
   ShowAuraDisplay: 0
-  OathType: 1
+  Modifiers: []
+  TickEffects: []
   AuraParticles: {fileID: 3854921247714698391, guid: b9999d1a0d306bf4b896358080e1b013, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
   SwordAuraParticles: {fileID: 3081362037621676516, guid: 301056b038e1c414abe9415dd0826f35, type: 3}
   SwordParticleOffset: {x: 0, y: 1.2, z: 0}
   SwordParticleRotation: {x: 90, y: 90, z: 0}
+  ReactToDamageTypes: 
+  OathType: 1
   OathUpgrades:
   - {fileID: 11400000, guid: d56c2f5847e0f6742b8e6af683521938, type: 2}
+  FlavorText: "Mercy, not for them\u2014but for yourself."
+  references:
+    version: 2
+    RefIds: []

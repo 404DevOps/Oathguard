@@ -2,59 +2,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WeaponSelectionUIHandler : MonoBehaviour
+public class OathSelectionUIHandler : MonoBehaviour
 {
     
     public GameObject SelectionItemPrefab;
     public Transform SelectionItemContainer;
     public Button ConfirmButton;
 
-    private List<WeaponSelectionItem> _selectionItems;
-    private WeaponSet selectedWeaponSet;
+    private List<OathSelectionItem> _selectionItems;
+    private OathAura selectedOath;
 
     void Start()
     {
-        _selectionItems = new List<WeaponSelectionItem>();
+        _selectionItems = new List<OathSelectionItem>();
         ConfirmButton.onClick.AddListener(OnConfirmClicked);
-        var collection = WeaponCollection.Instance().GetAllWeapons();
+        var collection = OathCollection.Instance().GetRandomOths(3);
 
         BuildGrid(collection);
     }
 
     private void OnConfirmClicked()
     {
-        GameManager.Instance.SetWeapon(selectedWeaponSet);
+        GameManager.Instance.SetOath(selectedOath);
     }
 
-    private void BuildGrid(List<WeaponSet> collection)
+    private void BuildGrid(List<OathAura> oathOptions)
     {
         SelectionItemContainer.Clear();
 
         var first = true;
-        foreach (var set in collection)
+        foreach (var oath in oathOptions)
         {
             var item = Instantiate(SelectionItemPrefab, SelectionItemContainer);
-            var selectionItem = item.GetComponent<WeaponSelectionItem>();
-            selectionItem.Initialize(set);
-            selectionItem.OnClick += SelectWeaponset;
+            var selectionItem = item.GetComponent<OathSelectionItem>();
+            selectionItem.Initialize(oath);
+            selectionItem.OnClick += SelectOath;
             if (first)
             {
                 selectionItem.ToggleSelected(true);
-                selectedWeaponSet = set;
+                selectedOath = oath;
                 first = false;
             }
             _selectionItems.Add(selectionItem);
         }
     }
 
-    private void SelectWeaponset(WeaponSet weaponSet)
+    private void SelectOath(OathAura weaponSet)
     {
-        selectedWeaponSet = weaponSet;
-        if (selectedWeaponSet != null)
+        selectedOath = weaponSet;
+        if (selectedOath != null)
         {
             foreach (var item in _selectionItems)
             {
-                item.ToggleSelected(item.WeaponSet == selectedWeaponSet);
+                item.ToggleSelected(item.Oath == selectedOath);
             }
         }
 

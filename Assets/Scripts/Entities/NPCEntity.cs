@@ -1,5 +1,5 @@
 ﻿using System;
-using static UnityEngine.EventSystems.EventTrigger;
+using UnityEngine.AI;
 
 public class NPCEntity : EntityBase
 {

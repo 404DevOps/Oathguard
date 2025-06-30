@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -36,13 +37,21 @@ public class WorldUnitFrameUIHandler : MonoBehaviour
     private void OnEntityInitialized(EntityBase entity)
     {
         if (entity.Id != Entity.Id) return;
+        ToggleHealthbar(true);
         InitializeFrame(entity);
+    }
+
+    private void ToggleHealthbar(bool v)
+    {
+        if (_healthbar.gameObject.activeSelf == v) return;
+
+        _healthbar.gameObject.SetActive(v);
     }
 
     private void OnEntityDied(string entityId)
     {
         if (entityId != Entity.Id) return;
-        gameObject.SetActive(false);
+        ToggleHealthbar(false);
     }
 
     private void InitializeFrame(EntityBase entity)

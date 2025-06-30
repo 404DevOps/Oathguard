@@ -13,6 +13,7 @@ public class EntityKnockback : MonoBehaviour
     public float Duration;
 
     public bool IsKnockBack = false;
+    Coroutine _knockbackRoutine;
 
     public void Initialize(EntityBase entity)
     {
@@ -20,7 +21,20 @@ public class EntityKnockback : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
 
+        GameEvents.OnEntityDied.AddListener(OnEntityDied);
         GameEvents.OnEntityDamageReceived.AddListener(OnDamageReceived);
+    }
+
+    private void OnEntityDied(string id)
+    {
+        if (id != Entity.Id) return;
+        if (IsKnockBack) 
+        {
+            if(_knockbackRoutine != null)
+                StopCoroutine(_knockbackRoutine);
+
+            StopKnockback();
+        }
     }
 
     private void OnDamageReceived(DamageContext context)
@@ -34,19 +48,29 @@ public class EntityKnockback : MonoBehaviour
 
     public void Knockback(Vector3 direction, float force, float duration)
     {
-        StartCoroutine(KnockbackRoutine(direction, force, duration));
+        _knockbackRoutine = StartCoroutine(KnockbackRoutine(direction, force, duration));
     }
     private IEnumerator KnockbackRoutine(Vector3 direction, float force, float duration)
     {
         //enable physics + stop navmeshagent
-        IsKnockBack = true;
-        _agent.enabled = false;
-        _rb.isKinematic = false;
-        _rb.linearVelocity = (direction.normalized * force);
+        StartKnockback(direction * force);
 
         yield return new WaitForSeconds(duration);
 
-        //stop physics & reenable agent;
+        StopKnockback();
+
+    }
+
+    private void StartKnockback(Vector3 directionalForce)
+    {
+        IsKnockBack = true;
+        _agent.enabled = false;
+        _rb.isKinematic = false;
+        _rb.linearVelocity = directionalForce;
+    }
+
+    private void StopKnockback()
+    {
         _rb.linearVelocity = Vector3.zero;
         _rb.isKinematic = true;
         _agent.enabled = true;

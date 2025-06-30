@@ -30,7 +30,6 @@ public class WaveSpawner : Singleton<WaveSpawner>
         if (wave >= waves.Count) return;
         var minionwave = waves[wave];
         StartCoroutine(SpawnWave(minionwave));
-
     }
 
     private IEnumerator CheckForWaveEnd()

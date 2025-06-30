@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 
@@ -75,7 +76,9 @@ public class EntityBase : MonoBehaviour
         Immunity = GetComponent<EntityImmunity>();
 
         AuraVisualsContainer = transform.Find("AuraVFX");
+        AuraVisualsContainer.Clear();
         CombatTextContainer = transform.Find("CombatText");
+        CombatTextContainer.Clear();
 
         GameEvents.OnEntityDied.AddListener(OnEntityDied);
     }

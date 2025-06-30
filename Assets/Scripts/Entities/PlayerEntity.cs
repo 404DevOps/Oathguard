@@ -17,6 +17,7 @@ public class PlayerEntity : EntityBase
     void Awake()
     {
         GameEvents.OnWeaponSelected.AddListener(OnWeaponSelected);
+        GameEvents.OnRoundStarted.AddListener(OnRoundStarted);
     }
 
     protected override void Initialize()
@@ -40,11 +41,15 @@ public class PlayerEntity : EntityBase
         var movement = gameObject.GetComponent<PlayerMovement>();
         movement.Initialize();
 
+        StartCoroutine(NotifyNextFrame());
+    }
+
+    private void OnRoundStarted()
+    {
+        //start
         CanMove = true;
         CanRotate = true;
         CanUseAbilities = true;
-
-        StartCoroutine(NotifyNextFrame());
     }
 
     public override void OnEntityDied(string entityId)

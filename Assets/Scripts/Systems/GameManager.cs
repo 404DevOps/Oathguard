@@ -3,46 +3,64 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public int CurrentWave { get; private set; }
+    public int NextWave { get; private set; }
     public Transform Canvas;
     public GameObject WeaponSelectionUI;
+    public GameObject OathSelectionUI;
+    public GameObject UpgradeSelectionUI;
+
+    public OathAura SelectedOath;
+    public WeaponSet SelectedWeaponSet;
 
     private GameObject _selectionUIInstance;
     void Start()
     {
-        GameEvents.OnWeaponSelected.AddListener(OnWeaponSelected);
+        GameEvents.OnPerkSelected.AddListener(OnPerkSelected);
+
         HUDToggle.Instance.Toggle(false);
         Time.timeScale = 0f;
         _selectionUIInstance = Instantiate(WeaponSelectionUI, Canvas);
     }
-    public void SetWeapon(WeaponSet weapon)
-    {
-        Destroy(_selectionUIInstance);
 
-        GameEvents.OnWeaponSelected?.Invoke(weapon);
+    private void OnPerkSelected()
+    {
+        throw new NotImplementedException();
     }
 
-    private void OnWeaponSelected(WeaponSet set)
+    public void SetOath(OathAura selectedOath)
     {
-        //select oath menu first? 
-        Time.timeScale = 1f;
-        HUDToggle.Instance.Toggle(true);
-        GameEvents.OnGameStarted.Invoke();
-
+        SelectedOath = selectedOath; 
+        var player = EntityManager.Instance.Player;
+        AuraManager.Instance.ApplyAura(player, player, selectedOath);
+        Destroy(_selectionUIInstance);
+        GameEvents.OnOathSelected?.Invoke(selectedOath);
         StartRound();
+    }
 
+    public void SetWeapon(WeaponSet weapon)
+    {
+        SelectedWeaponSet = weapon;
+        Destroy(_selectionUIInstance);
+        GameEvents.OnWeaponSelected?.Invoke(weapon);
+
+        //show oath selection
+        _selectionUIInstance = Instantiate(OathSelectionUI, Canvas);
     }
 
     private void StartRound()
     {
-        OnWaveEnded();
-        WaveSpawner.Instance.OnWaveEnded += OnWaveEnded;
+        Time.timeScale = 1f;
+        HUDToggle.Instance.Toggle(true);
+        GameEvents.OnRoundStarted.Invoke();
+
+        SpawnNextWave();
+        WaveSpawner.Instance.OnWaveEnded += SpawnNextWave;
     }
 
-    private void OnWaveEnded()
+    private void SpawnNextWave()
     {
-        CurrentWave++;
-        WaveSpawner.Instance.SpawnWave(CurrentWave);
-        WaveDisplayUI.Instance.Show(CurrentWave);
+        WaveSpawner.Instance.SpawnWave(NextWave);
+        WaveDisplayUI.Instance.Show(NextWave);
+        NextWave++;
     }
 }

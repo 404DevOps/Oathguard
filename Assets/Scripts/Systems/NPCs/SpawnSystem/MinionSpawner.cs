@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MinionSpawner : MonoBehaviour
 {
+    public float DespawnDelay;
+
     [System.Serializable]
     public class MinionConfig
     {
@@ -13,6 +17,7 @@ public class MinionSpawner : MonoBehaviour
 
     [SerializeField] private List<MinionConfig> minionTypes;
     private Dictionary<EntityType, MinionPool> pools;
+
 
     private void Awake()
     {
@@ -48,6 +53,12 @@ public class MinionSpawner : MonoBehaviour
             return;
         }
 
+        StartCoroutine(DespawnAfterDelay(pool, minion));
+    }
+
+    private IEnumerator DespawnAfterDelay(MinionPool pool, GameObject minion)
+    {
+        yield return WaitManager.Wait(DespawnDelay);
         pool.Despawn(minion);
     }
 }

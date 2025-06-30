@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2H_Spin
   m_EditorClassIdentifier: 
   _uniqueID: 48784e31-e79d-4cd9-afd2-cd0cf4eb7524
-  VFX_Execute: {fileID: 11400000, guid: c02cb9c4bf7a7284486a64d0aacbb81e, type: 2}
+  VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
   _abilityData:
     Icon: {fileID: 583435654101691703, guid: 5cecc6995cceee64e870b02d371617f2, type: 3}
@@ -52,5 +52,5 @@ MonoBehaviour:
         ShakeIntensity: 0
         IsTrueDamage: 0
         CanCrit: 1
-        PreventHurt: 0
+        IgnoreHurt: 0
         Type: 2

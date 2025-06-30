@@ -18,7 +18,7 @@ public class WaveDisplayUI : Singleton<WaveDisplayUI>
     }
     internal void Show(int currentWave)
     {
-        WaveText.text = "Wave " + currentWave.ToString();
+        WaveText.text = "Wave " + (currentWave + 1).ToString();
         ToggleVisible(true);
         StartCoroutine(HideAfterDelay());
     }

@@ -7,10 +7,10 @@ public class CursorManager : MonoBehaviour
 
     void Start()
     {
-        GameEvents.OnWeaponSelected.AddListener(OnWeaponSelected);
+        GameEvents.OnOathSelected.AddListener(OnOathSelected);
     }
 
-    private void OnWeaponSelected(WeaponSet set)
+    private void OnOathSelected(OathAura aura)
     {
         Vector2 hotspot = new Vector2(AimCursor.width / 2f, AimCursor.height / 2f);
         Cursor.SetCursor(AimCursor, hotspot, CursorMode.Auto);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DW_Haemorrage
   m_EditorClassIdentifier: 
   _uniqueID: bf755106-9b3a-4bef-8839-9dfdff1f873b
-  VFX_Execute: {fileID: 11400000, guid: c02cb9c4bf7a7284486a64d0aacbb81e, type: 2}
+  VFX_Execute: {fileID: 0}
   VFX_Pre: {fileID: 0}
   _abilityData:
     Icon: {fileID: -1263440504906371088, guid: 2f23b4edc8ce781409c8fcd2023192d1, type: 3}
