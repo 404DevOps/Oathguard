@@ -69,7 +69,7 @@ public class AbilityDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         SetAbilityIcons(ability.AbilityData);
         UpdateKeybindSymbol(null);
 
-        SetGlowState(false);
+        //SetGlowState(false);
         CheckInitialCooldownState();
     }
 

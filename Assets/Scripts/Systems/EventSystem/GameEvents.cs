@@ -6,7 +6,7 @@ public static class GameEvents
 {
     //entities
     public static readonly Event<EntityBase> OnEntityInitialized = new();
-    public static readonly Event<string> OnEntityDied = new();
+    public static readonly Event<EntityBase> OnEntityDied = new();
     public static readonly Event<string> OnEntityDestroyed = new();
 
     //combat

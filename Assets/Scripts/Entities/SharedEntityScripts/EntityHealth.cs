@@ -22,8 +22,7 @@ public class EntityHealth : MonoBehaviour
 
     public void ApplyDamage(DamageContext damageData)
     {
-        if (CurrentHealth <= 0)
-            return;
+        if (Entity.IsDead) return;
 
         float damageLeft = damageData.FinalDamage;
         float absorbedByShield = 0f;

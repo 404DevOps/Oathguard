@@ -6,6 +6,7 @@ public class NPCEntity : EntityBase
     public EnemyAI AI;
     public EntityKnockback Knockback;
     public NPCAbilities AbilityController;
+    public WeightedLootTable LootTable;
 
     public Action<NPCEntity> OnDespawned;
 
@@ -26,6 +27,8 @@ public class NPCEntity : EntityBase
 
         AbilityController = GetComponent<NPCAbilities>();
         AbilityController.Initialize(this, weapon.WeaponAbilities);
+
+        DropTable
 
         StartCoroutine(NotifyNextFrame());
     }
