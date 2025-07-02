@@ -31,5 +31,6 @@ MonoBehaviour:
         ShakeIntensity: 0
         IsTrueDamage: 0
         CanCrit: 1
-        PreventHurt: 0
+        IgnoreHurt: 1
+        AllowTriggerReactiveEvents: 0
         Type: 2

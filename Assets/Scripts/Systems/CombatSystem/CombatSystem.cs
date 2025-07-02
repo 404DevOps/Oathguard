@@ -142,7 +142,7 @@ public class CombatSystem : Singleton<CombatSystem>
             context.FinalDamage = 0;
     }
 
-    private bool HasImmunity(EntityBase target, DamageType type)
+    public bool HasImmunity(EntityBase target, DamageType type)
     {
         var auras = AuraManager.Instance.GetEntityAuras(target.Id);
         return auras.Any(a => a.Template is ImmunityAura);

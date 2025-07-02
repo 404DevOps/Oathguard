@@ -55,6 +55,7 @@ MonoBehaviour:
         IsTrueDamage: 0
         CanCrit: 1
         IgnoreHurt: 0
+        AllowTriggerReactiveEvents: 1
         Type: 2
     - rid: 3209868539726659664
       type: {class: DamageIfAuraActiveEffect, ns: , asm: Assembly-CSharp}
@@ -66,5 +67,6 @@ MonoBehaviour:
         IsTrueDamage: 0
         CanCrit: 0
         IgnoreHurt: 0
+        AllowTriggerReactiveEvents: 0
         Type: 2
         ConditionAura: {fileID: 11400000, guid: 5f8fd8623932068419271815cf9bc6c6, type: 2}

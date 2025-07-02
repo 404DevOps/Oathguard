@@ -57,6 +57,7 @@ MonoBehaviour:
         IsTrueDamage: 0
         CanCrit: 1
         IgnoreHurt: 0
+        AllowTriggerReactiveEvents: 1
         Type: 2
     - rid: 3209868539726659663
       type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}

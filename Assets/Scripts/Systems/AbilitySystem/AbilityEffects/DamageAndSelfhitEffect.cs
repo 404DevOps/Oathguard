@@ -7,22 +7,40 @@ public class DamageAndSelfhitEffect : AbilityEffectBase
     public DamageEffect DamageEffect;
     [Range(0, 1)] public float SelfdamageFraction;
 
+
     public override void Apply(EntityBase origin, EntityBase target)
     {
-        var ctx = CombatSystem.Instance.CalculateDamage(origin, target, DamageEffect);
-        target.Health.ApplyDamage(ctx);
-
-        var selfDamageFraction = SelfdamageFraction * ctx.FinalDamage;
-        origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction });
+        ApplyInternal(origin, target, null);
     }
+
     public override void Apply(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
     {
-        var ctx = CombatSystem.Instance.CalculateDamage(origin, target, DamageEffect);
-        ctx.SourceOathUpgrade = sourceOathUpgrade;
-        target.Health.ApplyDamage(ctx);
+        ApplyInternal(origin, target, sourceOathUpgrade);
+    }
 
-        var selfDamageFraction = SelfdamageFraction * ctx.FinalDamage;
-        origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction, IgnoreHurt = true });
+    private void ApplyInternal(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
+    {
+        EntityBase tar = DamageEffect.TargetType == TargetType.Origin ? origin : target;
+        if (tar == null) return;
+
+        var tarHealth = tar.Health;
+        if (tarHealth == null)
+            return;
+        var orHealth = origin.Health;
+        if (orHealth == null)
+            return;
+
+        var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, DamageEffect);
+        dmgData.Type = DamageEffect.Type;
+        if (!dmgData.IsImmune && dmgData.FinalDamage > 0 && !tar.Health.HasDied)
+        {
+            dmgData.SourceOathUpgrade = sourceOathUpgrade;
+            tarHealth.ApplyDamage(dmgData);
+        }
+
+        var selfDamageFraction = SelfdamageFraction * dmgData.FinalDamage;
+        if(!CombatSystem.Instance.HasImmunity(origin, DamageEffect.Type))
+            origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction, IgnoreHurt = true });
     }
 }
 

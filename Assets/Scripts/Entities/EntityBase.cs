@@ -87,7 +87,6 @@ public class EntityBase : MonoBehaviour
     {
         if (entity.Id != Id) return;
 
-        IsDead = true;
         Animator.Play("Death", 0,0);
         StartCoroutine(SetPlayedDeadAnim());
     }

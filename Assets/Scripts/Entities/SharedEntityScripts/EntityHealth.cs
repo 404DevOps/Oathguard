@@ -12,11 +12,14 @@ public class EntityHealth : MonoBehaviour
 
     public float HealthPercentage { get { return CurrentHealth / MaxHealth * 100; } }
 
+    private bool _hasDied;
+    public bool HasDied => _hasDied; //this is more instantaneous than the event, prevent further calls to apply damage
+
     public void Initialize(EntityBase entity)
     {
         EntityStats = entity.Stats;
         CurrentHealth = MaxHealth;
-
+        _hasDied = false;
         Entity = entity;
     }
 
@@ -45,7 +48,7 @@ public class EntityHealth : MonoBehaviour
             }
         }
 
-        if (damageLeft > 0)
+        if (damageLeft > 0 && !Entity.IsDead) //isDead will be triggered after damage that killed entity was processed, no need to go here again when already dead
         {
             CurrentHealth -= damageLeft;
             CurrentHealth = Mathf.Max(0, CurrentHealth);
@@ -53,8 +56,10 @@ public class EntityHealth : MonoBehaviour
             GameEvents.OnEntityDamageReceived.Invoke(damageData);
             GameEvents.OnEntityHealthChanged.Invoke(new HealthChangedEventArgs(damageData.Target, CurrentHealth, MaxHealth));
 
-            if (CurrentHealth <= 0)
+            if (CurrentHealth <= 0 && !_hasDied)
             {
+                _hasDied = true;
+                Entity.IsDead = true;
                 GameEvents.OnEntityDied.Invoke(Entity);
             }
         }

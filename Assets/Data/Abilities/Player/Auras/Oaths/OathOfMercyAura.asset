@@ -20,15 +20,13 @@ MonoBehaviour:
   TargetType: 1
   Type: 2
   TickRate: 0
-  Duration: 20
+  Duration: 0
   ShowAuraDisplay: 0
   Modifiers: []
   TickEffects: []
   AuraParticles: {fileID: 3854921247714698391, guid: b9999d1a0d306bf4b896358080e1b013, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
-  SwordAuraParticles: {fileID: 3081362037621676516, guid: 301056b038e1c414abe9415dd0826f35, type: 3}
-  SwordParticleOffset: {x: 0, y: 1.2, z: 0}
-  SwordParticleRotation: {x: 90, y: 90, z: 0}
+  SwordAura: {fileID: 11400000, guid: 9aa418e94db9c8d4388fb5bfaf2e8d98, type: 2}
   ReactToDamageTypes: 
   OathType: 1
   OathUpgrades:

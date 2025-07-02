@@ -53,4 +53,5 @@ MonoBehaviour:
         IsTrueDamage: 0
         CanCrit: 1
         IgnoreHurt: 0
+        AllowTriggerReactiveEvents: 1
         Type: 2

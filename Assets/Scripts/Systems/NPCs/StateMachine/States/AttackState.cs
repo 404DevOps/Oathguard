@@ -14,9 +14,10 @@ public class AttackState : State
 
     public override void Tick()
     {
-        
+        if (context.Player.IsDead) return;
+
         //try to attack as many times while in the state while not overlapping attacks & respecting cooldowns
-        if (!context.Entity.AbilityExecutor.IsAttacking)
+        if (!context.Entity.AbilityExecutor.IsAttacking && context.Entity.CanUseAbilities)
         {
             var ab = context.Entity.AbilityController.GetAbility();
             if (ab != null && !ab.HasAnyCooldown(context.Entity, false))

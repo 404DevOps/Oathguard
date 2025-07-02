@@ -11,27 +11,19 @@ public class DamageEffect : AbilityEffectBase
     public bool IsTrueDamage;
     public bool CanCrit;
     public bool IgnoreHurt;
+    public bool AllowTriggerReactiveEvents;
 
     public DamageType Type;
 
     public override void Apply(EntityBase origin, EntityBase target)
     {
-        EntityBase tar = TargetType == TargetType.Origin ? origin : target;
-        if (tar == null) return;
-
-        var health = tar.Health;
-        if (health == null)
-            return;
-
-        var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, this);
-        dmgData.Type = Type;
-        if (!dmgData.IsImmune && dmgData.FinalDamage > 0)
-        {
-            health.ApplyDamage(dmgData);
-            HandleShake(ShakeIntensity);
-        }
+        ApplyInternal(origin, target, null);
     }
     public override void Apply(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
+    {
+        ApplyInternal(origin, target, sourceOathUpgrade);
+    }
+    private void ApplyInternal(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
     {
         EntityBase tar = TargetType == TargetType.Origin ? origin : target;
         if (tar == null) return;
@@ -42,7 +34,7 @@ public class DamageEffect : AbilityEffectBase
 
         var dmgData = CombatSystem.Instance.CalculateDamage(origin, target, this);
         dmgData.SourceOathUpgrade = sourceOathUpgrade;
-        if (!dmgData.IsImmune && dmgData.FinalDamage > 0)
+        if (!dmgData.IsImmune && dmgData.FinalDamage > 0 && !tar.Health.HasDied)
         {
             health.ApplyDamage(dmgData);
             HandleShake(ShakeIntensity);

@@ -26,9 +26,7 @@ public class AuraBase : UniqueScriptableObject
     public Vector3 ParticleOffset;
 
     [Header("Sword Particles")]
-    public GameObject SwordAuraParticles;
-    public Vector3 SwordParticleOffset;
-    public Vector3 SwordParticleRotation;
+    public SwordAuraData SwordAura;
 
     public virtual void OnApply(AuraInstance instance)
     {
@@ -71,14 +69,15 @@ public class AuraBase : UniqueScriptableObject
             var particles = Instantiate(AuraParticles, holder.position + ParticleOffset, AuraParticles.transform.rotation, holder);
             instance.VisualInstances.Add(particles);
         }
-        if (SwordAuraParticles != null)
+        if (SwordAura != null)
         {
-            var swordHolders = instance.Target.WeaponInstance.Weapons;
-            foreach (var holder in swordHolders)
+            var weaponInstance = instance.Target.WeaponInstance;
+            foreach (var holder in weaponInstance.Weapons)
             {
-                var swordParticles = Instantiate(SwordAuraParticles, holder.transform);
-                swordParticles.transform.localPosition = SwordParticleOffset;
-                swordParticles.transform.localRotation = Quaternion.Euler(SwordParticleRotation);
+                var swordParticles = Instantiate(SwordAura.AuraPrefab, holder.transform);
+                swordParticles.transform.localPosition = SwordAura.GetOffset(weaponInstance.Data.Type);
+                swordParticles.transform.localRotation = Quaternion.Euler(SwordAura.GetRotation(weaponInstance.Data.Type));
+                swordParticles.transform.localScale = SwordAura.GetScale(weaponInstance.Data.Type);
                 instance.VisualInstances.Add(swordParticles);
             }
         }
