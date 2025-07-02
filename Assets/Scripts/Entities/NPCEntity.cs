@@ -28,16 +28,14 @@ public class NPCEntity : EntityBase
         AbilityController = GetComponent<NPCAbilities>();
         AbilityController.Initialize(this, weapon.WeaponAbilities);
 
-        DropTable
-
         StartCoroutine(NotifyNextFrame());
     }
 
-    public override void OnEntityDied(string entityId)
+    public override void OnEntityDied(EntityBase entity)
     {
-        if (entityId != Id) return;
+        if (entity.Id != Id) return;
 
-        base.OnEntityDied(entityId);
+        base.OnEntityDied(entity);
         EntityManager.Instance.Player.Experience.AddXP(Stats.Experience);
     }
 

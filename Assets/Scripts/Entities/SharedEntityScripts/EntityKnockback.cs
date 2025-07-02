@@ -25,9 +25,9 @@ public class EntityKnockback : MonoBehaviour
         GameEvents.OnEntityDamageReceived.AddListener(OnDamageReceived);
     }
 
-    private void OnEntityDied(string id)
+    private void OnEntityDied(EntityBase entity)
     {
-        if (id != Entity.Id) return;
+        if (entity.Id != Entity.Id) return;
         if (IsKnockBack) 
         {
             if(_knockbackRoutine != null)

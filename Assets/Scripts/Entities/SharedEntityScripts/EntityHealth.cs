@@ -55,7 +55,7 @@ public class EntityHealth : MonoBehaviour
 
             if (CurrentHealth <= 0)
             {
-                GameEvents.OnEntityDied.Invoke(Entity.Id);
+                GameEvents.OnEntityDied.Invoke(Entity);
             }
         }
     }

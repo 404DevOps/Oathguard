@@ -48,9 +48,9 @@ public class WorldUnitFrameUIHandler : MonoBehaviour
         _healthbar.gameObject.SetActive(v);
     }
 
-    private void OnEntityDied(string entityId)
+    private void OnEntityDied(EntityBase entity)
     {
-        if (entityId != Entity.Id) return;
+        if (entity.Id != Entity.Id) return;
         ToggleHealthbar(false);
     }
 

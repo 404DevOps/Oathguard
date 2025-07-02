@@ -33,7 +33,7 @@ public class EntityHurt : MonoBehaviour
 
     private void OnDamageReceived(DamageContext data)
     {
-        if (data.Target != _health.Entity) return;
+        if (data.Target != _entity) return;
         if (data.IgnoreHurt) return;
 
         if (_health.CurrentHealth > 0)

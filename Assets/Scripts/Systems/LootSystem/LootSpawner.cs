@@ -24,6 +24,5 @@ public class LootSpawner : Singleton<LootSpawner>
     {
         if (table == null) return;
         table.SpawnLoot(position, scatterRadius);
-        // Optionally add particle effects, sound, etc.
     }
 }

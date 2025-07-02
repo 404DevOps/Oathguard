@@ -20,7 +20,7 @@ public class EntityResource : MonoBehaviour
         CurrentResource = (MaxResource / 100) * data.StartAmountPercentage;
     }
 
-    public void ChangeResource(int changeAmount)
+    public void ChangeResource(float changeAmount)
     {
         if (ResourceType == ResourceType.None) //bosses have free abilities for now
             return;

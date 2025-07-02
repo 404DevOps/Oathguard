@@ -52,15 +52,15 @@ public class PlayerEntity : EntityBase
         CanUseAbilities = true;
     }
 
-    public override void OnEntityDied(string entityId)
+    public override void OnEntityDied(EntityBase entity)
     {
-        if (entityId != Id) return;
+        if (entity.Id != Id) return;
 
         CanMove = false;
         CanRotate = false;
         CanUseAbilities = false;
 
-        base.OnEntityDied(entityId);
+        base.OnEntityDied(entity);
         Debug.Log("Player died");
     }
 }

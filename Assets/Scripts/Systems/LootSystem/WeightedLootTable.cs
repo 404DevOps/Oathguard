@@ -7,8 +7,6 @@ public class WeightedLootTable : ScriptableObject
 {
     [SerializeField] private List<DropCountOption> dropCountWeights = new();
     [SerializeField] private List<LootEntry> lootEntries = new();
-    [SerializeField] private int minDrops = 1;
-    [SerializeField] private int maxDrops = 3;
 
     private float totalWeight;
     private System.Random rng = new();

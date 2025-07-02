@@ -83,9 +83,9 @@ public class EntityBase : MonoBehaviour
         GameEvents.OnEntityDied.AddListener(OnEntityDied);
     }
 
-    public virtual void OnEntityDied(string entityId)
+    public virtual void OnEntityDied(EntityBase entity)
     {
-        if (entityId != Id) return;
+        if (entity.Id != Id) return;
 
         IsDead = true;
         Animator.Play("Death", 0,0);

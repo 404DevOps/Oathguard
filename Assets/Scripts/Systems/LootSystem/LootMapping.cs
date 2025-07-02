@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ internal class LootMapping : ScriptableObject
     }
 }
 
+[Serializable]
 public class EntityLootPair
 { 
     public EntityType EntityType;

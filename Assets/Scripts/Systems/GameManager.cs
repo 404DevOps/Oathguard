@@ -1,8 +1,10 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    public bool SkipInitialization;
     public int NextWave { get; private set; }
     public Transform Canvas;
     public GameObject WeaponSelectionUI;
@@ -15,11 +17,44 @@ public class GameManager : Singleton<GameManager>
     private GameObject _selectionUIInstance;
     void Start()
     {
+        if (SkipInitialization)
+        {
+            SkipInit();
+            return;
+        }
+
         GameEvents.OnPerkSelected.AddListener(OnPerkSelected);
 
         HUDToggle.Instance.Toggle(false);
         Time.timeScale = 0f;
         _selectionUIInstance = Instantiate(WeaponSelectionUI, Canvas);
+    }
+
+    private void SkipInit()
+    {
+        HUDToggle.Instance.Toggle(true);
+        Time.timeScale = 1f;
+
+        // Select a default weapon and apply it
+        var weapon = WeaponCollection.Instance().GetAllWeapons().FirstOrDefault();
+        if (weapon != null)
+        {
+            SelectedWeaponSet = weapon;
+            GameEvents.OnWeaponSelected?.Invoke(weapon);
+        }
+
+        // Select a default oath and apply it
+        var oath = OathCollection.Instance().GetAllOaths().FirstOrDefault(); // Replace with actual source
+        if (oath != null)
+        {
+            SelectedOath = oath;
+            var player = EntityManager.Instance.Player;
+            AuraManager.Instance.ApplyAura(player, player, oath);
+            GameEvents.OnOathSelected?.Invoke(oath);
+        }
+
+        // Start the round
+        StartRound();
     }
 
     private void OnPerkSelected()
