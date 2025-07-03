@@ -112,6 +112,8 @@ public class CombatTextManager : MonoBehaviour
 
     public void ShowText(EntityBase entity, string text, Color color, bool isCrit)
     {
+        if (entity.IsDead) return; 
+
         CombatText ft = GetFloatingText();
         ft.transform.SetParent(entity.CombatTextContainer);
         ft.Setup(entity, text, color, isCrit);

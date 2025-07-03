@@ -70,7 +70,7 @@ public class PlayerFrameUIHandler : MonoBehaviour
         if (Player == null || Player.Id != data.Entity.Id)
             return;
 
-        _resourcebar.SetNewValue(data.CurrentResource, data.MaxResource, true);
+        _resourcebar.SetNewValue(data.CurrentResource, data.MaxResource, false);
     }
 
 

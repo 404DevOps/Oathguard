@@ -26,7 +26,7 @@ MonoBehaviour:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 1
+          inSlope: 0
           outSlope: 1
           tangentMode: 0
           weightedMode: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
           time: 1
           value: 1
           inSlope: 1
-          outSlope: 1
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -204,10 +204,10 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 8
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.118
   response:
     m_OverrideState: 1
     m_Value: 0.8
@@ -306,7 +306,7 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 1
   intensity:
     m_OverrideState: 1
     m_Value: 0
@@ -372,37 +372,37 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 10.86
+    m_Value: 40
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 30
+    m_Value: 100
   gaussianMaxRadius:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.5
   highQualitySampling:
     m_OverrideState: 1
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 20.6
   aperture:
     m_OverrideState: 1
-    m_Value: 4.1
+    m_Value: 7
   focalLength:
     m_OverrideState: 1
-    m_Value: 160
+    m_Value: 234
   bladeCount:
     m_OverrideState: 1
     m_Value: 4
   bladeCurvature:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.343
   bladeRotation:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: -90
 --- !u!114 &-1083910812058648046
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -470,7 +470,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.179
   clamp:
     m_OverrideState: 1
     m_Value: 0.05
@@ -736,7 +736,7 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 5
   colorFilter:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -745,7 +745,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -13
 --- !u!114 &8549655192814258499
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -767,7 +767,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.358
   smoothness:
     m_OverrideState: 1
     m_Value: 0.2

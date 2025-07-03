@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4ad32759025c0c4d9a6d217f349a3ef, type: 3}
-  m_Name: FaithFlask_Pickup
+  m_Name: FaithOrb_Pickup
   m_EditorClassIdentifier: 
-  pickupPrefab: {fileID: 8852405989644669799, guid: 8498f29b924f2cc4fa6952f650296f13, type: 3}
+  pickupPrefab: {fileID: 5640356616985837198, guid: bd883997716c0a445b9265f732488190, type: 3}
