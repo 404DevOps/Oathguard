@@ -36,3 +36,4 @@ MonoBehaviour:
           AllowTriggerReactiveEvents: 0
           Type: 1
         SelfdamageFraction: 0.15
+        SelfDamageAsTrueDamage: 1
