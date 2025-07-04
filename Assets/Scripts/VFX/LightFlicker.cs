@@ -12,7 +12,6 @@ public class LightFlicker : MonoBehaviour
     }
     private void Update()
     {
-        baseIntensity = 4f;
         float flicker = Mathf.PerlinNoise(Time.time * 2f, 0f) * flickerIntensity;
         Light.intensity = baseIntensity + flicker;
     }
