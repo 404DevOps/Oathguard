@@ -6,6 +6,7 @@ public class DamageAndSelfhitEffect : AbilityEffectBase
 {
     public DamageEffect DamageEffect;
     [Range(0, 1)] public float SelfdamageFraction;
+    public bool SelfDamageAsTrueDamage;
 
 
     public override void Apply(EntityBase origin, EntityBase target)
@@ -40,7 +41,7 @@ public class DamageAndSelfhitEffect : AbilityEffectBase
 
         var selfDamageFraction = SelfdamageFraction * dmgData.FinalDamage;
         if(!CombatSystem.Instance.HasImmunity(origin, DamageEffect.Type))
-            origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction, IgnoreHurt = true });
+            origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction, IgnoreHurt = true, IsTrueDamage = SelfDamageAsTrueDamage });
     }
 }
 
