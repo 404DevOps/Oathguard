@@ -63,7 +63,7 @@ public class DualWeaponAbility : AbilityBase
 
     private void PlayOnHitEffect(EntityBase origin, EntityBase target)
     {
-        HitEffectManager.Instance.PlayHitVFX(origin, target);
+        WeaponEffectManager.Instance.PlayHitVFX(origin, target);
     }
 
     public override IEnumerator WaitForAnimation(EntityBase origin)

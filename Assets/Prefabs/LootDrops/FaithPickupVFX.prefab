@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4358643762524244872}
   - component: {fileID: 1884949205024402044}
   - component: {fileID: 9047831101423171778}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FaithDropVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7032589987228698470}
   - component: {fileID: 7665892671057826367}
   - component: {fileID: 8046179984694000628}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: FaithPickupVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 5640356616985837198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.27187923, z: -0, w: -0.96233135}
-  m_LocalPosition: {x: 1.294, y: 0.46, z: 3.65}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -181,8 +181,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.92
-  m_Height: 1.4396608
+  m_Radius: 0.59
+  m_Height: 0.69
   m_Direction: 1
   m_Center: {x: 0, y: 0.81, z: 0}
 --- !u!114 &8046179984694000628
@@ -197,6 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870904577b09b684684550117d76b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseAttractionSpeed: 10.31
+  acceleration: 10
+  magnetizeDelay: 1
   Effects:
   - rid: 3368185708269273166
   references:

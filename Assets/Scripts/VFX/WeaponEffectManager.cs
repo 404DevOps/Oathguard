@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitEffectManager : Singleton<HitEffectManager>
+public class WeaponEffectManager : Singleton<WeaponEffectManager>
 {
     [Header("VFXPool")]
     public int PoolSize;
@@ -76,10 +76,3 @@ public class HitEffectManager : Singleton<HitEffectManager>
 
     #endregion
 }
-
-//[Serializable]
-//public class HitEffectDamageTypePair
-//{
-//    public DamageType DamageType;
-//    public GameObject HitEffect;
-//}
