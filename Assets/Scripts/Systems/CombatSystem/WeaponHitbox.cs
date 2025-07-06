@@ -35,7 +35,7 @@ public class WeaponHitbox : MonoBehaviour
     {
         if (!Utility.IsInLayerMask(HitLayer, other.gameObject)) return;
 
-        if (other.transform.parent.TryGetComponent(out EntityBase target))
+        if (other.transform.TryGetComponent(out EntityBase target))
         {
             if (target == Holder) return;
             if (alreadyHit.Contains(target)) return;

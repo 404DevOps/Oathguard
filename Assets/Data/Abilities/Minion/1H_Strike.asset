@@ -28,7 +28,7 @@ MonoBehaviour:
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 0.8
+    AnimationDuration: 0.6
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
   _sfxData:
@@ -38,8 +38,12 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008777
+  HitDetection: {fileID: 11400000, guid: 0903727aaa9ca574ab1e9fe71b11a71f, type: 2}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 1024
   WeaponActivationDelay: 0.2
-  WeaponActiveDuration: 0.8
+  WeaponActiveDuration: 0.3
   references:
     version: 2
     RefIds:
@@ -51,6 +55,7 @@ MonoBehaviour:
         MaxDamage: 100
         ShakeIntensity: 0
         IsTrueDamage: 0
-        CanCrit: 1
+        CanCrit: 0
         IgnoreHurt: 0
+        AllowTriggerReactiveEvents: 0
         Type: 2

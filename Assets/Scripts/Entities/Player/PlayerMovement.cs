@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public float SnapThreshold = 160f; // Degrees for a near-180 turn
 
     public LayerMask GroundLayer;
-    public Transform ModelContainer;
     public float rotationSmoothing;
     private Plane _groundPlane;
 
@@ -33,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     internal void Initialize()
     {
         _playerEntity = GetComponent<PlayerEntity>();
-        ModelContainer = transform.Find("Model");
+        //ModelContainer = //transform.Find("Model");
         _characterController = GetComponent<TopDownCharacterController>();
         _playerStats = _playerEntity.Stats;
         _abilityExecutor = _playerEntity.AbilityExecutor;
@@ -81,12 +80,12 @@ public class PlayerMovement : MonoBehaviour
         _playerEntity.Animator.SetFloat("moveSpeed", moveSpeed);
 
         Vector3 moveDirection = UserInput.Instance.MovementInput.normalized; //WASD input
-        Vector3 facingDirection = ModelContainer.transform.forward;
+        Vector3 facingDirection = _playerEntity.Model.forward;
 
         // Check dot product: <-0.5 = moving backward, between -0.5 and 0.5 = strafing, >0.5 = forward
         Vector3 translatedInput = new Vector3(moveDirection.x, 0, moveDirection.y);
         float moveY = Vector3.Dot(facingDirection, translatedInput);
-        float moveX = Vector3.Dot(ModelContainer.transform.right, moveDirection);
+        float moveX = Vector3.Dot(_playerEntity.Model.right, moveDirection);
 
         moveX = Mathf.Clamp(moveX, -1f, 1f);
         moveY = Mathf.Clamp(moveY, -1f, 1f);
@@ -121,18 +120,18 @@ public class PlayerMovement : MonoBehaviour
         if (_moveDirection.sqrMagnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_moveDirection);
-            float angle = Quaternion.Angle(ModelContainer.rotation, targetRotation);
+            float angle = Quaternion.Angle(_playerEntity.Model.rotation, targetRotation);
 
             if (angle > SnapThreshold && !_playerEntity.AbilityExecutor.IsAttacking)
             {
-                ModelContainer.rotation = targetRotation;
+                _playerEntity.Model.rotation = targetRotation;
             }
             else
             {
                 var turnSpeedFactor = _playerEntity.AbilityExecutor.IsAttacking ? 0.5f : 1f;
                 // Smoothly turn toward movement
-                ModelContainer.rotation = Quaternion.Slerp(
-                    ModelContainer.rotation,
+                _playerEntity.Model.rotation = Quaternion.Slerp(
+                    _playerEntity.Model.rotation,
                     targetRotation,
                     Time.deltaTime * (TurnSpeed * turnSpeedFactor)
                 );
@@ -154,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
                 var smoothingFactor = _playerEntity.AbilityExecutor.IsAttacking ? 1f : 2f;
-                ModelContainer.transform.rotation = Quaternion.Slerp(ModelContainer.transform.rotation, targetRotation, (smoothingFactor * rotationSmoothing) * Time.deltaTime);
+                _playerEntity.Model.transform.rotation = Quaternion.Slerp(_playerEntity.Model.transform.rotation, targetRotation, (smoothingFactor * rotationSmoothing) * Time.deltaTime);
             }
         }
     }

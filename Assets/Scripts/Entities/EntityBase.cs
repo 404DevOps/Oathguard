@@ -10,8 +10,8 @@ public class EntityBase : MonoBehaviour
     public bool IsDead;
     public EntityType Type;
    
-    [Header("References")] 
-    public Collider Collider;
+    [Header("References")]
+    public Transform Model;
     public WeaponSetInstance WeaponInstance;
     public EntityHealth Health;
     public EntityHurt Hurt;

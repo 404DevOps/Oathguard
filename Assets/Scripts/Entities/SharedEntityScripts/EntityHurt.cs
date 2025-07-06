@@ -38,6 +38,7 @@ public class EntityHurt : MonoBehaviour
 
         if (_health.CurrentHealth > 0)
         {
+            _entity.AbilityExecutor.ForceStopAbility();
             _animator.SetTrigger("isHurt");
             //_entity.AbilityExecutor.ForceStopAbility();
             _flash.FlashRed();

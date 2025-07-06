@@ -16,6 +16,7 @@ public class NPCEntity : EntityBase
     {
         base.Initialize();
 
+        Model = transform;
         var weapon = EntityStatMapping.Instance().GetBaseStats(Type).Weapon;
         WeaponInstance = weapon.CreateInstance(this, HandSlotL, HandSlotR);
 

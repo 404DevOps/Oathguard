@@ -1595,6 +1595,7 @@ GameObject:
   - component: {fileID: 3108351164256531891}
   - component: {fileID: 239494491842851262}
   - component: {fileID: 3871274044993250480}
+  - component: {fileID: 5371774821886770412}
   m_Layer: 9
   m_Name: Skeleton_Minion
   m_TagString: Untagged
@@ -1636,7 +1637,6 @@ MonoBehaviour:
   Id: 
   IsDead: 0
   Type: 1
-  Collider: {fileID: 8833857713166074402}
   Health: {fileID: 0}
   Hurt: {fileID: 0}
   Shield: {fileID: 0}
@@ -1927,6 +1927,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Abilities: []
+--- !u!136 &5371774821886770412
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5008863089857268104}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.1088438
+  m_Height: 2.7098343
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.1967782, z: 0}
 --- !u!1 &5027871975390338945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2450,7 +2473,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1472029694846064787}
-  - component: {fileID: 8833857713166074402}
   m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
@@ -2474,29 +2496,6 @@ Transform:
   - {fileID: 2175318039476727726}
   m_Father: {fileID: 8468986619602373727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &8833857713166074402
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7044453580630353612}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.1088438
-  m_Height: 2.7098343
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.1967782, z: 0}
 --- !u!1 &7162080713342690050
 GameObject:
   m_ObjectHideFlags: 0

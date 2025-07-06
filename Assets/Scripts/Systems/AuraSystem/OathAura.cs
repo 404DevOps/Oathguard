@@ -34,6 +34,7 @@ public class OathAura : AuraBase
 
     private void OnEntityDamaged(AuraInstance instance, DamageContext args)
     {
+        if (args.Target.IsDead) return;
         if (!args.SourceEffect.AllowTriggerReactiveEvents) return; //this will typically be on bleeds/poison etc
         if (instance.Target != args.Origin) return; //only trigger if holder was attacker
         if (instance.Target == args.Target) return; //only trigger on enemy struck

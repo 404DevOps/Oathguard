@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponEffectManager : Singleton<WeaponEffectManager>
+public class HitEffectManager : Singleton<HitEffectManager>
 {
     [Header("VFXPool")]
     public int PoolSize;

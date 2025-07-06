@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -16,6 +17,7 @@ public class PlayerEntity : EntityBase
 
     void Awake()
     {
+        Model = transform.Find("Model");
         GameEvents.OnWeaponSelected.AddListener(OnWeaponSelected);
         GameEvents.OnRoundStarted.AddListener(OnRoundStarted);
     }

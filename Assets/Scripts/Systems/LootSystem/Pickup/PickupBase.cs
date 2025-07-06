@@ -28,7 +28,7 @@ public abstract class PickupBase : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.name == "LootMagnet") return;
-        if (other.transform.parent.TryGetComponent(out PlayerEntity player))
+        if (other.transform.TryGetComponent(out PlayerEntity player))
         {
             Debug.Log("PickupCollected");
             OnCollected(player);

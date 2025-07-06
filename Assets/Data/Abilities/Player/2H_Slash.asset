@@ -38,7 +38,11 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008777
-  WeaponActivationDelay: 0.3
+  HitDetection: {fileID: 11400000, guid: 7283a0f17b249c04f815ecc4c5e58078, type: 2}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 512
+  WeaponActivationDelay: 0.2
   WeaponActiveDuration: 0.5
   references:
     version: 2
