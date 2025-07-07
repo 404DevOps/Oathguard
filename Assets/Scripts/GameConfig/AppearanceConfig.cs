@@ -9,6 +9,7 @@ using UnityEngine;
 internal class AppearanceConfig : ScriptableObject
 {
     [SerializeField] private List<ResourceData> _resourceData;
+    [SerializeField] private List<OathColorData> _oathColorData;
 
     private static AppearanceConfig _instance;
 
@@ -33,4 +34,24 @@ internal class AppearanceConfig : ScriptableObject
             return null;
         }
     }
+    public Color GetOathColor(OathType type)
+    {
+        try
+        {
+            return _oathColorData.FirstOrDefault(oath => oath.Type == type).PrimaryColor;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Could not retreive OathColor for {type}:" + e.Message);
+            return Color.white;
+        }
+    }
+}
+
+[Serializable]
+public class OathColorData
+{
+    public OathType Type;
+    [ColorUsage(true, true)]
+    public Color PrimaryColor;
 }

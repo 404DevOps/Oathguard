@@ -15,9 +15,9 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
     private float radius => Range;
 
 
-    public override IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, Action<EntityBase, EntityBase> onHitAction)
+    public override IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, float hitDuration, Action<EntityBase, EntityBase> onHitAction)
     {
-        HitDetectionGizmoDrawer.Instance.DrawGizmo(this, origin.Model, Duration);
+        HitDetectionGizmoDrawer.Instance.DrawGizmo(this, origin.Model, hitDuration);
         yield return origin.GetComponent<MonoBehaviour>().StartCoroutine(SwingCoroutine(origin, enemyLayer, onHitAction));
     }
 

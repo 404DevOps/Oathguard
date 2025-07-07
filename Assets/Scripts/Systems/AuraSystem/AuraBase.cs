@@ -11,7 +11,7 @@ public class AuraBase : UniqueScriptableObject
     public Sprite Icon;
 
     public TargetType TargetType;
-    public AuraType Type;
+    public AuraType AuraType;
 
     public float TickRate;
     public float Duration;

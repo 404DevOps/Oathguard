@@ -6,5 +6,5 @@ public abstract class HitDetectionBase : ScriptableObject
 {
     public float Range;
     public float Duration;
-    public abstract IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, Action<EntityBase, EntityBase> onHit);
+    public abstract IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, float hitDuration, Action<EntityBase, EntityBase> onHit);
 }

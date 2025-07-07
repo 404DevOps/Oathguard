@@ -69,9 +69,9 @@ public class DualWeaponAbility : AbilityBase
     public override IEnumerator WaitForAnimation(EntityBase origin)
     {
 
-        var remainingTime = AnimationData.AnimationDuration - (MainHandActivationDelay + MainHandActiveDuration);
-        if (!SimultaneousStrike)
-            remainingTime = remainingTime - OffHandActivationDelay - OffHandActiveDuration;
+        var remainingTime = Timing.RecoveryTime; // - (MainHandActivationDelay + MainHandActiveDuration);
+        //if (!SimultaneousStrike)
+        //    remainingTime = remainingTime - OffHandActivationDelay - OffHandActiveDuration;
 
         if (remainingTime > 0)
             yield return WaitManager.Wait(remainingTime);

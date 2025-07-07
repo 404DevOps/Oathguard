@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2418868754851507068}
   - component: {fileID: 7032589987228698470}
   - component: {fileID: 7665892671057826367}
-  - component: {fileID: 8046179984694000628}
+  - component: {fileID: 4495390900975265948}
   m_Layer: 15
   m_Name: FaithPickupVFX
   m_TagString: Untagged
@@ -185,7 +185,7 @@ CapsuleCollider:
   m_Height: 0.69
   m_Direction: 1
   m_Center: {x: 0, y: 0.81, z: 0}
---- !u!114 &8046179984694000628
+--- !u!114 &4495390900975265948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,15 +197,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870904577b09b684684550117d76b556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseAttractionSpeed: 10.31
-  acceleration: 10
+  baseAttractionSpeed: 7
+  acceleration: 7
   magnetizeDelay: 1
   Effects:
-  - rid: 3368185708269273166
+  - rid: 3368185822921097295
   references:
     version: 2
     RefIds:
-    - rid: 3368185708269273166
+    - rid: 3368185822921097295
       type: {class: GainResourceEffect, ns: , asm: Assembly-CSharp}
       data:
         Target: 0

@@ -7,23 +7,27 @@ public class WeaponAbility : AbilityBase
 {
     public HitDetectionBase HitDetection;
     public LayerMask Layer;
-    public float WeaponActivationDelay;
-    public float WeaponActiveDuration;
+
+
     internal override IEnumerator Use(EntityBase origin, EntityBase target = null)
     {
         PlayAttackAnimation(origin);
         PlayAbilitySound();
-        if (VFX_Execute != null)
-            VFX_Execute.PlayVFX(origin, this, target);
+
 
         var weapon = origin.WeaponInstance;
         weapon.OnHit = null; //reset previous event listeners
        
 
-        yield return WaitManager.Wait(WeaponActivationDelay);
+        yield return WaitManager.Wait(Timing.AnticipationDelay);
+        if (VFX_Execute != null)
+            VFX_Execute.PlayVFX(origin, this, target, Timing.HitDuration);
 
-        yield return HitDetection.Execute(origin, Layer, OnWeaponHit);
+        OnSwingStart?.Invoke();
 
+        yield return HitDetection.Execute(origin, Layer, Timing.HitDuration, OnWeaponHit);
+
+        OnSwingEnd?.Invoke();
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
     }
 
@@ -40,11 +44,11 @@ public class WeaponAbility : AbilityBase
 
     public override IEnumerator WaitForAnimation(EntityBase origin)
     {
-        var remainingTime =  AnimationData.AnimationDuration - (WeaponActivationDelay + HitDetection.Duration);
-        if (remainingTime > 0)
-            yield return WaitManager.Wait(remainingTime);
+        var remainingTime = Timing.RecoveryTime;
+        yield return WaitManager.Wait(remainingTime);
 
         InvokeAbilityFinished();
     }
 }
+
 

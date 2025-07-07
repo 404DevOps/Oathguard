@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilityExecutor : MonoBehaviour
 {
     public AbilityBase CurrentAbility { get; private set; }
     public bool IsAttacking { get; private set; }
+    public bool IsSwingWindow { get; internal set; }
+
     private EntityBase _entity;
 
     public void Initialize(EntityBase entity)
@@ -22,6 +25,8 @@ public class AbilityExecutor : MonoBehaviour
         {
             Debug.Log("Executing Ability: " + CurrentAbility);
             CurrentAbility.OnAbilitiyFinished += OnAbilityFinished;
+            CurrentAbility.OnSwingStart += OnSwingStart;
+            CurrentAbility.OnSwingEnd += OnSwingEnd;
             IsAttacking = true;
             return true;
         }
@@ -30,11 +35,22 @@ public class AbilityExecutor : MonoBehaviour
         return false;
     }
 
+    private void OnSwingEnd()
+    {
+       // IsSwingWindow = false;
+    }
+
+    private void OnSwingStart()
+    {
+        IsSwingWindow = true;
+    }
+
     private void OnAbilityFinished()
     {
         if (CurrentAbility != null)
             CurrentAbility.OnAbilitiyFinished -= OnAbilityFinished;
 
+        IsSwingWindow = false;
         IsAttacking = false;
         CurrentAbility = null;
         Debug.Log("Ability finished");

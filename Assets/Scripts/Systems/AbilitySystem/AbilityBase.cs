@@ -8,17 +8,21 @@ using UnityEngine;
 public abstract class AbilityBase : UniqueScriptableObject
 {
     public Action OnHitDetected;
+    public virtual AbilityTimingData Timing => _abilityTimingData;
     public virtual AbilityData AbilityData => _abilityData;
     public virtual AnimationData AnimationData => _animationData;
     public virtual SFXData SFXData => _sfxData;
 
+    public Action OnSwingStart;
+    public Action OnSwingEnd;
     public virtual event Action OnAbilitiyFinished;
 
     public AbilityVFXBase VFX_Execute;
-    public AbilityVFXBase VFX_Pre;
+    public AbilityVFXBase VFX_Anticipation;
 
     [SerializeField] protected AbilityData _abilityData;
     [SerializeField] protected AnimationData _animationData;
+    [SerializeField] protected AbilityTimingData _abilityTimingData;
     [SerializeField] protected SFXData _sfxData;
     [SerializeReference] public List<AbilityEffectBase> Effects;
 
@@ -47,8 +51,8 @@ public abstract class AbilityBase : UniqueScriptableObject
             StartCooldown(origin, _abilityData.Cooldown);
             CoroutineUtility.Instance.RunAbilityCoroutine(Use(origin, target), this.Id);
 
-            if (VFX_Pre != null)
-                VFX_Pre.PlayVFX(origin, this, target);
+            if (VFX_Anticipation != null)
+                VFX_Anticipation.PlayVFX(origin, this, target);
 
             return true;
         }
@@ -79,8 +83,8 @@ public abstract class AbilityBase : UniqueScriptableObject
 
     public virtual IEnumerator WaitForAnimation(EntityBase origin)
     {
-        if (AnimationData.AnimationDuration > 0)
-            yield return WaitManager.Wait(AnimationData.AnimationDuration);
+        if (Timing.RecoveryTime > 0)
+            yield return WaitManager.Wait(Timing.RecoveryTime);
         else
             yield return null; //still wait a frame so ability executor is ready for finish event.
 
@@ -157,8 +161,8 @@ public abstract class AbilityBase : UniqueScriptableObject
     {
         if(VFX_Execute != null)
             VFX_Execute.EndVFX();
-        if (VFX_Pre != null)
-            VFX_Pre.EndVFX();
+        if (VFX_Anticipation != null)
+            VFX_Anticipation.EndVFX();
 
         CoroutineUtility.Instance.AbortAllAbilityCoroutines(Id);
         InvokeAbilityFinished();
@@ -173,4 +177,20 @@ public class SFXData
     public bool PlaySoundOnMiss;
     public AudioClip SFX_Execution;
     public AudioClip SFX_Miss;
+}
+
+[Serializable]
+public class AbilityTimingData
+{
+    [Tooltip("Time after animation start when weapon becomes active (windup time).")]
+    public float AnticipationDelay;
+
+    [Tooltip("How long the swing or raycast hit window lasts.")]
+    public float HitDuration;
+
+    [Tooltip("Total animation duration to fully finish (recovery time included).")]
+    public float RecoveryTime;
+
+    [Tooltip("Optional VFX timing override.")]
+    public float VFXDuration;
 }

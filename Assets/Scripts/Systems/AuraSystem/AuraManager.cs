@@ -111,7 +111,7 @@ internal class AuraManager : Singleton<AuraManager>
     public OathAura GetPlayerOathAura()
     {
         var player = EntityManager.Instance.Player;
-        var oathAura = _activeAuras[player.Id].FirstOrDefault(a => a.Template.Type == AuraType.Oath);
+        var oathAura = _activeAuras[player.Id].FirstOrDefault(a => a.Template.AuraType == AuraType.Oath);
         if (oathAura != default)
             return oathAura.Template as OathAura;
 

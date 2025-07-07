@@ -13,24 +13,28 @@ MonoBehaviour:
   m_Name: 2H_Slash
   m_EditorClassIdentifier: 
   _uniqueID: 4b1c4154-c900-453a-9272-ae957c585c71
-  VFX_Execute: {fileID: 0}
-  VFX_Pre: {fileID: 0}
+  VFX_Execute: {fileID: 11400000, guid: 47829f2b0f0f4b04c8aa6b5798738ce6, type: 2}
+  VFX_Anticipation: {fileID: 0}
   _abilityData:
     Icon: {fileID: -9018399632469994422, guid: 72e6edb4a5fbb2e47a8c5d70e21d99f7, type: 3}
     Name: Slash
     Description: A Melee Swing that damages nearby enemies
-    Cooldown: 0
+    Cooldown: 0.8
     UseGCD: 1
-    GCDDuration: 0.3
+    GCDDuration: 0.4
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 0.9
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
+  _abilityTimingData:
+    AnticipationDelay: 0.2
+    HitDuration: 0.1
+    RecoveryTime: 0.1
+    VFXDuration: 0.1
   _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
@@ -42,8 +46,6 @@ MonoBehaviour:
   Layer:
     serializedVersion: 2
     m_Bits: 512
-  WeaponActivationDelay: 0.2
-  WeaponActiveDuration: 0.5
   references:
     version: 2
     RefIds:

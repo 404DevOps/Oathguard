@@ -115,13 +115,12 @@ public class CombatTextManager : MonoBehaviour
         if (entity.IsDead) return; 
 
         CombatText ft = GetFloatingText();
+        if (ft == null) return; //happens when entity dies
         ft.transform.SetParent(entity.CombatTextContainer);
         ft.Setup(entity, text, color, isCrit);
         ft.gameObject.SetActive(true);
         _activeTexts.Add(ft);
     }
-
-
 
     void Update()
     {
@@ -131,7 +130,6 @@ public class CombatTextManager : MonoBehaviour
             List<CombatText> texts = GetActiveTextsForMinion(entity);
             ResolveTextOverlap(entity.transform, texts);
         }
-
 
         // Remove finished texts
         foreach (var text in _textsToRemove)

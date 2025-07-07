@@ -16,7 +16,7 @@ internal class SpinAbilityVFX : AbilityVFXBase
     public float DelayBeforePlay;
     public float Duration;
 
-    public override void PlayVFX(EntityBase origin, AbilityBase ability, EntityBase target = null)
+    public override void PlayVFX(EntityBase origin, AbilityBase ability, EntityBase target = null, float duration = 0)
     {
         CoroutineUtility.Instance.RunAbilityCoroutine(PlayVFXRoutine(origin, target), ability.Id);
     }
