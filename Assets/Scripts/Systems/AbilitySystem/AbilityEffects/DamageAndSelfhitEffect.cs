@@ -41,7 +41,7 @@ public class DamageAndSelfhitEffect : AbilityEffectBase
 
         var selfDamageFraction = SelfdamageFraction * dmgData.FinalDamage;
         if(!CombatSystem.Instance.HasImmunity(origin, DamageEffect.Type))
-            origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction, IgnoreHurt = true, IsTrueDamage = SelfDamageAsTrueDamage });
+            origin.Health.ApplyDamage(new DamageContext(origin, origin) { FinalDamage = selfDamageFraction, IgnoreHurt = true, IsTrueDamage = SelfDamageAsTrueDamage, SourceEffect = this.DamageEffect });
     }
 }
 

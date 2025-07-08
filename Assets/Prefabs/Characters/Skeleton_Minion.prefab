@@ -1637,6 +1637,7 @@ MonoBehaviour:
   Id: 
   IsDead: 0
   Type: 1
+  Model: {fileID: 0}
   Health: {fileID: 0}
   Hurt: {fileID: 0}
   Shield: {fileID: 0}
@@ -1794,7 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHurt: 0
-  HurtStateDuration: 0.2
+  HurtStateDuration: 0.4
 --- !u!114 &7950397126814183106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1894,8 +1895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3ebcc863501544d80a928badb22fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 2
-  Duration: 0.3
+  Force: 5
+  Duration: 0.1
   IsKnockBack: 0
 --- !u!114 &239494491842851262
 MonoBehaviour:
@@ -1911,7 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Entity: {fileID: 0}
   Agent: {fileID: 0}
-  AttackRange: 1.5
+  AttackRange: 2
   ChaseRange: 30
   Type: 1
 --- !u!114 &3871274044993250480

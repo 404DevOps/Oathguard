@@ -23,7 +23,7 @@ public class AbilityExecutor : MonoBehaviour
         CurrentAbility = ability;
         if (CurrentAbility.TryUseAbility(_entity))
         {
-            Debug.Log("Executing Ability: " + CurrentAbility);
+            Debug.Log("AbilityExecutor.TryExecuteAbility() - " + CurrentAbility.AbilityData.Name);
             CurrentAbility.OnAbilitiyFinished += OnAbilityFinished;
             CurrentAbility.OnSwingStart += OnSwingStart;
             CurrentAbility.OnSwingEnd += OnSwingEnd;
@@ -52,16 +52,20 @@ public class AbilityExecutor : MonoBehaviour
 
         IsSwingWindow = false;
         IsAttacking = false;
+       
+        Debug.Log("AbiliyExecutor.OnAbilityFinished() - " + CurrentAbility.AbilityData.Name);
         CurrentAbility = null;
-        Debug.Log("Ability finished");
     }
 
     public void ForceStopAbility()
     {
         if (CurrentAbility != null)
         {
-            CurrentAbility.OnAbilitiyFinished -= OnAbilityFinished;
             CurrentAbility.AbortAbility();
+            if (CurrentAbility == null) 
+                Debug.Log("Ability was null after aborting");
+            else
+                CurrentAbility.OnAbilitiyFinished -= OnAbilityFinished;
         }
         CurrentAbility = null;
         IsAttacking = false;

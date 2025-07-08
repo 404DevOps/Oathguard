@@ -7,7 +7,7 @@ public class Event
 
     public void Invoke()
     {
-        _action.Invoke();
+        _action?.Invoke();
     }
     public async void InvokeDelayed(int delayInMs)
     {
@@ -31,7 +31,7 @@ public class Event<T>
 
     public void Invoke(T param)
     {
-        _action.Invoke(param);
+        _action?.Invoke(param);
     }
 
     public async void InvokeDelayed(T param, int delayInMs)
@@ -56,7 +56,7 @@ public class Event<T1, T2>
 
     public void Invoke(T1 param1, T2 param2)
     {
-        _action.Invoke(param1, param2);
+        _action?.Invoke(param1, param2);
     }
 
     public void AddListener(Action<T1, T2> listener)

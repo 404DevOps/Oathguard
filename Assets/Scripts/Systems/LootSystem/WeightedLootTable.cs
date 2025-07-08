@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Loot/WeightedLootTable")]
@@ -25,6 +26,8 @@ public class WeightedLootTable : ScriptableObject
         RecalculateWeights();
 
         int dropCount = RollDropCount();
+
+        if (dropCount == 0) return;
 
         for (int i = 0; i < dropCount; i++)
         {
@@ -61,8 +64,8 @@ public class WeightedLootTable : ScriptableObject
                 return option.DropCount;
         }
 
-        // Fallback — shouldn't happen
-        return dropCountWeights.Count > 0 ? dropCountWeights[0].DropCount : 1;
+        //assume no drop if none was rolled.
+        return 0;
     }
 }
 

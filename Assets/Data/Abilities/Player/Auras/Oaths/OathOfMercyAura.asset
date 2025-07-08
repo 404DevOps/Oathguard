@@ -18,7 +18,7 @@ MonoBehaviour:
     on hit
   Icon: {fileID: 7243693225362205131, guid: 8273438af2bf901489e9c7075557c4d2, type: 3}
   TargetType: 1
-  Type: 2
+  AuraType: 0
   TickRate: 0
   Duration: 0
   ShowAuraDisplay: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   AuraParticles: {fileID: 3854921247714698391, guid: b9999d1a0d306bf4b896358080e1b013, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
   SwordAura: {fileID: 11400000, guid: 9aa418e94db9c8d4388fb5bfaf2e8d98, type: 2}
-  ReactToDamageTypes: 
+  ReactToDamageTypes: 0100000002000000
   OathType: 1
   OathUpgrades:
   - {fileID: 11400000, guid: d56c2f5847e0f6742b8e6af683521938, type: 2}

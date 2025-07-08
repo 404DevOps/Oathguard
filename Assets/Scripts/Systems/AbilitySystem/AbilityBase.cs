@@ -109,6 +109,7 @@ public abstract class AbilityBase : UniqueScriptableObject
 
     internal void InvokeAbilityFinished()
     {
+        Debug.Log($"AbilityBase.OnAbilitiyFinished() - {AbilityData.Name}");
         OnAbilitiyFinished?.Invoke();
     }
 

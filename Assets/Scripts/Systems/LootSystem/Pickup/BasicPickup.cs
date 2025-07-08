@@ -12,6 +12,7 @@ public class BasicPickup : PickupBase
         {
             fx.Apply(collector, collector);
         }
+        base.OnCollected(collector);
         Destroy(gameObject);
     }
 }

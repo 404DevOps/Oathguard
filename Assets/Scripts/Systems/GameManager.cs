@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 
         GameEvents.OnPerkSelected.AddListener(OnPerkSelected);
 
+        UIEvents.OnInGameMenuOpen?.Invoke();
         HUDToggle.Instance.Toggle(false);
         Time.timeScale = 0f;
         _selectionUIInstance = Instantiate(WeaponSelectionUI, Canvas);
@@ -69,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         AuraManager.Instance.ApplyAura(player, player, selectedOath);
         Destroy(_selectionUIInstance);
         GameEvents.OnOathSelected?.Invoke(selectedOath);
+        UIEvents.OnInGameMenuClose?.Invoke();
         StartRound();
     }
 

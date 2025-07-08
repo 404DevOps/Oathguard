@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public abstract class PickupBase : MonoBehaviour
 {
@@ -10,10 +11,14 @@ public abstract class PickupBase : MonoBehaviour
     public float magnetizeDelay = 1f;
     private float spawnTime;
 
+    public GameObject _collectedVFX;
+    public Action OnMagnetized;
     public Action<PickupBase> OnLootCollected;
 
     public virtual void OnCollected(PlayerEntity collector) 
     {
+        var instance = Instantiate(_collectedVFX, collector.AuraVisualsContainer);
+        var vfx = instance.GetComponent<VisualEffect>();
         OnLootCollected?.Invoke(this); 
     }
 
@@ -38,7 +43,10 @@ public abstract class PickupBase : MonoBehaviour
     public void StartMagnetizing()
     {
         if (magnetizedTime < 0f)
+        {
             magnetizedTime = Time.time;
+            OnMagnetized?.Invoke();
+        }
     }
 
     public void MoveToward(Vector3 target)

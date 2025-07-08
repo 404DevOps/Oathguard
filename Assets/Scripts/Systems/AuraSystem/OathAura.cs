@@ -55,7 +55,7 @@ public class OathAura : AuraBase
                 levelAddition = player.Experience.CurrentLevel;
             }
 
-            if (UnityEngine.Random.value <= upgrade.ProccChance + levelAddition / 100f) //procc chance
+            if (UnityEngine.Random.value <= (upgrade.ProccChance + levelAddition) / 100f) //procc chance
                 upgrade.Apply(args);
         }
     }
