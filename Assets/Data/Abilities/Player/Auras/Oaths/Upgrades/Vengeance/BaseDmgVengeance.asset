@@ -16,7 +16,8 @@ MonoBehaviour:
   UpgradeName: Base Damage
   Description: Grants a Chance to deal an additional 70% Attackpower as Damage to
     Enemies stuck.
-  ProccChance: 20
+  ProccVFX: {fileID: 0}
+  ProccChance: 100
   Effects:
   - rid: 3209868469830942793
   references:
@@ -25,6 +26,7 @@ MonoBehaviour:
     - rid: 3209868469830942793
       type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
+        VFX: {fileID: 11400000, guid: cf94174e4e2628348825a362a1497ca3, type: 2}
         TargetType: 0
         MinDamage: 70
         MaxDamage: 70

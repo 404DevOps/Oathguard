@@ -7,7 +7,7 @@ public class DamageIfAuraActiveEffect : DamageEffect
 {
     public AuraBase ConditionAura;
 
-    public override void Apply(EntityBase origin, EntityBase target)
+    public override void Apply(EntityBase origin, EntityBase target, AbilityBase ability = null)
     {
         ApplyInternal(origin, target, null);
     }
@@ -17,6 +17,7 @@ public class DamageIfAuraActiveEffect : DamageEffect
     }
     private void ApplyInternal(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
     {
+        PlayEffectVFX(origin, target, null);
         EntityBase tar = TargetType == TargetType.Origin ? origin : target;
         if (tar == null) return;
 

@@ -26,7 +26,10 @@ internal class SlashVFX : AbilityVFXBase
     public override void PlayVFX(EntityBase origin, AbilityBase ability, EntityBase target = null, float duration = 0)
     {
         Duration = Duration >= duration ? Duration : duration;
-        CoroutineUtility.Instance.RunAbilityCoroutine(PlayVFXRoutine(origin, target), ability.Id);
+        if (ability != null)
+            CoroutineUtility.Instance.RunAbilityCoroutine(PlayVFXRoutine(origin, target), ability.Id);
+        else
+            CoroutineUtility.Instance.RunCoroutineTracked(PlayVFXRoutine(origin, target));
     }
 
     private IEnumerator PlayVFXRoutine(EntityBase origin, EntityBase target)

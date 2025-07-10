@@ -9,7 +9,7 @@ public class DamageAndSelfhitEffect : AbilityEffectBase
     public bool SelfDamageAsTrueDamage;
 
 
-    public override void Apply(EntityBase origin, EntityBase target)
+    public override void Apply(EntityBase origin, EntityBase target, AbilityBase ability = null)
     {
         ApplyInternal(origin, target, null);
     }
@@ -21,6 +21,7 @@ public class DamageAndSelfhitEffect : AbilityEffectBase
 
     private void ApplyInternal(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
     {
+        PlayEffectVFX(origin, target);
         EntityBase tar = DamageEffect.TargetType == TargetType.Origin ? origin : target;
         if (tar == null) return;
 

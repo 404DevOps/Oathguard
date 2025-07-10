@@ -9,6 +9,7 @@ public class OathUpgrade : ScriptableObject
     public string UpgradeName;
     public string Description;
 
+    public AbilityVFXBase ProccVFX;
     public float ProccChance;
 
     [SerializeReference]

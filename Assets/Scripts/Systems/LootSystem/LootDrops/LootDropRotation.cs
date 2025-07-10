@@ -29,11 +29,14 @@ public class LootDropRotation : MonoBehaviour
             _currentAcelleration = Mathf.Clamp(_currentAcelleration, 1, MaxRotationSpeed);
         }
         this.transform.Rotate(new Vector3(0, 1, 0), RotationSpeed * _currentAcelleration * Time.deltaTime);
-        
+
         //if has vfx rotate aswell.
-        
+
         if (_vfx != null)
-            _vfx.SetVector3("Angle", transform.rotation.eulerAngles);
+        {
+            if(_vfx.HasVector3("Angle"))
+                _vfx.SetVector3("Angle", transform.rotation.eulerAngles);
+        }
 
         _pickup = GetComponentInChildren<PickupBase>();
         _pickup.OnMagnetized += OnMagnetized;

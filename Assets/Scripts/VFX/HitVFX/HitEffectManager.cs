@@ -51,7 +51,7 @@ public class HitEffectManager : Singleton<HitEffectManager>
     private GameObject CreateVFX()
     {
         var vfxInstance = Instantiate(HitEffectPrefab, _vfxPoolTransform);
-        var pooledVFX = vfxInstance.GetComponent<PooledVFX>();
+        var pooledVFX = vfxInstance.GetComponent<PooledParticleSystem>();
         pooledVFX.Init(ReturnToPool);
         return vfxInstance;
     }

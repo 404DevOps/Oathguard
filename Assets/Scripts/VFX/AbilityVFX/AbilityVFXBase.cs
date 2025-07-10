@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbilityVFXBase : ScriptableObject
 {
-    public abstract void PlayVFX(EntityBase origin, AbilityBase ability, EntityBase target = null, float duration = 0);
+    public abstract void PlayVFX(EntityBase origin, AbilityBase sourceAbility = null, EntityBase target = null, float duration = 0);
     public virtual void EndVFX() { }
     public virtual void CleanUp() { }
 }

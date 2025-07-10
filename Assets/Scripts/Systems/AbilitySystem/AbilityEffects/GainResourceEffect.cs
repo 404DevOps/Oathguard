@@ -6,8 +6,9 @@ public class GainResourceEffect : AbilityEffectBase
     public float MinAmount;
     public float MaxAmount;
 
-    public override void Apply(EntityBase origin, EntityBase target)
+    public override void Apply(EntityBase origin, EntityBase target, AbilityBase ability = null)
     {
+        PlayEffectVFX(origin, target, null);
         var tar = Target == TargetType.Origin ? origin : target;
         if (tar == null) return;
         var resourceAmount = UnityEngine.Random.Range(MinAmount, MaxAmount);

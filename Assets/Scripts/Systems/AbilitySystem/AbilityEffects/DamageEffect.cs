@@ -15,7 +15,7 @@ public class DamageEffect : AbilityEffectBase
 
     public DamageType Type;
 
-    public override void Apply(EntityBase origin, EntityBase target)
+    public override void Apply(EntityBase origin, EntityBase target, AbilityBase ability = null)
     {
         ApplyInternal(origin, target, null);
     }
@@ -25,6 +25,7 @@ public class DamageEffect : AbilityEffectBase
     }
     private void ApplyInternal(EntityBase origin, EntityBase target, OathUpgrade sourceOathUpgrade)
     {
+        PlayEffectVFX(origin, target, null);
         EntityBase tar = TargetType == TargetType.Origin ? origin : target;
         if (tar == null) return;
 

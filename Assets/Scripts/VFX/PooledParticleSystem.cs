@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class PooledVFX : MonoBehaviour
+public class PooledParticleSystem : MonoBehaviour
 {
     Action<GameObject> _onReturn;
     public void Init(Action<GameObject> action)
