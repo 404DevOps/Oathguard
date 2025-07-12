@@ -20,9 +20,17 @@ public class EntityKnockback : MonoBehaviour
         Entity = entity;
         _rb = GetComponent<Rigidbody>();
         _agent = GetComponent<NavMeshAgent>();
+    }
 
+    private void OnEnable()
+    {
         GameEvents.OnEntityDied.AddListener(OnEntityDied);
         GameEvents.OnEntityDamageReceived.AddListener(OnDamageReceived);
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnEntityDied.RemoveListener(OnEntityDied);
+        GameEvents.OnEntityDamageReceived.RemoveListener(OnDamageReceived);
     }
 
     private void OnEntityDied(EntityBase entity)

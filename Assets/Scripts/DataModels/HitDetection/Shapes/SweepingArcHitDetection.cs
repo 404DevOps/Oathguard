@@ -41,7 +41,7 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
             if (UseRaycast)
             {
                 var ray = new Ray(position, dir);
-                bool hasHit = Physics.Raycast(ray, out RaycastHit hit, rayLength);
+                bool hasHit = Physics.Raycast(ray, out RaycastHit hit, rayLength, enemyLayer.value);
 
                 if (hasHit && !alreadyHit.Contains(hit.collider))
                 {

@@ -14,6 +14,8 @@ public class ChaseState : State
         //in update for smoother locomotion
         SetWalkAnimation();
 
+        if(context.Agent.speed != context.Agent.speed)
+            context.Agent.speed = context.Entity.Stats.MoveSpeed;
 
         float dist = context.DistanceToPlayer;
 
