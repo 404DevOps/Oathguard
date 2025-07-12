@@ -18,7 +18,7 @@ MonoBehaviour:
     they hit.
   Icon: {fileID: 8607340745257198578, guid: 9fba884284465724cbdbe7f14485f891, type: 3}
   TargetType: 1
-  Type: 2
+  AuraType: 0
   TickRate: 0
   Duration: 0
   ShowAuraDisplay: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   ReactToDamageTypes: 02000000
   OathType: 2
   OathUpgrades:
-  - {fileID: 11400000, guid: fdbbc55ba3deb50478a192c4f45b978d, type: 2}
+  - {fileID: 11400000, guid: 6482d6a98d2db1243917fea699f60bc7, type: 2}
   FlavorText: You swore to avenge, every swing remembers
   references:
     version: 2

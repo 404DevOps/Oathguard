@@ -5,6 +5,6 @@ using UnityEngine;
 public abstract class HitDetectionBase : ScriptableObject
 {
     public float Range;
-    public float Duration;
+    protected float Duration;
     public abstract IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, float hitDuration, Action<EntityBase, EntityBase> onHit);
 }

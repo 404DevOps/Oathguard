@@ -17,6 +17,7 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
 
     public override IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, float hitDuration, Action<EntityBase, EntityBase> onHitAction)
     {
+        Duration = hitDuration;
         HitDetectionGizmoDrawer.Instance.DrawGizmo(this, origin.Model, hitDuration);
         yield return origin.GetComponent<MonoBehaviour>().StartCoroutine(SwingCoroutine(origin, enemyLayer, onHitAction));
     }

@@ -66,7 +66,8 @@ public class HealthBarUIHandler : MonoBehaviour
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
 
-            _coroutine = StartCoroutine(SmoothChangeHealth(percentage));
+            if(isActiveAndEnabled)
+                _coroutine = StartCoroutine(SmoothChangeHealth(percentage));
         }
 
         else

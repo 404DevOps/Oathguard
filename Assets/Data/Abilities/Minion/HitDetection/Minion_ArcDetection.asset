@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Minion_ArcDetection
   m_EditorClassIdentifier: 
   Range: 2.5
-  Duration: 0.3
-  Angle: 70
+  Angle: 90
   SweepLeftToRight: 1
   UseRaycast: 1
   RaycastStepAngle: 5

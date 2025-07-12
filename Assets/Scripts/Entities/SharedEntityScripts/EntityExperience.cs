@@ -29,37 +29,35 @@ public class EntityExperience : MonoBehaviour
 
     public void AddXP(float amount)
     {
-        if (amount <= 0) return; //cant lose xp
+        if (amount <= 0) return;
 
-        var finalAmount = amount * _player.Stats.ExperienceGainRate;
-        CurrentXP += finalAmount;
+        float scaledAmount = amount * _player.Stats.ExperienceGainRate;
+        float remainingXP = scaledAmount;
+        float gainedXPThisCall = 0;
 
-        //level up
-        if (CurrentXP >= MaxXP)
+        while (remainingXP > 0)
         {
-            float levelLeftover = CurrentXP - MaxXP;
-            CurrentXP = 0;
-            CurrentLevel++;
-            MaxXP = GetCurrentLevelXP();
+            float xpToNextLevel = MaxXP - CurrentXP;
 
-            //loop until none left.
-            if (levelLeftover > 0)
-                AddXP(levelLeftover);
+            if (remainingXP >= xpToNextLevel)
+            {
+                remainingXP -= xpToNextLevel;
+                CurrentXP = 0;
+                CurrentLevel++;
+                MaxXP = GetCurrentLevelXP();
 
-            //invoke later to allow for level up to show properly on xp bar 
-            StartCoroutine(InvokeXPChangedDelayed(finalAmount));
-            return;
+                GameEvents.OnEntityLeveledUp?.Invoke(_player);
+            }
+            else
+            {
+                CurrentXP += remainingXP;
+                gainedXPThisCall += remainingXP;
+                remainingXP = 0;
+            }
         }
-        //invoke directly if no level up
-        GameEvents.OnEntityXPChanged.Invoke(new XPChangedEventArgs(_player, CurrentXP, MaxXP, finalAmount));
+
+        GameEvents.OnEntityXPChanged?.Invoke(new XPChangedEventArgs(_player, CurrentXP, MaxXP, scaledAmount));
     }
 
-    private IEnumerator InvokeXPChangedDelayed(float finalAmount)
-    {
-        yield return WaitManager.Wait(0.5f);
-        GameEvents.OnEntityXPChanged?.Invoke(new XPChangedEventArgs(_player, CurrentXP, MaxXP, finalAmount));
-        yield return WaitManager.Wait(0.5f);
-        GameEvents.OnEntityLeveledUp?.Invoke(_player);
-    }
 }
 

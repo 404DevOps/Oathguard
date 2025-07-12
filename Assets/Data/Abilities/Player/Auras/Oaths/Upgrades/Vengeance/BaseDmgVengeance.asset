@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Grants a Chance to deal an additional 70% Attackpower as Damage to
     Enemies stuck.
   ProccVFX: {fileID: 0}
-  ProccChance: 100
+  ProccChance: 20
   Effects:
   - rid: 3209868469830942793
   references:

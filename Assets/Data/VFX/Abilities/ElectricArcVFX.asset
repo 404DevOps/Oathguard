@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ElectricArcVFX
   m_EditorClassIdentifier: 
   ArcPrefab: {fileID: 5789191179838039824, guid: a48527a6d71f6dc41a50166c0ad89ee8, type: 3}
-  Duration: 1
-  MaxJitter: 0.2
+  Duration: 0.4
+  MaxJitter: 4
   targetOffset: {x: 0, y: 1, z: 0}
   originOffset: {x: 0, y: 1, z: 0}

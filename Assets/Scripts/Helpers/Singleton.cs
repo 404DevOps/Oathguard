@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
+
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T instance;
     private static bool isShuttingDown = false;
 
-    protected bool KeepOnSceneLoad = true;
+    public bool KeepOnSceneLoad;
 
     public static T Instance
     {
@@ -31,7 +32,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
 
         instance = this as T;
-        DontDestroyOnLoad(gameObject); // Keep the singleton across scene loads
+        if(KeepOnSceneLoad)
+            DontDestroyOnLoad(gameObject); // Keep the singleton across scene loads
     }
 
     protected virtual void OnApplicationQuit()

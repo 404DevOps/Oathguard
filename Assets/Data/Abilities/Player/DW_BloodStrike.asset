@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: DW_BloodStrike
   m_EditorClassIdentifier: 
   _uniqueID: f5b7e490-4cb9-4517-8d57-a183ef52b6ed
-  VFX_Execute: {fileID: 0}
-  VFX_Pre: {fileID: 0}
+  VFX_Execute: {fileID: 11400000, guid: b293e8e95cd06c240bcf515f2fb70a55, type: 2}
+  VFX_Anticipation: {fileID: 0}
   _abilityData:
     Icon: {fileID: -6303261766934575597, guid: 79676bb4b152228479282ca61914bc47, type: 3}
     Name: Blood Strike
     Description: Two Melee Swings that deal Damage and apply Bleed to Taragets hit.
-    Cooldown: 0
+    Cooldown: 1
     UseGCD: 0
     GCDDuration: 0
   _animationData:
@@ -28,9 +28,13 @@ MonoBehaviour:
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 1.2
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
+  _abilityTimingData:
+    AnticipationDelay: 0.4
+    HitDuration: 0.1
+    RecoveryTime: 0
+    VFXDuration: 0.1
   _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
@@ -39,17 +43,24 @@ MonoBehaviour:
   Effects:
   - rid: 3209868539726659661
   - rid: 3209868539726659663
-  SimultaneousStrike: 0
-  MainHandActivationDelay: 0.4
-  MainHandActiveDuration: 0.2
-  OffHandActivationDelay: 0.2
-  OffHandActiveDuration: 0.3
+  HitDetection: {fileID: 11400000, guid: 78bb1c501313f1e48a37b6b5435f8816, type: 2}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 512
+  HitDetectionOffhand: {fileID: 11400000, guid: d31c1c6ec952cf74f816ee3692f315f0, type: 2}
+  TimingOffhand:
+    AnticipationDelay: 0.3
+    HitDuration: 0.1
+    RecoveryTime: 0.1
+    VFXDuration: 0.1
+  OffhandVFX: {fileID: 11400000, guid: 0b9e146a26ad95644856d8f467f171c0, type: 2}
   references:
     version: 2
     RefIds:
     - rid: 3209868539726659661
       type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
+        VFX: {fileID: 0}
         TargetType: 0
         MinDamage: 90
         MaxDamage: 100
@@ -62,4 +73,5 @@ MonoBehaviour:
     - rid: 3209868539726659663
       type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
       data:
+        VFX: {fileID: 0}
         Aura: {fileID: 11400000, guid: 5f8fd8623932068419271815cf9bc6c6, type: 2}

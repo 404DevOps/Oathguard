@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4474158871455492153}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -130,7 +130,7 @@ Transform:
   m_GameObject: {fileID: 6743232350333452317}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,16 +167,16 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0.99922234, y: 1.9996481, z: 12.513982}
+      - m_Value: {x: -0.00000007565847, y: 0.00000012012922, z: 0.0900003}
         m_Name: Pos1
         m_Overridden: 1
-      - m_Value: {x: 3.9979327, y: 1.9996481, z: 12.426029}
+      - m_Value: {x: 2.9999998, y: -0.000000058010418, z: -0.00000045437827}
         m_Name: Pos2
         m_Overridden: 1
-      - m_Value: {x: 7.9962134, y: 1.9996481, z: 12.308761}
+      - m_Value: {x: 7, y: -0.00000007112853, z: 0.000000040088494}
         m_Name: Pos3
         m_Overridden: 1
-      - m_Value: {x: 10.994925, y: 1.9996481, z: 12.220809}
+      - m_Value: {x: 10, y: -0.00000007506276, z: 0.00000018842779}
         m_Name: Pos4
         m_Overridden: 1
     m_Vector4f:
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c3070554d0a8944a95ff8f018c2c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Space: 1
+  Space: 2
   m_Property:
     m_Name: Pos1
   Target: {fileID: 5408638387180079859}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c3070554d0a8944a95ff8f018c2c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Space: 1
+  Space: 2
   m_Property:
     m_Name: Pos2
   Target: {fileID: 3799752264738391163}
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c3070554d0a8944a95ff8f018c2c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Space: 1
+  Space: 2
   m_Property:
     m_Name: Pos3
   Target: {fileID: 7653896090971020497}
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c3070554d0a8944a95ff8f018c2c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Space: 0
+  Space: 2
   m_Property:
     m_Name: Pos4
   Target: {fileID: 1207378766704217290}

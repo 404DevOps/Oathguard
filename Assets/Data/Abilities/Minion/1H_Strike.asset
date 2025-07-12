@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uniqueID: efdc7a63-d112-427f-abb1-8835176dc501
   VFX_Execute: {fileID: 0}
-  VFX_Pre: {fileID: 0}
+  VFX_Anticipation: {fileID: 0}
   _abilityData:
     Icon: {fileID: 4279778568888681825, guid: 6105e7375c8f31746b474f6ee5b5dda8, type: 3}
     Name: Strike
@@ -28,9 +28,13 @@ MonoBehaviour:
       Duration: 0
       Offset: {x: 0, y: 0, z: 0}
     AnimationTriggerName: primaryAttack
-    AnimationDuration: 0.6
     AnimationVariationCount: 0
     ScreenShakeIntensity: 0
+  _abilityTimingData:
+    AnticipationDelay: 0.6
+    HitDuration: 0.25
+    RecoveryTime: 0.3
+    VFXDuration: 0
   _sfxData:
     PlaySoundOneShot: 0
     PlaySoundOnMiss: 0
@@ -42,14 +46,13 @@ MonoBehaviour:
   Layer:
     serializedVersion: 2
     m_Bits: 1024
-  WeaponActivationDelay: 0.2
-  WeaponActiveDuration: 0.3
   references:
     version: 2
     RefIds:
     - rid: 3209868417464008777
       type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
+        VFX: {fileID: 0}
         TargetType: 0
         MinDamage: 90
         MaxDamage: 100

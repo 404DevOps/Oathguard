@@ -3,6 +3,8 @@ using UnityEngine.AI;
 
 public class NPCEntity : EntityBase
 {
+    public bool HasAlreadyDied;
+
     public EnemyAI AI;
     public EntityKnockback Knockback;
     public NPCAbilities AbilityController;
@@ -15,7 +17,7 @@ public class NPCEntity : EntityBase
     protected override void Initialize()
     {
         base.Initialize();
-
+        HasAlreadyDied = false;
         Model = transform;
         var weapon = EntityStatMapping.Instance().GetBaseStats(Type).Weapon;
         WeaponInstance = weapon.CreateInstance(this, HandSlotL, HandSlotR);
@@ -35,9 +37,11 @@ public class NPCEntity : EntityBase
     public override void OnEntityDied(EntityBase entity)
     {
         if (entity.Id != Id) return;
+        if (HasAlreadyDied) return;
 
         base.OnEntityDied(entity);
         EntityManager.Instance.Player.Experience.AddXP(Stats.Experience);
+        HasAlreadyDied = true;
     }
 
     internal void OnSpawned()

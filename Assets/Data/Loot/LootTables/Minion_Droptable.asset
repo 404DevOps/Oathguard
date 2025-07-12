@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropCountWeights:
   - DropCount: 1
-    Weight: 25
+    Weight: 33
   - DropCount: 0
-    Weight: 75
+    Weight: 77
   lootEntries:
   - Drop: {fileID: 11400000, guid: 2b109d242c59550469895fac71a6898f, type: 2}
-    Weight: 70
+    Weight: 50
   - Drop: {fileID: 11400000, guid: e20082fad5ef5a5439573d50e5eb6233, type: 2}
-    Weight: 30
+    Weight: 33
+  - Drop: {fileID: 11400000, guid: de2e567d2dcce7640a426f669e3d55c8, type: 2}
+    Weight: 33

@@ -16,7 +16,6 @@ internal class ElectricArcVFX : AbilityVFXBase
 
     public override void PlayVFX(EntityBase origin, AbilityBase ability, EntityBase target = null, float duration = 0)
     {
-        ArcPrefab.SetActive(true);
         if (target == null) Debug.LogError("Target must be set for ElectricArcVFX");
         Duration = Duration >= duration ? Duration : duration;
         if(ability != null)
@@ -30,9 +29,8 @@ internal class ElectricArcVFX : AbilityVFXBase
         var startPos = origin.transform.position + originOffset;
         var endPos = target.transform.position + targetOffset;
 
-        var instance = ObjectPoolManager.SpawnObject(ArcPrefab, PoolType.VisualEffect);
+        var instance = Pooled.Instantiate(ArcPrefab);
         _vfx = instance.GetComponentInChildren<VisualEffect>();
-        
         // set positions
         var direction = (endPos - startPos).normalized;
         float totalLength = Vector3.Distance(startPos, endPos);
@@ -51,26 +49,26 @@ internal class ElectricArcVFX : AbilityVFXBase
 
         mid1 += jitter * UnityEngine.Random.Range(-MaxJitter, MaxJitter);
         mid2 += jitter * UnityEngine.Random.Range(-MaxJitter, MaxJitter);
-        mid1 += Vector3.up * UnityEngine.Random.Range(-MaxJitter, MaxJitter);
-        mid2 += Vector3.up * UnityEngine.Random.Range(-MaxJitter, MaxJitter);
 
         var pos1 = instance.transform.Find("Pos1");
-        pos1.SetParent(origin.transform);
         var pos2 = instance.transform.Find("Pos2");
         var pos3 = instance.transform.Find("Pos3");
         var pos4 = instance.transform.Find("Pos4");
-        pos4.SetParent(target.transform);
+
         pos1.position = startPos;
         pos2.position = mid1;
         pos3.position = mid2;
         pos4.position = endPos;
+
+        pos1.SetParent(origin.transform);
+        pos4.SetParent(target.transform);
 
         yield return WaitManager.Wait(Duration);
 
         pos1.SetParent(instance.transform);
         pos4.SetParent(instance.transform);
 
-        ObjectPoolManager.ReturnObjectToPool(instance, PoolType.VisualEffect);
+        Pooled.Release(instance);
     }
 }
 

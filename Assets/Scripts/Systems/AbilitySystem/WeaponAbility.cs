@@ -31,13 +31,13 @@ public class WeaponAbility : AbilityBase
         yield return CoroutineUtility.Instance.RunAbilityCoroutine(WaitForAnimation(origin), this.Id);
     }
 
-    private void OnWeaponHit(EntityBase origin, EntityBase target)
+    protected virtual void OnWeaponHit(EntityBase origin, EntityBase target)
     {
         ApplyEffects(origin, target);
         PlayOnHitEffect(origin, target);
     }
 
-    private void PlayOnHitEffect(EntityBase origin, EntityBase target)
+    protected virtual void PlayOnHitEffect(EntityBase origin, EntityBase target)
     {
         HitEffectManager.Instance.PlayHitVFX(origin, target);
     }

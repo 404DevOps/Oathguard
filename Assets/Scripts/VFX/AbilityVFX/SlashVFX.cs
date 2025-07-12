@@ -38,7 +38,7 @@ internal class SlashVFX : AbilityVFXBase
         if (LeftToRight)
             euler.x = 180;
 
-        var instance = Instantiate(SlashVFXPrefab, origin.transform.position, Quaternion.Euler(euler));
+        var instance = Pooled.Instantiate(SlashVFXPrefab, origin.transform.position, Quaternion.Euler(euler));
         _vfx = instance.GetComponentInChildren<VisualEffect>();
         while (!_vfx.HasVector4("ColorMain"))
             yield return null;
@@ -47,7 +47,7 @@ internal class SlashVFX : AbilityVFXBase
 
         yield return WaitManager.Wait(Duration);
 
-        Destroy(instance);
+        Pooled.Release(instance);
     }
 }
 

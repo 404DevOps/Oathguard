@@ -1653,6 +1653,7 @@ MonoBehaviour:
   AuraVisualsContainer: {fileID: 0}
   CombatTextContainer: {fileID: 0}
   CombatTextOffset: {x: 0, y: 1.5, z: 0}
+  HasAlreadyDied: 0
   AI: {fileID: 0}
   Knockback: {fileID: 0}
   AbilityController: {fileID: 0}
@@ -1795,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHurt: 0
-  HurtStateDuration: 0.4
+  HurtStateDuration: 0.7
 --- !u!114 &7950397126814183106
 MonoBehaviour:
   m_ObjectHideFlags: 0

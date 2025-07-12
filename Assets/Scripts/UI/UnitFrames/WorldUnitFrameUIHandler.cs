@@ -64,7 +64,7 @@ public class WorldUnitFrameUIHandler : MonoBehaviour
 
     private void OnHealthChanged(HealthChangedEventArgs data)
     {
-        if (Entity == null || Entity.Id != data.Entity.Id)
+        if (Entity == null || Entity.Id != data.Entity.Id || data.Entity.IsDead)
             return;
 
         _healthbar.SetNewHealth(_entityHealth.CurrentHealth, _entityHealth.MaxHealth);

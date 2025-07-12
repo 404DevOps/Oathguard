@@ -103,10 +103,10 @@ MonoBehaviour:
   - title: Particles
     position:
       serializedVersion: 2
-      x: 1578
-      y: -420
-      width: 630
-      height: 1461
+      x: 1560
+      y: -547
+      width: 644
+      height: 1973
     contents:
     - model: {fileID: 8926484042661614807}
       id: 0
@@ -151,9 +151,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: -231
-    y: -492
+    y: -547
     width: 3205
-    height: 2067
+    height: 2122
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,7 +401,7 @@ MonoBehaviour:
   particlePerStripCount: 100
   needsComputeBounds: 0
   boundsMode: 0
-  m_Space: 0
+  m_Space: 1
 --- !u!114 &114512514798047786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3207,7 +3207,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614628}
       inputSlot: {fileID: 8926484042661614853}
-    position: {x: 1603, y: 62}
+    position: {x: 1599, y: -65}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
@@ -5773,7 +5773,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614849}
   - {fileID: 8926484042661614889}
   - {fileID: 8926484042661614909}
-  m_UIPosition: {x: 1758, y: -135}
+  m_UIPosition: {x: 1754, y: -262}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -6277,7 +6277,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1759, y: 694}
+  m_UIPosition: {x: 1755, y: 567}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -6358,7 +6358,7 @@ MonoBehaviour:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.10000000149011612},"arc":6.28000020980835}'
-    m_Space: 1
+    m_Space: 0
   m_Property:
     name: arcSphere
     m_serializedType:
@@ -6962,7 +6962,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614937}
   - {fileID: 8926484042661614940}
   - {fileID: 8926484042661614934}
-  m_UIPosition: {x: 1759, y: 844}
+  m_UIPosition: {x: 1755, y: 717}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7375,7 +7375,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614919}
-  m_UIPosition: {x: 1731, y: -361}
+  m_UIPosition: {x: 1727, y: -488}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -8801,7 +8801,7 @@ MonoBehaviour:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.10000000149011612},"arc":6.28000020980835}'
-    m_Space: 1
+    m_Space: 0
   m_Property:
     name: arcSphere
     m_serializedType:
@@ -10761,7 +10761,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615032}
       inputSlot: {fileID: 8926484042661614923}
-    position: {x: 1588.7501, y: 1163.3501}
+    position: {x: 1585, y: 1036}
     expandedSlots: []
     expanded: 1
     supecollapsed: 0
