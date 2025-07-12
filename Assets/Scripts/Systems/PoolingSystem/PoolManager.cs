@@ -39,6 +39,8 @@ public class PoolManager : MonoBehaviour
                 },
                 actionOnGet: go =>
                 {
+                    if(go == null)
+                        Debug.Log("Pooled Object was destroyed: " + go.name);
                     go.SetActive(true);
                 },
                 actionOnRelease: go =>

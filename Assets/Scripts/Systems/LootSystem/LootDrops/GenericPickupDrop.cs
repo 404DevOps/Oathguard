@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Loot/GenericPickupDrop")]
@@ -14,11 +15,22 @@ public class GenericPickupDrop : LootDrop
             return;
         }
 
-        GameObject spawned = Instantiate(pickupPrefab, position, Quaternion.identity);
+        GameObject spawned = Pooled.Instantiate(pickupPrefab, position, Quaternion.identity);
 
-        if (!spawned.TryGetComponent<PickupBase>(out _))
+        if (spawned.TryGetComponent(out PickupBase pickup))
+        {
+            pickup.OnLootCollected += ReleaseOnCollected; 
+
+        }
+        else 
         {
             Debug.LogError("Spawned pickup does not have a PickupBase component!");
         }
+    }
+
+    private void ReleaseOnCollected(PickupBase pickup)
+    {
+        pickup.OnLootCollected -= ReleaseOnCollected;
+        Pooled.Release(pickup);
     }
 }

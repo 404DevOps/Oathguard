@@ -17,8 +17,7 @@ public abstract class PickupBase : MonoBehaviour
 
     public virtual void OnCollected(PlayerEntity collector) 
     {
-        var instance = Instantiate(_collectedVFX, collector.AuraVisualsContainer);
-        var vfx = instance.GetComponent<VisualEffect>();
+        var instance = Pooled.Instantiate(_collectedVFX, position: collector.transform.position, parent: collector.transform, autoReturn: true, lifetime: 2f);
         OnLootCollected?.Invoke(this); 
     }
 

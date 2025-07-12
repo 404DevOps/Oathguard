@@ -48,7 +48,11 @@ public class EntityKnockback : MonoBehaviour
 
     public void Knockback(Vector3 direction, float force, float duration)
     {
-        _knockbackRoutine = StartCoroutine(KnockbackRoutine(direction, force, duration));
+        //only start if not already knocked back
+        if (!IsKnockBack)
+        {
+            _knockbackRoutine = StartCoroutine(KnockbackRoutine(direction, force, duration));
+        }      
     }
     private IEnumerator KnockbackRoutine(Vector3 direction, float force, float duration)
     {
@@ -58,7 +62,6 @@ public class EntityKnockback : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         StopKnockback();
-
     }
 
     private void StartKnockback(Vector3 directionalForce)
@@ -67,10 +70,13 @@ public class EntityKnockback : MonoBehaviour
         _agent.enabled = false;
         _rb.isKinematic = false;
         _rb.linearVelocity = directionalForce;
+        Debug.Log("Start knockback");
+
     }
 
     private void StopKnockback()
     {
+        Debug.Log($"Stop Knockback. isKinematic: {_rb.isKinematic}, EntityId {Entity.Id}");
         _rb.linearVelocity = Vector3.zero;
         _rb.isKinematic = true;
         _agent.enabled = true;

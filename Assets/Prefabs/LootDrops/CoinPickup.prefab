@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b9638fb629d5943a8d042b8e9ac7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 90
-  MaxRotationSpeed: 300
+  RotationSpeed: 60
+  MaxRotationSpeed: 250
   MagnetizedAcelleration: 10
 --- !u!1 &6634912436437251000
 GameObject:
@@ -114,7 +114,6 @@ GameObject:
   - component: {fileID: 2812571405356040341}
   - component: {fileID: 7095090588556773513}
   - component: {fileID: 7016560756162940867}
-  - component: {fileID: 5526360111963142818}
   m_Layer: 0
   m_Name: CoinDropVFX
   m_TagString: Untagged
@@ -218,18 +217,3 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5526360111963142818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6634912436437251000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b9638fb629d5943a8d042b8e9ac7d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RotationSpeed: 60
-  MaxRotationSpeed: 250
-  MagnetizedAcelleration: 10

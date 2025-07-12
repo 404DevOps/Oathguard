@@ -8,7 +8,6 @@ public class DeadState : State
 
     public override void Enter()
     {
-        Debug.Log("Dead!");
     }
 
     public override AIState? GetNextState()

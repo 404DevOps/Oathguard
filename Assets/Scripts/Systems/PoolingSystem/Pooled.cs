@@ -32,14 +32,14 @@ public static class Pooled
 
     public static GameObject Instantiate(
         GameObject prefab,
-        Vector3 pos = default,
+        Vector3 position = default,
         Quaternion rot = default,
         Transform parent = null,
         bool autoReturn = false,
         float lifetime = 2f
     )
     {
-        var obj = _manager.Get(prefab, pos, rot, parent);
+        var obj = _manager.Get(prefab, position, rot, parent);
 
         if (autoReturn)
         {
