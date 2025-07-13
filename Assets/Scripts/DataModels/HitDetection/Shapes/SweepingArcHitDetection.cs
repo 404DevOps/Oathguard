@@ -14,6 +14,8 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
     private float rayLength => Range;
     private float radius => Range;
 
+    private Ray? currentRay = null;
+
 
     public override IEnumerator Execute(EntityBase origin, LayerMask enemyLayer, float hitDuration, Action<EntityBase, EntityBase> onHitAction)
     {
@@ -41,6 +43,7 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
             if (UseRaycast)
             {
                 var ray = new Ray(position, dir);
+                currentRay = ray;
                 bool hasHit = Physics.Raycast(ray, out RaycastHit hit, rayLength, enemyLayer.value);
 
                 if (hasHit && !alreadyHit.Contains(hit.collider))
@@ -55,8 +58,8 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
             }
             else
             {
-                Vector2 point = position + dir * radius;
-                Collider[] hits = Physics.OverlapSphere(point, 0.3f, enemyLayer);
+                Vector3 point = position + dir * radius;
+                Collider[] hits = Physics.OverlapSphere(point, Range, enemyLayer);
                 foreach (var h in hits)
                 {
                     if (!alreadyHit.Contains(h))
@@ -73,6 +76,7 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
 
             yield return new WaitForSeconds(timePerStep);
         }
+        currentRay = null;
     }
 
     public void DrawGizmos(Transform origin)
@@ -93,6 +97,11 @@ public class SweepingArcHitDetection : HitDetectionBase, IHitDetectionGizmo
              Vector3 dir = Quaternion.AngleAxis(a, Vector3.up) * origin.forward;
             Vector3 pos = origin.position + dir * radius;
             Gizmos.DrawWireSphere(pos, 0.1f);
+        }
+        if (currentRay.HasValue)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(currentRay.Value.origin, currentRay.Value.origin + currentRay.Value.direction * rayLength);
         }
     }
 }

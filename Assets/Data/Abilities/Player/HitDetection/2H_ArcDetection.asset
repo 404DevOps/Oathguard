@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 2H_ArcDetection
   m_EditorClassIdentifier: 
   Range: 5
-  Duration: 0.1
   Angle: 150
   SweepLeftToRight: 1
   UseRaycast: 1

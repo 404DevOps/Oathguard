@@ -32,7 +32,7 @@ MonoBehaviour:
     ScreenShakeIntensity: 0
   _abilityTimingData:
     AnticipationDelay: 0.2
-    HitDuration: 0.1
+    HitDuration: 0.15
     RecoveryTime: 0.1
     VFXDuration: 0.1
   _sfxData:
@@ -52,6 +52,7 @@ MonoBehaviour:
     - rid: 3209868417464008777
       type: {class: DamageEffect, ns: , asm: Assembly-CSharp}
       data:
+        VFX: {fileID: 0}
         TargetType: 0
         MinDamage: 90
         MaxDamage: 100

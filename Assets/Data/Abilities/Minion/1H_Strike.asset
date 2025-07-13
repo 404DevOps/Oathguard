@@ -32,7 +32,7 @@ MonoBehaviour:
     ScreenShakeIntensity: 0
   _abilityTimingData:
     AnticipationDelay: 0.6
-    HitDuration: 0.25
+    HitDuration: 0.17
     RecoveryTime: 0.3
     VFXDuration: 0
   _sfxData:
