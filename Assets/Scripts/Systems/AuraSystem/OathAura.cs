@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Aura/OathAura", fileName = "NewOathAura")]
 public class OathAura : AuraBase
 {
+    [Tooltip("React to all by Default, if thats unintended set None or specific Types instead.")]
     public List<DamageType> ReactToDamageTypes;
     public OathType OathType;
     public List<OathUpgrade> OathUpgrades;
@@ -38,7 +39,14 @@ public class OathAura : AuraBase
         if (!args.SourceEffect.AllowTriggerReactiveEvents) return; //this will typically be on bleeds/poison etc
         if (instance.Target != args.Origin) return; //only trigger if holder was attacker
         if (instance.Target == args.Target) return; //only trigger on enemy struck
-        if (!ReactToDamageTypes.Contains(args.Type)) return;
+
+        
+        if (ReactToDamageTypes != null) //react to all by default, when none cancel list, when some are set != none, apply
+        {
+            if (args.Type == DamageType.None) return;
+            if (!ReactToDamageTypes.Contains(args.Type)) return;
+        }
+        
         
 
         Debug.Log("OnEntityDamaged fired in OathAura.");

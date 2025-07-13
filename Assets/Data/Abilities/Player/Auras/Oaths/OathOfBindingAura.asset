@@ -18,7 +18,7 @@ MonoBehaviour:
     them into in place
   Icon: {fileID: 7840184059218143156, guid: e7fd5e266b584f445aef027516761d6f, type: 3}
   TargetType: 1
-  Type: 2
+  AuraType: 0
   TickRate: 0
   Duration: 0
   ShowAuraDisplay: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   AuraParticles: {fileID: 3854921247714698391, guid: 884d0f3d230ae5c4595729dee98d55d8, type: 3}
   ParticleOffset: {x: 0, y: 2, z: 0}
   SwordAura: {fileID: 11400000, guid: 76e3a46da577af94ab703ee50344f9dc, type: 2}
-  ReactToDamageTypes: 
+  ReactToDamageTypes: 0100000002000000
   OathType: 3
   OathUpgrades:
   - {fileID: 11400000, guid: f0711db0648b32344b47be4d0d2377a0, type: 2}

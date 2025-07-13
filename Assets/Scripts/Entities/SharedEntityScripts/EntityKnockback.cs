@@ -78,13 +78,11 @@ public class EntityKnockback : MonoBehaviour
         _agent.enabled = false;
         _rb.isKinematic = false;
         _rb.linearVelocity = directionalForce;
-        Debug.Log("Start knockback");
 
     }
 
     private void StopKnockback()
     {
-        Debug.Log($"Stop Knockback. isKinematic: {_rb.isKinematic}, EntityId {Entity.Id}");
         _rb.linearVelocity = Vector3.zero;
         _rb.isKinematic = true;
         _agent.enabled = true;

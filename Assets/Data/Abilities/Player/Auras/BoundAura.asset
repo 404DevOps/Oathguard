@@ -17,12 +17,20 @@ MonoBehaviour:
   Description: Temporarily Immobilized.
   Icon: {fileID: 0}
   TargetType: 0
-  Type: 1
+  AuraType: 1
+  TickRate: 0
   Duration: 5
+  ShowAuraDisplay: 1
   Modifiers:
   - SourceId: 
     StatType: 4
     Operator: 1
     Value: 100
     OathType: 0
-  ShowAuraDisplay: 1
+  TickEffects: []
+  AuraParticles: {fileID: 7478598925658160172, guid: 70d192f0a21475c44a3631cefc314061, type: 3}
+  ParticleOffset: {x: 0, y: 0, z: 0}
+  SwordAura: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

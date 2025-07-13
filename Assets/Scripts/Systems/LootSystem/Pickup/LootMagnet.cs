@@ -4,9 +4,47 @@ using UnityEngine;
 
 public class LootMagnet : MonoBehaviour
 {
-    private List<PickupBase> lootInRange = new List<PickupBase>();
-    private List<PickupBase> lootToRemove = new List<PickupBase>();
-    private List<PickupBase> removeBuffer = new List<PickupBase>(); //buffer for current frame.
+    private List<PickupBase> _lootInRange = new List<PickupBase>();
+    private List<PickupBase> _lootToRemove = new List<PickupBase>();
+    private List<PickupBase> _removeBuffer = new List<PickupBase>(); //buffer for current frame.
+
+    private PlayerEntity _player;
+
+    private void Awake()
+    {
+        _player = GetComponentInParent<PlayerEntity>();
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnEntityDied.AddListener(OnPlayerDied);
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnEntityDied.RemoveListener(OnPlayerDied);
+    }
+
+    private void OnPlayerDied(EntityBase entity)
+    {
+        //release pending loot when dying
+        if (entity.Id != _player.Id) return;
+        foreach (var loot in _lootInRange)
+        {
+            Pooled.Release(loot);
+        }
+        foreach (var loot in _lootToRemove)
+        {
+            Pooled.Release(loot);
+        }
+        foreach (var loot in _removeBuffer)
+        {
+            Pooled.Release(loot);
+        }
+
+        _lootInRange.Clear();
+        _lootToRemove.Clear();
+        _removeBuffer.Clear();
+    }
 
     void TryAddLootToTracking(Collider other)
     {
@@ -14,9 +52,9 @@ public class LootMagnet : MonoBehaviour
         if (loot != null)
         {
             if (!loot.CanBeMagnetized) return;
-            if (!lootInRange.Contains(loot))
+            if (!_lootInRange.Contains(loot))
             {
-                lootInRange.Add(loot);
+                _lootInRange.Add(loot);
                 loot.OnLootCollected += RemoveFromList;
             }
         }
@@ -33,30 +71,31 @@ public class LootMagnet : MonoBehaviour
 
     private void RemoveFromList(PickupBase pickup)
     {
-        lootToRemove.Add(pickup);
+        _lootToRemove.Add(pickup);
     }
 
     void Update()
     {
+        if (_player.IsDead) return;
         // Move loot toward the player
-        foreach (var loot in lootInRange)
+        foreach (var loot in _lootInRange)
         {
             if (loot != null)
                 loot.MoveToward(transform.position);
         }
 
         //make snapshot to buffer, so we can safely add new pickups to lootToRemove.
-        if (lootToRemove.Count > 0)
+        if (_lootToRemove.Count > 0)
         {
-            removeBuffer.Clear();
-            removeBuffer.AddRange(lootToRemove);
-            lootToRemove.Clear(); //new entries during this frame should be kept for next update
+            _removeBuffer.Clear();
+            _removeBuffer.AddRange(_lootToRemove);
+            _lootToRemove.Clear(); //new entries during this frame should be kept for next update
         }
 
         //remove buffer.
-        foreach (var loot in removeBuffer)
+        foreach (var loot in _removeBuffer)
         {
-            lootInRange.Remove(loot);
+            _lootInRange.Remove(loot);
         }
     }
 }
