@@ -23,6 +23,7 @@ MonoBehaviour:
   WeaponAbilities:
   - {fileID: 11400000, guid: a8a383257177f9f47ab181c940134a16, type: 2}
   - {fileID: 11400000, guid: 921219be153995749a38646f78807360, type: 2}
+  ComboData: {fileID: 11400000, guid: c9fe34447b1cb47489afbe679be91e9f, type: 2}
   MainHandPrefab: {fileID: 3513425645202981756, guid: 7720f024d6bff3b4180262a4f99841dd, type: 3}
   OffhandPrefab: {fileID: 3513425645202981756, guid: 7720f024d6bff3b4180262a4f99841dd, type: 3}
   OffHandOffset: {x: 0, y: 0, z: 0}

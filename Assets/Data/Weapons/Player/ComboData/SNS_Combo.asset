@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a88deef49e4d08b4f9e3162cb3239174, type: 3}
-  m_Name: 1H_ReverseArcDetection 1
+  m_Script: {fileID: 11500000, guid: 8349d280aae8c1f448c04bd579999fb7, type: 3}
+  m_Name: SNS_Combo
   m_EditorClassIdentifier: 
-  Range: 3.5
-  Angle: 150
-  SweepLeftToRight: 0
-  UseRaycast: 1
-  RaycastStepAngle: 5
+  PrimaryCombo:
+  - {fileID: 11400000, guid: 79a4d48d83614cf45b43429c093a9217, type: 2}
+  - {fileID: 11400000, guid: cc629b85ef521714f9aaf39db1e83749, type: 2}
+  SecondaryCombo: []

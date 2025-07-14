@@ -21,7 +21,7 @@ public class AbilityExecutor : MonoBehaviour
             return false;
 
         CurrentAbility = ability;
-        if (CurrentAbility.TryUseAbility(_entity))
+        if (CurrentAbility.TryUseAbility(_entity, null))
         {
             Debug.Log("AbilityExecutor.TryExecuteAbility() - " + CurrentAbility.AbilityData.Name);
             CurrentAbility.OnAbilitiyFinished += OnAbilityFinished;

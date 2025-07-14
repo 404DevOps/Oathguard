@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
-  m_Name: SNS_Strike
+  m_Name: DW_Strike
   m_EditorClassIdentifier: 
-  _uniqueID: 571f5ba4-4c81-45c2-b642-7c73cc47499b
+  _uniqueID: e4b39dbe-0867-40e4-b346-5562f5ffcee0
   VFX_Execute: {fileID: 11400000, guid: b293e8e95cd06c240bcf515f2fb70a55, type: 2}
   VFX_Anticipation: {fileID: 0}
   _abilityData:
@@ -21,7 +21,7 @@ MonoBehaviour:
     Description: A Melee Strike that damages nearby enemies
     Cooldown: 0
     UseGCD: 1
-    GCDDuration: 0.5
+    GCDDuration: 0
   _animationData:
     OnHitVFX:
       VFXPrefab: {fileID: 0}
@@ -32,7 +32,7 @@ MonoBehaviour:
   _abilityTimingData:
     AnticipationDelay: 0.2
     HitDuration: 0.1
-    RecoveryTime: 0.15
+    RecoveryTime: 0.05
     VFXDuration: 0.2
   _sfxData:
     PlaySoundOneShot: 0
@@ -41,6 +41,7 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008777
+  - rid: 3368185951371133007
   HitDetection: {fileID: 11400000, guid: 78bb1c501313f1e48a37b6b5435f8816, type: 2}
   Layer:
     serializedVersion: 2
@@ -61,3 +62,8 @@ MonoBehaviour:
         IgnoreHurt: 0
         AllowTriggerReactiveEvents: 1
         Type: 2
+    - rid: 3368185951371133007
+      type: {class: AddAuraEffect, ns: , asm: Assembly-CSharp}
+      data:
+        VFX: {fileID: 0}
+        Aura: {fileID: 11400000, guid: 5f8fd8623932068419271815cf9bc6c6, type: 2}

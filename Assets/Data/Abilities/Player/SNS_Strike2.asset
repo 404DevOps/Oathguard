@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9b2f6d78456f9d43870fa28002e96f5, type: 3}
-  m_Name: SNS_Strike
+  m_Name: SNS_Strike2
   m_EditorClassIdentifier: 
-  _uniqueID: 571f5ba4-4c81-45c2-b642-7c73cc47499b
-  VFX_Execute: {fileID: 11400000, guid: b293e8e95cd06c240bcf515f2fb70a55, type: 2}
+  _uniqueID: 54811f75-d6ff-4909-8254-307afb9e0636
+  VFX_Execute: {fileID: 11400000, guid: 0b9e146a26ad95644856d8f467f171c0, type: 2}
   VFX_Anticipation: {fileID: 0}
   _abilityData:
     Icon: {fileID: 4279778568888681825, guid: 6105e7375c8f31746b474f6ee5b5dda8, type: 3}
@@ -30,9 +30,9 @@ MonoBehaviour:
     AnimationTriggerName: primaryAttack
     ScreenShakeIntensity: 0
   _abilityTimingData:
-    AnticipationDelay: 0.2
+    AnticipationDelay: 0.3
     HitDuration: 0.1
-    RecoveryTime: 0.15
+    RecoveryTime: 0.25
     VFXDuration: 0.2
   _sfxData:
     PlaySoundOneShot: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     SFX_Miss: {fileID: 0}
   Effects:
   - rid: 3209868417464008777
-  HitDetection: {fileID: 11400000, guid: 78bb1c501313f1e48a37b6b5435f8816, type: 2}
+  HitDetection: {fileID: 11400000, guid: d31c1c6ec952cf74f816ee3692f315f0, type: 2}
   Layer:
     serializedVersion: 2
     m_Bits: 512

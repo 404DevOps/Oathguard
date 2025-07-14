@@ -35,7 +35,7 @@ public class PlayerEntity : EntityBase
         WeaponInstance = weaponSet.CreateInstance(this, HandSlotL, HandSlotR);
 
         AbilityController = GetComponent<PlayerAbilityController>();
-        AbilityController.Initialize(this, weaponSet.WeaponAbilities);
+        AbilityController.Initialize(this, weaponSet);
 
         Experience = GetComponent<EntityExperience>();
         Experience.Initialize(this);

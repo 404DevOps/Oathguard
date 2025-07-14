@@ -16,6 +16,7 @@ public class WeaponSet : ScriptableObject
     public float Defense;
 
     public List<AbilityBase> WeaponAbilities;
+    public WeaponComboData ComboData;
 
     public GameObject MainHandPrefab;
     public GameObject OffhandPrefab;
@@ -23,22 +24,22 @@ public class WeaponSet : ScriptableObject
 
     public WeaponSetInstance CreateInstance(EntityBase entity, Transform handSlotL, Transform handSlotR)
     {
-        List<WeaponHitbox> weapons = new List<WeaponHitbox>();
+        List<GameObject> weapons = new List<GameObject>();
 
         var mainHandGO = Instantiate(this.MainHandPrefab, handSlotR);
-        WeaponHitbox mainHand = mainHandGO.GetComponent<WeaponHitbox>();
+        weapons.Add(mainHandGO);
 
-        WeaponHitbox offhand = null;
+        GameObject offhand = null;
         if (OffhandPrefab != null)
         {
             var offhandGO = Instantiate(OffhandPrefab, handSlotL);
             offhandGO.transform.localPosition += OffHandOffset;
 
             if (Type != WeaponType.SNS) //dont add shield
-                offhand = offhandGO.GetComponent<WeaponHitbox>();
+                offhand = offhandGO;
         }
 
-        var instance = new WeaponSetInstance(entity, this, mainHand, offhand);
+        var instance = new WeaponSetInstance(entity, this, mainHandGO, offhand);
         return instance;
     }
 }

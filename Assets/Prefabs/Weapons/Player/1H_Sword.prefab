@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6167742869196278042}
   - component: {fileID: 5266395482412723503}
   - component: {fileID: 5039734512904836120}
-  - component: {fileID: -170103996727632541}
   - component: {fileID: -5856917707191189717}
   m_Layer: 0
   m_Name: 1H_Sword
@@ -110,24 +109,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.83902836, y: 2.08, z: 0.24801989}
   m_Center: {x: 0, y: 1.1, z: 2.2906312e-17}
---- !u!114 &-170103996727632541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3513425645202981756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff4859c55f313145998f7c3755390e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Holder: {fileID: 0}
-  Hitbox: {fileID: 5039734512904836120}
-  HitLayer:
-    serializedVersion: 2
-    m_Bits: 768
-  Data: {fileID: 0}
 --- !u!54 &-5856917707191189717
 Rigidbody:
   m_ObjectHideFlags: 0

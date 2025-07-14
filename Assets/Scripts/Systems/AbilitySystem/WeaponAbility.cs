@@ -21,7 +21,7 @@ public class WeaponAbility : AbilityBase
 
         yield return WaitManager.Wait(Timing.AnticipationDelay);
         if (VFX_Execute != null)
-            VFX_Execute.PlayVFX(origin, this, target, Timing.HitDuration);
+            VFX_Execute.PlayVFX(origin, this, target, Timing.VFXDuration);
 
         OnSwingStart?.Invoke();
 

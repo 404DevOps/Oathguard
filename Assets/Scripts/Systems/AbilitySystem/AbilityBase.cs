@@ -29,13 +29,8 @@ public abstract class AbilityBase : UniqueScriptableObject
     internal bool _wasInterrupted = false;
     internal string _ownerId;
 
-    #region Animation
-    protected int _animationIndex = 0;
-    #endregion
-
     public virtual void Initialize()
     {
-        _animationIndex = 0;
         _wasInterrupted = false;
     }
     public virtual bool TryUseAbility(EntityBase origin, EntityBase target = null)
@@ -94,17 +89,7 @@ public abstract class AbilityBase : UniqueScriptableObject
     {
         if (origin == null) //assume origin dead.
             return;
-
-        origin.Animator.SetTrigger(AnimationData.AnimationTriggerName);
-        origin.Animator.SetInteger("animationIndex", _animationIndex);
-
-        //Debug.Log("AnimationTrigger: " + AnimationTriggerName + " AnimationIndex: " + _animationIndex);
-        _animationIndex++;
-
-        if (_animationIndex > AnimationData.AnimationVariationCount - 1)
-        {
-            _animationIndex = 0;
-        }
+        origin.Animator.SetTrigger(AnimationData.AnimationTriggerName); 
     }
 
     internal void InvokeAbilityFinished()
@@ -192,6 +177,6 @@ public class AbilityTimingData
     [Tooltip("Total animation duration to fully finish (recovery time included).")]
     public float RecoveryTime;
 
-    [Tooltip("Optional VFX timing override.")]
+    [Tooltip("How Long should VFX be shown after Hit Animation Trigger is set")]
     public float VFXDuration;
 }
