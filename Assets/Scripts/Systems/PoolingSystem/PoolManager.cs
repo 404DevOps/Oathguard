@@ -25,7 +25,7 @@ public class PoolManager : MonoBehaviour
         DontDestroyOnLoad(_poolRoot.gameObject);
     }
 
-    public GameObject Get(GameObject prefab, Vector3 pos, Quaternion rot, Transform parent)
+    public GameObject Get(GameObject prefab, Vector3? pos, Quaternion? rot, Transform parent)
     {
         if (!_pools.TryGetValue(prefab, out var pool))
         {
@@ -61,9 +61,10 @@ public class PoolManager : MonoBehaviour
         }
 
         var obj = pool.Get();
-        if (pos != default || rot != default)
+        if (pos.HasValue || rot.HasValue)
         {
-            obj.transform.SetPositionAndRotation(pos, rot);
+            Debug.Log("Set Position " + obj.name);
+            obj.transform.SetPositionAndRotation(pos ?? Vector3.zero, rot ?? Quaternion.identity);
         }
         if (parent != null)
         {

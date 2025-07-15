@@ -2,12 +2,12 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ChainLightningEffect : DamageEffect
+public class DealDamageAndJumpToTargetEffect : DamageEffect
 {
+    public LayerMask LayerMask;
     public float JumpRange = 5f;
     public int MaxJumps = 3;
     public float DamageMultiplier = 1f;
-    public float LayerMask;
 
     public override void Apply(EntityBase origin, EntityBase initialTarget, OathUpgrade source)
     {
@@ -26,6 +26,7 @@ public class ChainLightningEffect : DamageEffect
         {
             EntityBase nextTarget = FindClosestUnit(current.transform.position, alreadyHit);
             if (nextTarget == null) break;
+            Debug.DrawLine(current.transform.position, nextTarget.transform.position, Color.magenta);
 
             base.Apply(current, nextTarget, source);
             Debug.Log("ChainTarget Hit");
@@ -41,10 +42,11 @@ public class ChainLightningEffect : DamageEffect
 
         foreach (var enemy in EntityManager.Instance.Entities)
         {
+            if (enemy == null) continue;
             if (enemy is PlayerEntity) continue;
+            if (!Utility.IsInLayerMask(LayerMask, enemy.gameObject)) continue;
             if (enemy.IsDead) continue;
-            if (enemy == null || alreadyHit.Contains(enemy))
-                continue;
+            if (alreadyHit.Contains(enemy)) continue;
 
             float sqrDist = (enemy.transform.position - fromPos).sqrMagnitude;
             if (sqrDist <= JumpRange * JumpRange && sqrDist < minDistSqr)
