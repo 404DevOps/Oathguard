@@ -39,6 +39,7 @@ public class NPCEntity : EntityBase
         if (entity.Id != Id) return;
         if (HasAlreadyDied) return;
 
+        AbilityExecutor.ForceStopAbility();
         base.OnEntityDied(entity);
         EntityManager.Instance.Player.Experience.AddXP(Stats.Experience);
         HasAlreadyDied = true;

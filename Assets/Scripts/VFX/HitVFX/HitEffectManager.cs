@@ -3,28 +3,23 @@ using UnityEngine;
 
 public class HitEffectManager : Singleton<HitEffectManager>
 {
-    [Header("VFXPool")]
-    public int PoolSize;
+    [Header("HitEffect")]
+    public int HitEffectPoolSize;
     public GameObject HitEffectPrefab;
+
+    [Header("SplashEffect")]
+    public int SplashEffectPoolSize;
+    public GameObject SplashEffectPrefab;
 
     [Header("EffectSpawning")]
     public float ImpactOffsetDistance;
-
-    //internals
-    private Queue<GameObject> _vfxPool = new();
-    private Transform _vfxPoolTransform;
+    public float SplashOffsetDistance;
 
 
     private void Start()
     {
-        _vfxPoolTransform = transform.Find("VFXPool");
-        if (_vfxPoolTransform == null) //create if not found
-        {
-            var go = new GameObject("VFXPool");
-            go.transform.SetParent(transform);
-            _vfxPoolTransform = go.transform;
-        }
-        WarmupPool();
+        PooledWarmup.Preload(HitEffectPrefab, HitEffectPoolSize);
+        PooledWarmup.Preload(SplashEffectPrefab, SplashEffectPoolSize);
     }
 
     public void PlayHitVFX(EntityBase origin, EntityBase target)
@@ -34,45 +29,17 @@ public class HitEffectManager : Singleton<HitEffectManager>
         Vector3 impactPos = target.transform.position + direction * ImpactOffsetDistance;
         impactPos.y = 1.4f;
 
-        var hitEffect = GetVFX();
-        hitEffect.transform.position = impactPos;
-        hitEffect.SetActive(true);
+        Pooled.Instantiate(HitEffectPrefab, position: impactPos, autoReturn: true, lifetime: 2f);
     }
-
-    #region ObjectPooling
-    private void WarmupPool()
+    public void PlaySplashVFX(EntityBase origin, EntityBase target)
     {
-        for (int i = 0; i < PoolSize; i++)
-        {
-            ReturnToPool(CreateVFX());
-        }
-    }
+        if (target.IsDead) return;
+        Vector3 direction = (origin.transform.position - target.transform.position).normalized;
+        Vector3 impactPos = target.transform.position - direction * SplashOffsetDistance;
+        impactPos.y = 1.4f;
 
-    private GameObject CreateVFX()
-    {
-        var vfxInstance = Instantiate(HitEffectPrefab, _vfxPoolTransform);
-        var pooledVFX = vfxInstance.GetComponent<PooledParticleSystem>();
-        pooledVFX.Init(ReturnToPool);
-        return vfxInstance;
-    }
+        Quaternion rotation = Quaternion.LookRotation(-direction);
 
-    private GameObject GetVFX()
-    {
-        if (_vfxPool.Count > 0)
-        {
-            return _vfxPool.Dequeue();
-        }
-        else
-        {
-            return CreateVFX();
-        }
+        Pooled.Instantiate(SplashEffectPrefab, position: impactPos, rotation: rotation, autoReturn: true, lifetime: 2f);
     }
-
-    private void ReturnToPool(GameObject vfxInstance)
-    {
-        vfxInstance.SetActive(false);
-        _vfxPool.Enqueue(vfxInstance);
-    }
-
-    #endregion
 }

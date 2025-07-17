@@ -40,6 +40,7 @@ public class WeaponAbility : AbilityBase
     protected virtual void PlayOnHitEffect(EntityBase origin, EntityBase target)
     {
         HitEffectManager.Instance.PlayHitVFX(origin, target);
+        HitEffectManager.Instance.PlaySplashVFX(origin, target);
     }
 
     public override IEnumerator WaitForAnimation(EntityBase origin)
